@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "abians.prisma-generate-uml",
+    "alexcvzz.vscode-sqlite",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "github.codespaces",
+    "github.github-vscode-theme",
+    "hediet.vscode-drawio",
+    "joshbolduc.commitlint",
+    "meganrogge.template-string-converter",
+    "naumovs.color-highlight",
+    "prisma.prisma",
+    "usernamehw.errorlens"
+  ]
+}

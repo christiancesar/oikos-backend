@@ -1,0 +1,231 @@
+## URL BASE PARA API
+@baseUrl = http://localhost:3333
+
+# @name UserRequest
+### Create User (POST)
+POST {{baseUrl}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "email": "john.doe@oikos.com",
+    "password": "password-example"
+}
+
+
+# @name AuthenticationUserRequest
+### Session (POST)
+POST {{baseUrl}}/sessions HTTP/1.1
+content-type: application/json
+
+{
+    "email": "john.doe@oikos.com",
+    "password": "password-example"
+}
+
+# @name ProfileResquest
+### Profile Create (POST)
+@token = {{AuthenticationUserRequest.response.body.token}}
+@userId = c7bc406c-df51-4c31-9ebc-a81eb25fa917
+POST  {{baseUrl}}/users/profile/ HTTP/1.1
+content-type: application/json
+
+{
+  "userId": "{{userId}}",
+  "firstName": "Christian",
+  "lastName": "Cesar",
+  "phone": "99 9 9999-9999"
+}
+
+### Profile Get (GET)
+GET {{baseUrl}}/users/profile/3070c2eb-3f71-4dd2-ad5f-7574ebf38382 HTTP/1.1
+content-type: application/json
+
+### Profile Update (Patch)
+PATCH  {{baseUrl}}/users/profile/3070c2eb-3f71-4dd2-ad5f-7574ebf38382 HTTP/1.1
+content-type: application/json
+
+{
+  "userId": "{{userId}}",
+  "firstName": "Christian Cesar",
+  "lastName": "Rodrigues",
+  "phone": "99 9 9999-9999"
+}
+
+## Profile Address
+### Create Address (POST)
+@profileId = 3070c2eb-3f71-4dd2-ad5f-7574ebf38382
+
+POST  {{baseUrl}}/users/profile/{{profileId}}/address HTTP/1.1
+content-type: application/json
+
+{
+  "address": {
+    "street": "Rua Gregorio Clemente",
+    "number": "999",
+    "complement":"Casa",
+    "district": "Jardim Olavo Klen",
+    "city": "Rondonopolis",
+    "state": "Mato Grosso",
+    "stateAcronym": "MT",
+    "zipCode": "78735000",
+    "latitude": 0,
+    "longitude": 0
+  }
+}
+
+### Get Profile Address (GET)
+GET {{baseUrl}}/users/profile/{{profileId}}/address HTTP/1.1
+content-type: application/json
+
+### Profile Update (Patch)
+PATCH  {{baseUrl}}/users/profile/{{profileId}}/address HTTP/1.1
+content-type: application/json
+
+{
+  "address": {
+    "street": "Rua Gregorio Clemente",
+    "number": "999",
+    "complement":"Casa",
+    "district": "Jardim Olavo Klen",
+    "city": "Rondonopolis",
+    "state": "Mato Grosso",
+    "stateAcronym": "MT",
+    "zipCode": "78735000",
+    "latitude": 0,
+    "longitude": 0
+  }
+}
+
+## Collectors
+### Create Collector
+POST {{baseUrl}}/collectors HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Coletor A",
+  "type": "empresa",
+  "location": "São Paulo"
+}
+
+### Obter Todos os Collectors (GET)
+
+GET {{baseUrl}}/collectors HTTP/1.1
+
+### Obter um Coletor por ID (GET)
+GET {{baseUrl}}/collectors/2 HTTP/1.1
+
+### Atualizar um Coletor (PUT)
+
+PUT {{baseUrl}}/collectors/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Coletor B",
+  "type": "empresa",
+  "location": "Rio de Janeiro"
+}
+
+
+### Excluir um Coletor (DELETE)
+DELETE {{baseUrl}}/collectors/1 HTTP/1.1
+
+
+
+### Create Material
+POST {{baseUrl}}/materials HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Material C",
+  "category": "Plastico"
+}
+
+### Obter Todos os Materials (GET)
+GET {{baseUrl}}/materials HTTP/1.1
+
+### Obter um Material por ID (GET)
+GET {{baseUrl}}/materials/1 HTTP/1.1
+
+### Atualizar um Material (PUT)
+
+PUT {{baseUrl}}/materials/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Material B",
+  "category": "orgânico"
+}
+
+### Excluir um Material (DELETE)
+DELETE {{baseUrl}}/materials/2 HTTP/1.1
+
+### Create Collection Request
+POST {{baseUrl}}/collection-requests HTTP/1.1
+Content-Type: application/json
+
+{
+    "date": "2024-11-10T00:00:00Z",
+    "status": "pending",
+    "notes": "Solicito que venha coletar meus materias",
+    "userId": "user-123",
+    "collectorId": 1,
+    "materialId": 1
+}
+
+### Get All CollectionRequests
+GET {{baseUrl}}/collection-requests HTTP/1.1
+
+### Get CollectionRequest by ID
+GET {{baseUrl}}/collection-requests/1 HTTP/1.1
+
+### Update CollectionRequest
+PUT {{baseUrl}}/collection-requests/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "date": "2024-11-12T00:00:00Z",
+    "status": "completed",
+    "notes": "Material collection completed",
+    "userId": "user-123",
+    "collectorId": 1,
+    "materialId": 2
+}
+
+### Delete CollectionRequest
+DELETE {{baseUrl}}/collection-requests/1 HTTP/1.1
+
+
+### Create CollectionLog
+POST {{baseUrl}}/collection-logs HTTP/1.1
+Content-Type: application/json
+
+{
+    "date": "2024-11-10T00:00:00Z",
+    "quantity": 50,
+    "notes": "Coletado 50 kg de plastico",
+    "collectorId": 1,
+    "materialId": 3
+}
+
+### Get All CollectionLogs
+GET {{baseUrl}}/collection-logs HTTP/1.1
+
+### Get CollectionLog by ID
+GET {{baseUrl}}/collection-logs/1 HTTP/1.1
+
+### Update CollectionLog
+PUT {{baseUrl}}/collection-logs/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "date": "2024-11-12T00:00:00Z",
+    "quantity": 60,
+    "notes": "Coletado 60 kg de plastico",
+    "collectorId": 1,
+    "materialId": 1
+}
+
+### Delete CollectionLog
+DELETE {{baseUrl}}/collection-logs/2 HTTP/1.1
+
+

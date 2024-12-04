@@ -1,0 +1,17 @@
+{
+  "extends": "@rocketseat/eslint-config/node",
+  "rules": {
+    "no-useless-constructor": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "tabWidth": 2,
+        "singleQuote": false,
+        "trailingComma": "all",
+        "arrowParens": "always",
+        "semi": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+model Address {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  city         String
+  state        String
+  district     String
+  complement   String?
+  zipCode      String
+  stateAcronym String
+  latitude     Float?
+  longitude    Float?
+
+  profile   Profile? @relation(fields: [profileId], references: [id])
+  profileId String?  @unique
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?  @unique
+
+  collectorId String? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("addresses")
+}

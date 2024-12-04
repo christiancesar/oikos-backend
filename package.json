@@ -1,0 +1,54 @@
+{
+  "name": "oikos",
+  "version": "1.0.0",
+  "description": "\"A plataforma será um facilitador na reciclagem e o descarte consciente de resíduos sólidos por meio da conexão entre indivíduos, empresas e catadores.\"",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "scripts": {
+    "dev:server": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules -r tsconfig-paths/register src/index.ts",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "ts-node prisma/seed.ts",
+    "lint": "eslint --ext .ts src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.unipampa.edu.br/ppges/des-sof-2024.2/grupo-01.git"
+  },
+  "keywords": [
+    "recyclable"
+  ],
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "eslint": "^8.57.1",
+    "globals": "^15.12.0",
+    "jiti": "^2.4.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.7",
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.22.0",
+    "reflect-metadata": "^0.2.2",
+    "zod": "^3.23.8"
+  }
+}

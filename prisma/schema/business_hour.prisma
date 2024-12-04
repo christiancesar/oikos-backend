@@ -1,0 +1,21 @@
+model TimeSlot {
+  id             String        @id @default(uuid())
+  startTime      String
+  endTime        String
+  businessHour   BusinessHour? @relation(fields: [businessHourId], references: [id])
+  businessHourId String?
+
+  @@map("time_slots")
+}
+
+model BusinessHour {
+  id        String @id @default(uuid())
+  dayOfWeek String @unique
+
+  timeSlots TimeSlot[]
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+
+  @@map("business_hours")
+}
