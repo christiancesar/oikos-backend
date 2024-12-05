@@ -1,7 +1,7 @@
 import { AddressEntity } from "@modules/addresses/address";
 import { randomUUID } from "crypto";
 import { BusinessHourEntity } from "./BusinessHour";
-import { Item } from "./Item";
+import { ItemEntity } from "./Item";
 
 // Todo: Add CompanyType (Ong, Privada, Governamental) -> Não modelado
 // Todo: Add TagName (Tipo de empresa, por exemplo, Eco-Ponto, Cooperativa, etc) -> Não modelado
@@ -9,39 +9,54 @@ import { Item } from "./Item";
 // Todo: Add recyclable (Resíduos que a empresa trabalha) [Obrigatório]
 // Todo: BusinessHours (Horário de funcionamento) [Obrigatório]
 // Todo: Cobrança por descarte do resíduo, por exemplo, Eco-Pontos cobram pelo descarte. [Opcional]
+export enum IdentityType {
+  CPF = "CPF",
+  CNPJ = "CNPJ",
+}
+
+export enum CompanyType {
+  ONG = "ONG",
+  COMPANY = "COMPANY",
+  GOVERNMENT = "GOVERNMENT",
+  COLLECTOR = "COLLECTOR",
+}
 
 type CompanyEntityConstructor = {
-  id?: string;
-  cnpj: string;
-  stateRegistration: string; // Inscrição Estadual
+  identity: string;
+  identityType: IdentityType;
+  companyType: CompanyType;
+  stateRegistration?: string | null; // Inscrição Estadual
   status: boolean; // Ativo ou Inativo
   isHeadquarters: boolean; // Matriz ou Filial
-  businessName: string; // Nome Fantasia
+  businessName?: string | null; // Nome Fantasia
   corporateName: string; // Razão Social
-  email: string;
+  email?: string |null;
   phones: string;
   address?: AddressEntity | null;
   startedActivityIn: Date;
   businessHours?: BusinessHourEntity[] | null; // Horário de funcionamento
-  wasteItems?: Item[] | null;
+  wasteItems?: ItemEntity[] | null;
   createdAt: Date;
   updatedAt?: Date | null;
 };
 
+
 export class CompanyEntity {
   id: string;
-  cnpj: string;
-  stateRegistration: string; // Inscrição Estadual
+  identity: string;
+  identityType: IdentityType;
+  companyType: CompanyType;
+  stateRegistration?: string | null; // Inscrição Estadual
   status: boolean; // Ativo ou Inativo
   isHeadquarters: boolean; // Matriz ou Filial
-  businessName: string; // Nome Fantasia
+  businessName?: string | null; // Nome Fantasia
   corporateName: string; // Razão Social
-  email: string;
+  email?: string |null;
   phones: string;
   address?: AddressEntity | null;
   startedActivityIn: Date;
   businessHours?: BusinessHourEntity[] | null; // Horário de funcionamento
-  wasteItems?: Item[] | null; // Resíduos que a empresa trabalha
+  wasteItems?: ItemEntity[] | null; // Resíduos que a empresa trabalha
   createdAt: Date;
   updatedAt?: Date | null;
 
@@ -49,7 +64,9 @@ export class CompanyEntity {
     {
       address,
       businessName,
-      cnpj,
+      identity,
+      identityType,
+      companyType,
       corporateName,
       email,
       isHeadquarters,
@@ -65,7 +82,9 @@ export class CompanyEntity {
     id?: string,
   ) {
     this.id = id ?? randomUUID();
-    this.cnpj = cnpj;
+    this.identity = identity;
+    this.identityType = identityType;
+    this.companyType = companyType;
     this.stateRegistration = stateRegistration;
     this.status = status;
     this.isHeadquarters = isHeadquarters;

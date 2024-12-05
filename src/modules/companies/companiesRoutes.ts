@@ -9,11 +9,13 @@ import { CreateBusinessHoursController } from "./controllers/business_hours/Crea
 import { CreateWasteItemController } from "./controllers/waste_items/CreateWasteItemController";
 import { ListWasteItemsController } from "./controllers/waste_items/ListWasteItemsController";
 import { DeleteWasteItemController } from "./controllers/waste_items/DeleteWasteItemController";
+import { ListCompanyByUserController } from "./controllers/companies/ListCompanyByUserController";
 
 const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();
 const getCompanyController = new GetCompanyController();
 const updateCompanyController = new UpdateCompanyController();
+const listCompaniesByUserIdController = new ListCompanyByUserController();
 
 const createAddressCompanyController = new CreateAddressCompanyController();
 const getAddressCompanyController = new GetAddressCompanyController();
@@ -26,8 +28,8 @@ const listWasteItemsController = new ListWasteItemsController();
 const deleteWasteItemController = new DeleteWasteItemController();
 
 companiesRoutes.post("/", createCompanyController.handle);
+companiesRoutes.get("/", listCompaniesByUserIdController.handle);
 companiesRoutes.get("/:companyId", getCompanyController.handle);
-
 companiesRoutes.patch("/:companyId", updateCompanyController.handle);
 
 companiesRoutes.get("/:companyId/address", getAddressCompanyController.handle);

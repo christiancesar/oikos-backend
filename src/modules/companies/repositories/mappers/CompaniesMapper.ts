@@ -3,7 +3,11 @@ import {
   BusinessHourEntity,
   DayOfWeek,
 } from "@modules/companies/entities/BusinessHour";
-import { CompanyEntity } from "@modules/companies/entities/Companies";
+import {
+  CompanyEntity,
+  CompanyType,
+  IdentityType,
+} from "@modules/companies/entities/Companies";
 import { ItemEntity, WasteType } from "@modules/companies/entities/Item";
 import { unitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
 import { Prisma } from "@prisma/client";
@@ -26,7 +30,7 @@ type CompanyMapper = Prisma.CompanyGetPayload<{
 }>;
 
 export class CompaniesMapper {
-  static async toDomain(company: CompanyMapper): Promise<CompanyEntity> {
+  static toDomain(company: CompanyMapper): CompanyEntity {
     const businessHours: BusinessHourEntity[] = company.businessHours.map(
       (businessHour) => {
         return new BusinessHourEntity(
@@ -82,23 +86,29 @@ export class CompaniesMapper {
       );
     });
 
-    return {
-      id: company.id,
-      cnpj: company.cnpj,
-      stateRegistration: company.stateRegistration,
-      status: company.status,
-      isHeadquarters: company.isHeadquarters,
-      businessName: company.businessName,
-      corporateName: company.corporateName,
-      email: company.email,
-      phones: company.phones,
-      startedActivityIn: company.startedActivityIn,
-      address,
-      wasteItems,
-      businessHours,
-      createdAt: company.createdAt,
-      updatedAt: company.updatedAt,
-    };
+    return new CompanyEntity(
+      {
+        identity: company.identity,
+        identityType:
+          IdentityType[company.identityType as keyof typeof IdentityType],
+        companyType:
+          CompanyType[company.companyType as keyof typeof CompanyType],
+        stateRegistration: company.stateRegistration,
+        status: company.status,
+        isHeadquarters: company.isHeadquarters,
+        businessName: company.businessName,
+        corporateName: company.corporateName,
+        email: company.email,
+        phones: company.phones,
+        startedActivityIn: company.startedActivityIn,
+        address,
+        wasteItems,
+        businessHours,
+        createdAt: company.createdAt,
+        updatedAt: company.updatedAt,
+      },
+      company.id,
+    );
   }
 
   // static toRepository(company: CompanyEntity): Company {

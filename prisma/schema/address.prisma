@@ -17,8 +17,6 @@ model Address {
   company   Company? @relation(fields: [companyId], references: [id])
   companyId String?  @unique
 
-  collectorId String? @unique
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

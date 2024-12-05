@@ -15,6 +15,8 @@ export interface ICompaniesRepository {
   createCompany(data: CreateCompaniesDTO): Promise<CompanyEntity>;
   findCompayById(id: string): Promise<CompanyEntity | null>;
   findCompanyByUserId(userId: string): Promise<CompanyEntity | null>;
+  findCompanyByIdentity(identity: string): Promise<CompanyEntity | null>;
+  listCompaniesByUserId(userId: string): Promise<CompanyEntity[]>;
   updateCompany(profile: UpdateCompaniesDTO): Promise<CompanyEntity>;
 
   createAddress(data: CreateAddressCompaniesDTO): Promise<AddressEntity>;

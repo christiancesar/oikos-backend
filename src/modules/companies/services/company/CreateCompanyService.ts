@@ -1,17 +1,23 @@
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
 import { ICompaniesRepository } from "../../repositories/ICompaniesRepository";
 import { AppError } from "@common/errors/AppError";
+import {
+  CompanyType,
+  IdentityType,
+} from "@modules/companies/entities/Companies";
 
 type CreateCompanyServiceParams = {
   userId: string;
   company: {
-    cnpj: string;
-    stateRegistration: string;
+    identity: string;
+    identityType: IdentityType;
+    companyType: CompanyType;
+    stateRegistration?: string | null;
     status: boolean;
     isHeadquarters: boolean;
-    businessName: string;
+    businessName?: string | null;
     corporateName: string;
-    email: string;
+    email?: string | null;
     phones: string;
     startedActivityIn: Date;
   };
@@ -28,8 +34,9 @@ export class CreateCompanyService {
       throw new AppError("User not exists");
     }
 
-    const companiesExist =
-      await this.companiesRepository.findCompanyByUserId(userId);
+    const companiesExist = await this.companiesRepository.findCompanyByIdentity(
+      company.identity,
+    );
 
     if (companiesExist) {
       return companiesExist;

@@ -1,13 +1,15 @@
 export type CreateCompaniesDTO = {
   userId: string;
   company: {
-    cnpj: string;
-    stateRegistration: string;
+    identity: string;
+    identityType: string;
+    companyType: string;
+    stateRegistration?: string | null;
     status: boolean;
     isHeadquarters: boolean;
-    businessName: string;
+    businessName?: string | null;
     corporateName: string;
-    email: string;
+    email?: string | null;
     phones: string;
     startedActivityIn: Date;
   };
@@ -15,13 +17,15 @@ export type CreateCompaniesDTO = {
 
 export type UpdateCompaniesDTO = {
   id: string;
-  cnpj: string;
-  stateRegistration: string;
+  identity: string;
+  identityType: string;
+  companyType: string;
+  stateRegistration?: string | null;
   status: boolean;
   isHeadquarters: boolean;
-  businessName: string;
+  businessName?: string | null;
   corporateName: string;
-  email: string;
+  email?: string | null;
   phones: string;
   startedActivityIn: Date;
 };

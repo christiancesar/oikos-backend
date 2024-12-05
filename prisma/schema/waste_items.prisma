@@ -1,0 +1,17 @@
+model WasteItem {
+  id        String   @id @default(uuid())
+  amount    Float    @default(0)
+  unit      String   @default("KG")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  material   Material @relation(fields: [materialId], references: [id])
+  materialId String
+
+  wasteType String @default("RECYCLABLE")
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+
+  @@map("waste_items")
+}

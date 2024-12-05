@@ -26,7 +26,9 @@ export class CompaniesRepository implements ICompaniesRepository {
         corporateName: company.corporateName,
         phones: company.phones,
         email: company.email,
-        cnpj: company.cnpj,
+        identity: company.identity,
+        identityType: company.identityType,
+        companyType: company.companyType,
         stateRegistration: company.stateRegistration,
         status: company.status,
         isHeadquarters: company.isHeadquarters,
@@ -104,10 +106,60 @@ export class CompaniesRepository implements ICompaniesRepository {
     return company ? CompaniesMapper.toDomain(company) : null;
   }
 
+  async findCompanyByIdentity(identity: string): Promise<CompanyEntity | null> {
+    const company = await prisma.company.findFirst({
+      where: {
+        identity,
+      },
+      include: {
+        address: true,
+        businessHours: {
+          include: {
+            timeSlots: true,
+          },
+        },
+        wasteItems: {
+          include: {
+            material: true,
+          },
+        },
+        user: true,
+      },
+    });
+
+    return company ? CompaniesMapper.toDomain(company) : null;
+  }
+
+  async listCompaniesByUserId(userId: string): Promise<CompanyEntity[]> {
+    const companies = await prisma.company.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        address: true,
+        businessHours: {
+          include: {
+            timeSlots: true,
+          },
+        },
+        wasteItems: {
+          include: {
+            material: true,
+          },
+        },
+        user: true,
+      },
+    });
+
+    return companies.map((company) => CompaniesMapper.toDomain(company));
+  }
+
   async updateCompany({
     id,
     businessName,
-    cnpj,
+    identity,
+    companyType,
+    identityType,
     corporateName,
     email,
     isHeadquarters,
@@ -122,7 +174,9 @@ export class CompaniesRepository implements ICompaniesRepository {
       },
       data: {
         businessName,
-        cnpj,
+        identity,
+        companyType,
+        identityType,
         corporateName,
         email,
         isHeadquarters,
@@ -262,7 +316,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   }
 
   async createWasteItem(data: CreateWasteItemDTO): Promise<ItemEntity> {
-    const item = await prisma.item.create({
+    const item = await prisma.wasteItem.create({
       data: {
         amount: data.waste.amount,
         unit: data.waste.unit,
@@ -297,7 +351,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   }
 
   async findWasteItemById(wasteId: string): Promise<ItemEntity | null> {
-    const item = await prisma.item.findFirst({
+    const item = await prisma.wasteItem.findFirst({
       where: {
         id: wasteId,
       },
@@ -327,7 +381,7 @@ export class CompaniesRepository implements ICompaniesRepository {
     wasteId: string;
     companyId: string;
   }): Promise<void> {
-    await prisma.item.delete({
+    await prisma.wasteItem.delete({
       where: {
         id: data.wasteId,
         companyId: data.companyId,
@@ -336,7 +390,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   }
 
   async listWasteItemsByCompanyId(companyId: string): Promise<ItemEntity[]> {
-    const items = await prisma.item.findMany({
+    const items = await prisma.wasteItem.findMany({
       where: {
         companyId,
       },
