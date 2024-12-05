@@ -14,14 +14,14 @@ import { randomUUID } from "crypto";
  */
 
 export enum DayOfWeek {
-  SUNDAY="SUNDAY",
-  MONDAY="MONDAY",
-  TUESDAY="TUESDAY",
-  WEDNESDAY="WEDNESDAY",
-  THURSDAY="THURSDAY",
-  FRIDAY="FRIDAY",
-  SATURDAY="SATURDAY",
-} 
+  SUNDAY = "SUNDAY",
+  MONDAY = "MONDAY",
+  TUESDAY = "TUESDAY",
+  WEDNESDAY = "WEDNESDAY",
+  THURSDAY = "THURSDAY",
+  FRIDAY = "FRIDAY",
+  SATURDAY = "SATURDAY",
+}
 
 type TimeSlot = {
   startTime: string; // Horário de início, formato "HH:mm"
@@ -38,7 +38,10 @@ export class BusinessHourEntity {
   dayOfWeek: string;
   timeSlots: TimeSlot[];
 
-  constructor({ dayOfWeek, timeSlots }: BusinessHourEntityConstructor, id?: string) {
+  constructor(
+    { dayOfWeek, timeSlots }: BusinessHourEntityConstructor,
+    id?: string,
+  ) {
     this.id = id ?? randomUUID();
     this.dayOfWeek = DayOfWeek[dayOfWeek];
     this.timeSlots = timeSlots;

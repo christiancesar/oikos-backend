@@ -6,6 +6,7 @@ export function interceptErrorMiddleware(
   err: Error,
   request: Request,
   response: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) {
   if (err instanceof AppError) {

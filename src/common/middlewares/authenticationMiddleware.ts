@@ -31,6 +31,7 @@ export default function authenticationMiddleware(
     throw new AppError("JWT token is missing", 401);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, token] = authHeader.split(" ");
   try {
     if (process.env.JWT_SECRET === undefined) {

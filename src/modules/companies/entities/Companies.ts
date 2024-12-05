@@ -30,7 +30,7 @@ type CompanyEntityConstructor = {
   isHeadquarters: boolean; // Matriz ou Filial
   businessName?: string | null; // Nome Fantasia
   corporateName: string; // Razão Social
-  email?: string |null;
+  email?: string | null;
   phones: string;
   address?: AddressEntity | null;
   startedActivityIn: Date;
@@ -39,7 +39,6 @@ type CompanyEntityConstructor = {
   createdAt: Date;
   updatedAt?: Date | null;
 };
-
 
 export class CompanyEntity {
   id: string;
@@ -51,7 +50,7 @@ export class CompanyEntity {
   isHeadquarters: boolean; // Matriz ou Filial
   businessName?: string | null; // Nome Fantasia
   corporateName: string; // Razão Social
-  email?: string |null;
+  email?: string | null;
   phones: string;
   address?: AddressEntity | null;
   startedActivityIn: Date;

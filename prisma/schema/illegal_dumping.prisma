@@ -1,0 +1,28 @@
+model Attachments {
+  id               String          @id @default(cuid())
+  url              String
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime?
+  IllegalDumping   IllegalDumping? @relation(fields: [illegalDumpingId], references: [id])
+  illegalDumpingId String?
+}
+
+model IllegalDumping {
+  id                  String        @id @default(cuid())
+  shortId             String        @unique
+  description         String
+  longitude           Float         @default(0)
+  latitude            Float         @default(0)
+  status              String        @default("OPEN")
+  priority            String?
+  resolvedAt          DateTime?
+  solveUntil          DateTime?
+  descriptionResolver String?
+  attachments         Attachments[]
+
+  solver   Company? @relation(fields: [solverId], references: [id])
+  solverId String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+}

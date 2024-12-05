@@ -20,6 +20,10 @@ model Company {
 
   wasteItems WasteItem[]
 
+  collectionSchedule CollectionSchedule[]
+
+  IllegalDumping IllegalDumping[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

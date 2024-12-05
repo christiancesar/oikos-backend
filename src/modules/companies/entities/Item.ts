@@ -6,6 +6,11 @@ export type Measurement = {
   symbol: string;
 };
 
+export enum WasteType {
+  RECYCLABLE = "RECYCLABLE",
+  GARBAGE = "GARBAGE",
+}
+
 type ItemConstructor = {
   waste: MaterialEntity;
   amount: number;
@@ -14,11 +19,6 @@ type ItemConstructor = {
   createdAt: Date;
   updatedAt?: Date | null;
 };
-
-export enum WasteType {
-  RECYCLABLE = "RECYCLABLE",
-  GARBAGE = "GARBAGE",
-}
 
 export class ItemEntity {
   id: string;

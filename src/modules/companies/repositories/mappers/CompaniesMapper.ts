@@ -12,7 +12,7 @@ import { ItemEntity, WasteType } from "@modules/companies/entities/Item";
 import { unitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
 import { Prisma } from "@prisma/client";
 
-type CompanyMapper = Prisma.CompanyGetPayload<{
+type CompanyPrisma = Prisma.CompanyGetPayload<{
   include: {
     address: true;
     businessHours: {
@@ -30,7 +30,7 @@ type CompanyMapper = Prisma.CompanyGetPayload<{
 }>;
 
 export class CompaniesMapper {
-  static toDomain(company: CompanyMapper): CompanyEntity {
+  static toDomain(company: CompanyPrisma): CompanyEntity {
     const businessHours: BusinessHourEntity[] = company.businessHours.map(
       (businessHour) => {
         return new BusinessHourEntity(

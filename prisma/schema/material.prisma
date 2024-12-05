@@ -3,9 +3,10 @@ model Material {
   name     String
   category String
 
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  Item      WasteItem[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  wasteItem          WasteItem[]
+  collectionSchedule CollectionSchedule[]
 
   @@map("material")
 }
