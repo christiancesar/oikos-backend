@@ -10,9 +10,9 @@ const CreateIllegalDumpingRequestBodySchemaValidation = zod.object({
 });
 
 export class IllegalDumpingController {
-  async create(req: Request, response: Response) {
+  async create(request: Request, response: Response) {
     const { description, latitude, longitude } =
-      CreateIllegalDumpingRequestBodySchemaValidation.parse(req.body);
+      CreateIllegalDumpingRequestBodySchemaValidation.parse(request.body);
 
     const repository = new IllegalDumpingRepository();
     const service = new IllegalDumpingService(repository);

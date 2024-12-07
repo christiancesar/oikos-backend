@@ -2,3 +2,5 @@ node_modules
 migrations
 **.db
 .env
+uploads/*
+!uploads/ .gitkeep

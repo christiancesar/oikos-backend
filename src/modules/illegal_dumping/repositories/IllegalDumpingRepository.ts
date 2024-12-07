@@ -125,4 +125,31 @@ export class IllegalDumpingRepository implements IIllegalDumpingRepository {
 
     return IllegalDumpingMapper.toDomain(illegal);
   }
+
+  async saveAttchments({
+    denuciationId,
+    urls,
+  }: {
+    denuciationId: string;
+    urls: string[];
+  }): Promise<IllegalDumpingEntity> {
+    const illegal = await prisma.illegalDumping.update({
+      where: {
+        id: denuciationId,
+      },
+      data: {
+        attachments: {
+          create: urls.map((url) => ({
+            url,
+          })),
+        },
+      },
+      include: {
+        attachments: true,
+        solver: true,
+      },
+    });
+
+    return IllegalDumpingMapper.toDomain(illegal);
+  }
 }
