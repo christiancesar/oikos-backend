@@ -7,6 +7,7 @@ import authenticationMiddleware from "@common/middlewares/authenticationMiddlewa
 import { materialsRoutes } from "@modules/material/MaterialRegistrationRoutes";
 import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
 import { circuitRoutes } from "@modules/circuit/circuitRoutes";
+import { donationsRoutes } from "@modules/donation/donationRoutes";
 
 export const routes = Router();
 
@@ -19,3 +20,4 @@ routes.use("/profile", profileRoutes);
 routes.use("/companies", companiesRoutes);
 routes.use("/materials", materialsRoutes);
 routes.use("/circuits", circuitRoutes);
+routes.use("/donations", donationsRoutes);

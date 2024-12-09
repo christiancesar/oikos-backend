@@ -1,0 +1,22 @@
+// condition = NEW | USED
+model Donation {
+  id                     String  @id @default(uuid()) // Identificador único
+  status                 String  @default("OPEN") // Campo status com valor padrão
+  description            String // Nome do material (Ex: Cadeira)
+  quantity               Float // Quantidade do material
+  condition              String  @default("USED") // Estado de conservação (Novo, Usado, etc.)
+  additionalNotes        String // Observações adicionais
+  irregularitiesQuantity Float? // Quantidade de denuncias
+  irregularities         String? // Tipo de denuncia
+  donorId                String // Doardor deve ser cadastrados na plataforma
+  doneeId                String? // Donatário deve ser cadastrados na plataforma
+  reasonForCancellation  String? // Motivo do cancelamento
+  reasonForClosed        String? // Motivo do fechamento
+
+  attachments Attachments[] // Relacionamento com fotos anexadas
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@map("donations")
+}

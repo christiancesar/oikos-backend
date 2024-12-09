@@ -23,6 +23,8 @@ model User {
   company            Company[]
   collectionSchedule CollectionSchedule[]
 
+  restrictions Restriction[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
