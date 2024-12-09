@@ -1,0 +1,19 @@
+model Circuit {
+  id          String  @id @default(uuid())
+  code        String
+  addresses   String // Array of addresses (e.g., ["SQS 302", "SQS 303"])
+  city        String // Array of citys (e.g., "São Paulo")
+  state       String // Array of states (e.g., "SP")
+  sectors     String? // Array of sectors (e.g., ["North", "South"])
+  frequency   String // Days of operation (e.g., ["Monday", "Wednesday", "Friday"])
+  startTime   String? // Start time of the collection (e.g., "07:00:00")
+  endTime     String? // End time of the collection (e.g., "15:20:00")
+  serviceType String // Type of service (e.g., "Conventional Collection")
+  equipment   String? // Equipment used (e.g., "19m³ Compactor Truck")
+  destination String? // Final destination of the waste (e.g., "UTMB Asa Sul")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("circuits")
+}

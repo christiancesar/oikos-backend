@@ -6,7 +6,7 @@ type Attachments = {
   files: string[];
 };
 export class IllegalDumpingAttachmentsService {
-  constructor(private repository: IllegalDumpingRepository) { }
+  constructor(private repository: IllegalDumpingRepository) {}
   async execute({ denuciationId, files }: Attachments) {
     if (files.length === 0) {
       throw new AppError("No files provided");

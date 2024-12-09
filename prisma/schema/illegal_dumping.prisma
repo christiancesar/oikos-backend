@@ -3,8 +3,10 @@ model Attachments {
   url              String
   createdAt        DateTime        @default(now())
   updatedAt        DateTime?
-  IllegalDumping   IllegalDumping? @relation(fields: [illegalDumpingId], references: [id])
+  illegalDumping   IllegalDumping? @relation(fields: [illegalDumpingId], references: [id])
   illegalDumpingId String?
+
+  @@map("attachments")
 }
 
 model IllegalDumping {
@@ -25,4 +27,6 @@ model IllegalDumping {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime?
+
+  @@map("illegal_dumping")
 }

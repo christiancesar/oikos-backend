@@ -22,7 +22,7 @@ model Company {
 
   collectionSchedule CollectionSchedule[]
 
-  IllegalDumping IllegalDumping[]
+  illegalDumping IllegalDumping[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

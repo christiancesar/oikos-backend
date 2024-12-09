@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "commonjs",
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seeds/seed.ts"
   },
   "scripts": {
     "dev:server": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules -r tsconfig-paths/register src/index.ts",

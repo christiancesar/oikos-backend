@@ -13,4 +13,6 @@ model CollectionSchedule {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("collection_schedule")
 }

@@ -47,6 +47,7 @@ export default function authenticationMiddleware(
     };
 
     return next();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     throw new AppError("Invalid JWT token", 401);
   }

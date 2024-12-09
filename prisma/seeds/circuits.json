@@ -1,0 +1,270 @@
+[
+  {
+    "addresses": [
+      "Colina Verde",
+      "Mariela",
+      "Jardim Mato Grosso",
+      "Coophallis",
+      "Coophacem",
+      "Santa Marina",
+      "Parte da Vila Aurora 3",
+      "Jardim Rondônia",
+      "Cidade Alta"
+    ],
+    "sectors": "Setor 01",
+    "frequency": [
+      "Monday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Loteamento Jambalaia",
+      "Jardim Brasília",
+      "Jardim dos Pioneiros",
+      "Vila Santo Antônio",
+      "Jardim Oliveira",
+      "Vila Esperança",
+      "Vila Valéria",
+      "Jardim Assunção",
+      "Jardim Hortência",
+      "Parte do Jardim Luz D’yara"
+    ],
+    "sectors": "Setor 02",
+    "frequency": [
+      "Tuesday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Parte do Jardim Mato Grosso",
+      "Parte da Vila Aurora 1",
+      "Coopha Rondon",
+      "Parque Real",
+      "Vila Goulart"
+    ],
+    "sectors": "Setor 03",
+    "frequency": [
+      "Wednesday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Loteamento Cellos",
+      "Prolongamento do Loteamento Cellos",
+      "Loteamento Santos Dumont",
+      "Jardim Urupês",
+      "Bairro Santa Cruz",
+      "Loteamento Nossa Senhora Aparecida",
+      "Vila Santa Luzia",
+      "Jardim Vera Cruz",
+      "Jardim Santa Clara",
+      "Vila São José",
+      "Vila Planalto",
+      "Bairro La Salle"
+    ],
+    "sectors": "Setor 04",
+    "frequency": [
+      "Thursday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Vila Aurora 2ª Parte",
+      "Jardim Paulista",
+      "Jardim Beira Rio",
+      "Loteamento Kennedy",
+      "Jardim São Francisco"
+    ],
+    "sectors": "Setor 05",
+    "frequency": [
+      "Friday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Jardim Pindorama 1ª e 2ª Parte",
+      "Jardim Santa Marta",
+      "Residencial das Violetas",
+      "Residencial Quitéria",
+      "Residencial das Orquídeas",
+      "Parte do Buriti até a Avenida Plínio de Aguiar",
+      "Jardim Ebenezer",
+      "Jardim Guanabara",
+      "Parte do Monte Líbano"
+    ],
+    "sectors": "Setor 06",
+    "frequency": [
+      "Saturday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Jardim Residencial São José",
+      "Jardim Santa Laura",
+      "Vila Santa Maria",
+      "Jardim Residencial Sunflower",
+      "Residencial Granville I",
+      "Vila Santa Clara"
+    ],
+    "sectors": "Setor 07",
+    "frequency": [
+      "Monday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Jardim Primavera",
+      "Vila Olga Maria",
+      "Jardim Modelo",
+      "Parte do Jardim Luz D’yara"
+    ],
+    "sectors": "Setor 08",
+    "frequency": [
+      "Wednesday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Vila Operária",
+      "Vila Mariana",
+      "Vila Itamarati",
+      "Vila Castelo",
+      "Jardim Copacabana",
+      "Jardim Santa Fé",
+      "Jardim Mirassol",
+      "Jardim Eldorado"
+    ],
+    "sectors": "Setor 09",
+    "frequency": [
+      "Saturday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Jardim Rivera",
+      "Jardim Ipê",
+      "Jardim Gramado",
+      "Vila Kenya",
+      "Jardim Tropical",
+      "Jardim América"
+    ],
+    "sectors": "Setor 10",
+    "frequency": [
+      "Friday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Conjunto São José I",
+      "Conjunto São José II",
+      "Conjunto São José III",
+      "Parte do Jardim Buriti",
+      "Jardim do Sol",
+      "João de Barro",
+      "Jardim HD",
+      "Parte do Monte Líbano",
+      "Jardim da Mata"
+    ],
+    "sectors": "Setor 11",
+    "frequency": [
+      "Thursday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  },
+  {
+    "addresses": [
+      "Loteamento José Sobrinho",
+      "Jardim Adriana",
+      "Jardim Belo Horizonte",
+      "Cidade Salmen",
+      "Planvile"
+    ],
+    "sectors": "Setor 12",
+    "frequency": [
+      "Tuesday"
+    ],
+    "startTime": "07:00",
+    "endTime": null,
+    "serviceType": "Coleta Seletiva",
+    "equipment": "Caminhão Compactador",
+    "destination": "Seger Resíduos Aterro Sanitário Rondonópolis",
+    "city": "Rondonópolis",
+    "state": "MT"
+  }
+]

@@ -26,7 +26,8 @@ export class CollectionScheduleController {
       // Chama o serviço para obter os cronogramas por bairro
       const schedules = await collectionScheduleService.getByBairro(bairro);
       res.status(200).json(schedules);
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err: unknown) {
       res.status(500).json({ error: "Erro ao consultar cronograma de coleta" });
     }
   }
