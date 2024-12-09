@@ -7,7 +7,7 @@ export class RegisterIrregularityService {
   constructor(
     private donationsRepository: IDonationsRepository,
     private usersRepository: IUsersRepository,
-  ) { }
+  ) {}
 
   async execute(
     donationId: string,
