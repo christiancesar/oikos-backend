@@ -46,6 +46,13 @@ export class RegisterIrregularityService {
       }),
     );
 
+    if (donationExist.status === "CLOSED") {
+      await this.donationsRepository.closeDonation({
+        donationId,
+        reason: donationExist.reasonForClosed!,
+      });
+    }
+
     const donation = await this.donationsRepository.registerIrregularity({
       donationId,
       irregularities: JSON.stringify(donationExist.irregularities),

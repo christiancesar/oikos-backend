@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { randomUUID } from "crypto";
 import fs from "fs";
+import path from "path";
 
 type MaterialJSON = {
   name: string;
@@ -24,7 +25,7 @@ type CircuitJSON = {
 const prisma = new PrismaClient();
 async function main() {
   const materialsFile = fs.readFileSync(
-    "./prisma/seeds/materials.json",
+    path.resolve(__dirname, "materials.json"),
     "utf8",
   );
   const materials = JSON.parse(materialsFile) as MaterialJSON[];
@@ -37,7 +38,10 @@ async function main() {
     }),
   );
 
-  const circuitsFile = fs.readFileSync("./prisma/seeds/circuits.json", "utf8");
+  const circuitsFile = fs.readFileSync(
+    path.resolve(__dirname, "circuits.json"),
+    "utf8",
+  );
   const circuits = JSON.parse(circuitsFile) as CircuitJSON[];
 
   await Promise.all(

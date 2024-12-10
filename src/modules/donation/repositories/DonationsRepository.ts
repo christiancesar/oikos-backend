@@ -6,6 +6,7 @@ import {
   DonationStatus,
 } from "../entities/Donation";
 import {
+  CloseDonationDTO,
   CreateDonationDTO,
   IDonationsRepository,
   MarkDonationAsCancelledDTO,
@@ -177,6 +178,26 @@ export class DonationsRepository implements IDonationsRepository {
       data: {
         irregularities,
         irregularitiesQuantity,
+      },
+      include: {
+        attachments: true,
+      },
+    });
+
+    return DonationMapper.toEntity(donation);
+  }
+
+  async closeDonation({
+    donationId,
+    reason,
+  }: CloseDonationDTO): Promise<DonationEntity> {
+    const donation = await prisma.donation.update({
+      where: {
+        id: donationId,
+      },
+      data: {
+        status: DonationStatus.CLOSED,
+        reasonForClosed: reason,
       },
       include: {
         attachments: true,

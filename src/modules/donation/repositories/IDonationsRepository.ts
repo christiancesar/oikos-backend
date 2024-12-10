@@ -24,6 +24,11 @@ export type RegisterIrregularityDTO = {
   irregularitiesQuantity: number;
 };
 
+export type CloseDonationDTO = {
+  donationId: string;
+  reason: string;
+};
+
 export interface IDonationsRepository {
   createDonation(data: CreateDonationDTO): Promise<DonationEntity>;
   findByDonationId(donationId: string): Promise<DonationEntity | null>;
@@ -35,4 +40,6 @@ export interface IDonationsRepository {
 
   saveAttachments(data: SaveAttachmentsDonationDTO): Promise<DonationEntity>;
   registerIrregularity(data: RegisterIrregularityDTO): Promise<DonationEntity>;
+
+  closeDonation(data: CloseDonationDTO): Promise<DonationEntity>;
 }
