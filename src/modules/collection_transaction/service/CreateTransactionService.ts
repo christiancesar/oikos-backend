@@ -30,7 +30,7 @@ type CreateCollectionTransaction = {
 };
 
 type CreateTransactionServiceConstructor = {
-  collectionTransactionRepository: ICollectionTransactionsRepository;
+  collectionTransactionsRepository: ICollectionTransactionsRepository;
   companiesRepository: ICompaniesRepository;
   materialsRepository: MaterialRepository;
 };
@@ -81,7 +81,7 @@ export class CreateTransactionService {
     });
 
     const colletion =
-      await this.repositories.collectionTransactionRepository.createCollectionTransaction(
+      await this.repositories.collectionTransactionsRepository.createCollectionTransaction(
         {
           companyId: collectionTransaction.company.id,
           wasteId: collectionTransaction.waste.id,
