@@ -35,6 +35,7 @@ type CompanyEntityConstructor = {
   address?: AddressEntity | null;
   startedActivityIn: Date;
   businessHours?: BusinessHourEntity[] | null; // Horário de funcionamento
+  acceptAppointments: boolean; // Aceita agendamentos
   wasteItems?: ItemEntity[] | null;
   createdAt: Date;
   updatedAt?: Date | null;
@@ -50,6 +51,7 @@ export class CompanyEntity {
   isHeadquarters: boolean; // Matriz ou Filial
   businessName?: string | null; // Nome Fantasia
   corporateName: string; // Razão Social
+  acceptAppointments: boolean; // Aceita agendamentos
   email?: string | null;
   phones: string;
   address?: AddressEntity | null;
@@ -74,6 +76,7 @@ export class CompanyEntity {
       businessHours,
       stateRegistration,
       wasteItems,
+      acceptAppointments,
       status,
       createdAt,
       updatedAt,
@@ -89,6 +92,7 @@ export class CompanyEntity {
     this.isHeadquarters = isHeadquarters;
     this.businessName = businessName;
     this.corporateName = corporateName;
+    this.acceptAppointments = acceptAppointments;
     this.email = email;
     this.phones = phones;
     this.address = address;

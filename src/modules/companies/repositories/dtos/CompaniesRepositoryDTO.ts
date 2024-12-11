@@ -21,6 +21,7 @@ export type UpdateCompaniesDTO = {
   identityType: string;
   companyType: string;
   stateRegistration?: string | null;
+  acceptAppointments: boolean;
   status: boolean;
   isHeadquarters: boolean;
   businessName?: string | null;

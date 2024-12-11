@@ -24,6 +24,8 @@ model User {
 
   restrictions Restriction[]
 
+  collectionAppointment CollectionAppointment[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

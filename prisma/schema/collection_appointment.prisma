@@ -1,0 +1,19 @@
+model CollectionAppointment {
+  id                    String   @id @default(uuid())
+  status                String   @default("CREATED") //: TransactionStatus;
+  reasonForCancellation String? // Motivo do cancelamento
+  scheduleFor           DateTime
+
+  customer   User   @relation(fields: [customerId], references: [id])
+  customerId String
+
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId String?
+
+  wastes Material[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("collection_appointments")
+}

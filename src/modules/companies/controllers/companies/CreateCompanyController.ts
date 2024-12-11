@@ -13,6 +13,7 @@ const CreateCompanyRequestBodySchemaValidation = zod.object({
     identity: zod.string().min(11).max(14),
     identityType: zod.nativeEnum(IdentityType),
     companyType: zod.nativeEnum(CompanyType),
+    acceptAppointments: zod.boolean().default(false).optional(),
     stateRegistration: zod.string().min(8).max(13).optional(),
     status: zod.boolean().default(true),
     isHeadquarters: zod.boolean().default(true),

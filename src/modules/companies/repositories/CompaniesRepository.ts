@@ -59,7 +59,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   }
 
   async findCompayById(id: string): Promise<CompanyEntity | null> {
-    const company = await prisma.company.findFirst({
+    const company = await prisma.company.findUnique({
       where: {
         id,
       },
@@ -162,6 +162,7 @@ export class CompaniesRepository implements ICompaniesRepository {
     identityType,
     corporateName,
     email,
+    acceptAppointments,
     isHeadquarters,
     phones,
     startedActivityIn,
@@ -178,6 +179,7 @@ export class CompaniesRepository implements ICompaniesRepository {
         companyType,
         identityType,
         corporateName,
+        acceptAppointments,
         email,
         isHeadquarters,
         phones,
@@ -232,7 +234,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   async findAddressByCompaniesId(
     companyId: string,
   ): Promise<AddressEntity | null> {
-    return prisma.address.findFirst({
+    return prisma.address.findUnique({
       where: {
         companyId,
       },
@@ -351,7 +353,7 @@ export class CompaniesRepository implements ICompaniesRepository {
   }
 
   async findWasteItemById(wasteId: string): Promise<ItemEntity | null> {
-    const item = await prisma.wasteItem.findFirst({
+    const item = await prisma.wasteItem.findUnique({
       where: {
         id: wasteId,
       },

@@ -1,5 +1,6 @@
 import authenticationMiddleware from "@common/middlewares/authenticationMiddleware";
 import { circuitRoutes } from "@modules/circuit/circuitRoutes";
+import { collectionAppointmentsRoutes } from "@modules/collection_appointment/collectionAppointmentsRoutes";
 import { companiesRoutes } from "@modules/companies/companiesRoutes";
 import { donationsRoutes } from "@modules/donation/donationRoutes";
 import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
@@ -21,3 +22,4 @@ routes.use("/companies", companiesRoutes);
 routes.use("/materials", materialsRoutes);
 routes.use("/circuits", circuitRoutes);
 routes.use("/donations", donationsRoutes);
+routes.use("/appointments", collectionAppointmentsRoutes);

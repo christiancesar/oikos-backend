@@ -10,6 +10,7 @@ import {
 } from "@modules/companies/entities/Companies";
 import { ItemEntity, WasteType } from "@modules/companies/entities/Item";
 import { unitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
+import { MaterialEntity } from "@modules/material/entities/MaterialRegistration";
 import { Prisma } from "@prisma/client";
 
 type CompanyPrisma = Prisma.CompanyGetPayload<{
@@ -67,13 +68,15 @@ export class CompaniesMapper {
     const wasteItems: ItemEntity[] = company.wasteItems.map((wasteItem) => {
       return new ItemEntity(
         {
-          waste: {
-            id: wasteItem.material.id,
-            category: wasteItem.material.category,
-            name: wasteItem.material.name,
-            createdAt: wasteItem.material.createdAt,
-            updatedAt: wasteItem.material.updatedAt,
-          },
+          waste: new MaterialEntity(
+            {
+              category: wasteItem.material.category,
+              name: wasteItem.material.name,
+              createdAt: wasteItem.material.createdAt,
+              updatedAt: wasteItem.material.updatedAt,
+            },
+            wasteItem.material.id,
+          ),
           wasteType: WasteType[wasteItem.wasteType as keyof typeof WasteType],
           amount: wasteItem.amount,
           unit: unitOfMeasurement[
@@ -101,6 +104,7 @@ export class CompaniesMapper {
         email: company.email,
         phones: company.phones,
         startedActivityIn: company.startedActivityIn,
+        acceptAppointments: company.acceptAppointments,
         address,
         wasteItems,
         businessHours,

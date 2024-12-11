@@ -1,6 +1,6 @@
 model BusinessHour {
   id        String @id @default(uuid())
-  dayOfWeek String @unique
+  dayOfWeek String
 
   timeSlots TimeSlot[]
 

@@ -13,6 +13,8 @@ model CollectionTransaction {
   latitude       Float
   longitude      Float
 
+  appointmentId String?
+
   waste   Material @relation(fields: [wasteId], references: [id]) //: MaterialEntity;
   wasteId String
 

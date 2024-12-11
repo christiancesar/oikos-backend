@@ -36,7 +36,7 @@ export class CollectionTransactionMapper {
       },
       company: {
         id: raw.company.id,
-        name: raw.company.corporateName,
+        corporateName: raw.company.corporateName,
       },
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt,

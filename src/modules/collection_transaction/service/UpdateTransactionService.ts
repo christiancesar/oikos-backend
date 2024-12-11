@@ -68,7 +68,7 @@ export class UpdateTransactionService {
     const collectionTransaction = new CollectionTransactionEntity({
       company: {
         id: company.id,
-        name: company.corporateName,
+        corporateName: company.corporateName,
       },
       collectionType: data.collectionType,
       waste: {

@@ -20,7 +20,7 @@ export enum TransactionStatus {
 
 type CompanyCollectionTransaction = {
   id: string;
-  name: string;
+  corporateName: string;
 };
 
 type MaterialCollectionTransaction = {

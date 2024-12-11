@@ -1,17 +1,19 @@
 model Company {
-  id                String         @id @default(uuid())
-  identity          String         @unique
-  identityType      String         @default("CNPJ") //CNPJ, CPF
-  companyType       String         @default("COMPANY") //ONG, EMPRESA, GOVERNO, CATADOR
-  stateRegistration String?
-  status            Boolean        @default(true)
-  isHeadquarters    Boolean        @default(true)
-  businessName      String? //Nome Fantasia
-  corporateName     String //Razão Social
-  email             String?
-  phones            String
-  startedActivityIn DateTime
-  businessHours     BusinessHour[]
+  id                 String   @id @default(uuid())
+  identity           String   @unique
+  identityType       String   @default("CNPJ") //CNPJ, CPF
+  companyType        String   @default("COMPANY") //ONG, EMPRESA, GOVERNO, CATADOR
+  stateRegistration  String?
+  status             Boolean  @default(true)
+  isHeadquarters     Boolean  @default(true)
+  businessName       String? //Nome Fantasia
+  corporateName      String //Razão Social
+  email              String?
+  phones             String
+  startedActivityIn  DateTime
+  acceptAppointments Boolean  @default(false)
+
+  businessHours BusinessHour[]
 
   address Address?
 
@@ -23,6 +25,8 @@ model Company {
   illegalDumping IllegalDumping[]
 
   collectionTransaction CollectionTransaction[]
+
+  collectionAppointment CollectionAppointment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

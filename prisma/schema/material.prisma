@@ -9,6 +9,7 @@ model Material {
   wasteItem WasteItem[]
 
   collectionTransaction CollectionTransaction[]
+  CollectionAppointment CollectionAppointment[]
 
   @@map("material")
 }

@@ -1,18 +1,26 @@
 import { AppError } from "@common/errors/AppError";
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
 import { ICompaniesRepository } from "../../repositories/ICompaniesRepository";
+import {
+  CompanyEntity,
+  CompanyType,
+  IdentityType,
+} from "@modules/companies/entities/Companies";
 
 type UpdateCompanyServiceParams = {
   userId: string;
   company: {
     id: string;
-    cnpj: string;
-    stateRegistration: string;
+    identity: string;
+    identityType: IdentityType;
+    companyType: CompanyType;
+    acceptAppointments: boolean;
+    stateRegistration?: string | null;
     status: boolean;
     isHeadquarters: boolean;
-    businessName: string;
+    businessName?: string | null;
     corporateName: string;
-    email: string;
+    email?: string | null;
     phones: string;
     startedActivityIn: Date;
   };
@@ -24,7 +32,10 @@ export class UpdateCompanyService {
     private companiesRepository: ICompaniesRepository,
   ) {}
 
-  async execute({ userId, company }: UpdateCompanyServiceParams) {
+  async execute({
+    userId,
+    company,
+  }: UpdateCompanyServiceParams): Promise<CompanyEntity> {
     const userExist = await this.usersRepository.findByUserId(userId);
 
     if (!userExist) {
@@ -41,6 +52,15 @@ export class UpdateCompanyService {
 
     const startedActivityIn = new Date(company.startedActivityIn);
     company.startedActivityIn = startedActivityIn;
+
+    // empresa precisa ter endereço, horário de funcionamento e itens de resíduos cadastrados para aceitar agendamentos
+    if (
+      !companyExist.address ||
+      !companyExist.businessHours ||
+      !companyExist.wasteItems
+    ) {
+      company.acceptAppointments = false;
+    }
 
     const companyUpdated =
       await this.companiesRepository.updateCompany(company);
