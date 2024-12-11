@@ -7,8 +7,8 @@ model CollectionAppointment {
   customer   User   @relation(fields: [customerId], references: [id])
   customerId String
 
-  company   Company? @relation(fields: [companyId], references: [id])
-  companyId String?
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String
 
   wastes Material[]
 

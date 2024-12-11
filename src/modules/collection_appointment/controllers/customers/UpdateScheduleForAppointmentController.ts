@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as zod from "zod";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
-import { UpdateScheduleForAppointmentService } from "../services/UpdateScheduleForAppointmentService";
+import { UpdateScheduleForAppointmentService } from "../../services/customers/UpdateScheduleForAppointmentService";
 
 const updateAppointmentBodySchemaValidation = zod.object({
   scheduleFor: zod.string().transform((value) => new Date(value)),

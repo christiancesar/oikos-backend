@@ -31,7 +31,8 @@ export class CollectionAppointmentMapper {
           data.status as keyof typeof StatusCollectionAppointment
         ],
       scheduleFor: data.scheduleFor,
-      company: data.company && {
+      reasonForCancellation: data.reasonForCancellation,
+      company: {
         id: data.company.id,
         corporateName: data.company.corporateName,
       },
@@ -48,6 +49,8 @@ export class CollectionAppointmentMapper {
         id: waste.id,
         name: waste.name,
       })),
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
     });
   }
 }

@@ -164,4 +164,120 @@ export class CollectionAppointmentsRepository
 
     return CollectionAppointmentMapper.toEntity(appointment);
   }
+
+  async listCollectionAppointmentsByCompanyId(data: {
+    companyId: string;
+  }): Promise<CollectionAppointmentEntity[]> {
+    const appointment = await prisma.collectionAppointment.findMany({
+      where: {
+        companyId: data.companyId,
+      },
+      include: {
+        company: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                address: true,
+              },
+            },
+          },
+        },
+        wastes: true,
+      },
+    });
+
+    return appointment.map(CollectionAppointmentMapper.toEntity);
+  }
+
+  async findCollectionAppointmentByCompanyId(data: {
+    companyId: string;
+    appointmentId: string;
+  }): Promise<CollectionAppointmentEntity | null> {
+    const appointment = await prisma.collectionAppointment.findFirst({
+      where: {
+        companyId: data.companyId,
+        id: data.appointmentId,
+      },
+      include: {
+        company: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                address: true,
+              },
+            },
+          },
+        },
+        wastes: true,
+      },
+    });
+
+    return appointment
+      ? CollectionAppointmentMapper.toEntity(appointment)
+      : null;
+  }
+
+  async confirmationCollectionAppointmentCompayId(data: {
+    companyId: string;
+    appointmentId: string;
+  }): Promise<CollectionAppointmentEntity> {
+    const appointment = await prisma.collectionAppointment.update({
+      where: {
+        id: data.appointmentId,
+        companyId: data.companyId,
+      },
+      data: {
+        status: StatusCollectionAppointment.CONFIRMED,
+      },
+      include: {
+        company: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                address: true,
+              },
+            },
+          },
+        },
+        wastes: true,
+      },
+    });
+
+    return CollectionAppointmentMapper.toEntity(appointment);
+  }
+
+  async cancelCollectionAppointmentByCompanyId(data: {
+    companyId: string;
+    appointmentId: string;
+    reason: string;
+  }): Promise<CollectionAppointmentEntity> {
+    const appointment = await prisma.collectionAppointment.update({
+      where: {
+        id: data.appointmentId,
+        companyId: data.companyId,
+      },
+      data: {
+        status: StatusCollectionAppointment.CANCELED,
+        reasonForCancellation: data.reason,
+      },
+      include: {
+        company: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                address: true,
+              },
+            },
+          },
+        },
+        wastes: true,
+      },
+    });
+
+    return CollectionAppointmentMapper.toEntity(appointment);
+  }
 }

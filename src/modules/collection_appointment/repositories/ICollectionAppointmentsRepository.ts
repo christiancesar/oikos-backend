@@ -31,4 +31,24 @@ export interface ICollectionAppointmentsRepository {
     appointmentId: string;
     scheduleFor: Date;
   }): Promise<CollectionAppointmentEntity>;
+
+  listCollectionAppointmentsByCompanyId(data: {
+    companyId: string;
+  }): Promise<CollectionAppointmentEntity[]>;
+
+  findCollectionAppointmentByCompanyId(data: {
+    companyId: string;
+    appointmentId: string;
+  }): Promise<CollectionAppointmentEntity | null>;
+
+  confirmationCollectionAppointmentCompayId(data: {
+    companyId: string;
+    appointmentId: string;
+  }): Promise<CollectionAppointmentEntity>;
+
+  cancelCollectionAppointmentByCompanyId(data: {
+    companyId: string;
+    appointmentId: string;
+    reason: string;
+  }): Promise<CollectionAppointmentEntity>;
 }

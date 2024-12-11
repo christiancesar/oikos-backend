@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
-import { CancelAppointmentService } from "../services/CancelAppointmentService";
+import { CancelAppointmentService } from "../../services/customers/CancelAppointmentService";
 import * as zod from "zod";
 
 const cancelAppointmentBodySchemaValidation = zod.object({

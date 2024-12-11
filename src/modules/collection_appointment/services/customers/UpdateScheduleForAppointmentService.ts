@@ -1,27 +1,25 @@
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
-import { ICollectionAppointmentsRepository } from "../repositories/ICollectionAppointmentsRepository";
-import {
-  CollectionAppointmentEntity,
-  StatusCollectionAppointment,
-} from "../entities/CollectionAppointment";
+import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
+import { StatusCollectionAppointment } from "../../entities/CollectionAppointment";
 import { AppError } from "@common/errors/AppError";
 
-type CancelAppointmentServiceConsteructor = {
+type ShowAppointmentServiceConsteructor = {
   collectionAppointmentsRepository: ICollectionAppointmentsRepository;
   usersRepository: IUsersRepository;
 };
-export class CancelAppointmentService {
-  constructor(private repositories: CancelAppointmentServiceConsteructor) {}
+
+export class UpdateScheduleForAppointmentService {
+  constructor(private repositories: ShowAppointmentServiceConsteructor) {}
 
   async execute({
     userId,
     appointmentId,
-    reason,
+    scheduleFor,
   }: {
     userId: string;
     appointmentId: string;
-    reason: string;
-  }): Promise<CollectionAppointmentEntity> {
+    scheduleFor: Date;
+  }) {
     const userExist =
       await this.repositories.usersRepository.findByUserId(userId);
 
@@ -41,19 +39,21 @@ export class CancelAppointmentService {
     }
 
     if (appointmentExist.customer.userId !== userId) {
-      throw new AppError("User not authorized to cancel this appointment");
+      throw new AppError("User not authorized get this appointment");
     }
 
     if (appointmentExist.status === StatusCollectionAppointment.CANCELED) {
-      throw new AppError("Appointment already canceled");
+      throw new AppError(
+        "Appointment already canceled, you can't update the schedule",
+      );
     }
 
     const appointment =
-      await this.repositories.collectionAppointmentsRepository.cancelCollectionAppointment(
+      await this.repositories.collectionAppointmentsRepository.updateScheduleForAppointment(
         {
           customerId: userId,
           appointmentId,
-          reason,
+          scheduleFor,
         },
       );
 

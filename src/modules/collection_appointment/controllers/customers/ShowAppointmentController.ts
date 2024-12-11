@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
-import { ShowAppointmentService } from "../services/ShowAppointmentService";
+import { ShowAppointmentService } from "../../services/customers/ShowAppointmentService";
 
 export class ShowAppointmentController {
   async handle(request: Request, response: Response) {

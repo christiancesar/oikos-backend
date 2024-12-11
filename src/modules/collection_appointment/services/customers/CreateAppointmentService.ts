@@ -1,8 +1,8 @@
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
-import { CollectionAppointmentEntity } from "../entities/CollectionAppointment";
+import { CollectionAppointmentEntity } from "../../entities/CollectionAppointment";
 import { IMaterialRepository } from "@modules/material/repositories/IMaterialRegistrationRepository";
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
-import { ICollectionAppointmentsRepository } from "../repositories/ICollectionAppointmentsRepository";
+import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
 import { AppError } from "@common/errors/AppError";
 
 type CreateAppointmentConstructor = {

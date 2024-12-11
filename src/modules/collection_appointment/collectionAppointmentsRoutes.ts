@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { CreateAppointmentController } from "./controllers/CreateAppointmentController";
-import { UpdateScheduleForAppointmentController } from "./controllers/UpdateScheduleForAppointmentController";
-import { ShowAppointmentController } from "./controllers/ShowAppointmentController";
-import { ListAppointmentsByUserController } from "./controllers/ListAppointmentsByUserController";
-import { CancelAppointmentController } from "./controllers/CancelAppointmentController";
+import { CreateAppointmentController } from "./controllers/customers/CreateAppointmentController";
+import { UpdateScheduleForAppointmentController } from "./controllers/customers/UpdateScheduleForAppointmentController";
+import { ShowAppointmentController } from "./controllers/customers/ShowAppointmentController";
+import { ListAppointmentsByUserController } from "./controllers/customers/ListAppointmentsByUserController";
+import { CancelAppointmentController } from "./controllers/customers/CancelAppointmentController";
 
 const collectionAppointmentsRoutes = Router({ mergeParams: true });
 const createAppointmentController = new CreateAppointmentController();

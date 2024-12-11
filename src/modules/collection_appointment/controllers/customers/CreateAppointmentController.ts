@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as zod from "zod";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
-import { CreateAppointmentService } from "../services/CreateAppointmentService";
+import { CreateAppointmentService } from "../../services/customers/CreateAppointmentService";
 
 const createAppointmentBodySchemaValidation = zod.object({
   companyId: zod.string().uuid(),

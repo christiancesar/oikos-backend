@@ -1,25 +1,27 @@
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
-import { ICollectionAppointmentsRepository } from "../repositories/ICollectionAppointmentsRepository";
-import { StatusCollectionAppointment } from "../entities/CollectionAppointment";
+import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
+import {
+  CollectionAppointmentEntity,
+  StatusCollectionAppointment,
+} from "../../entities/CollectionAppointment";
 import { AppError } from "@common/errors/AppError";
 
-type ShowAppointmentServiceConsteructor = {
+type CancelAppointmentServiceConsteructor = {
   collectionAppointmentsRepository: ICollectionAppointmentsRepository;
   usersRepository: IUsersRepository;
 };
-
-export class UpdateScheduleForAppointmentService {
-  constructor(private repositories: ShowAppointmentServiceConsteructor) {}
+export class CancelAppointmentService {
+  constructor(private repositories: CancelAppointmentServiceConsteructor) {}
 
   async execute({
     userId,
     appointmentId,
-    scheduleFor,
+    reason,
   }: {
     userId: string;
     appointmentId: string;
-    scheduleFor: Date;
-  }) {
+    reason: string;
+  }): Promise<CollectionAppointmentEntity> {
     const userExist =
       await this.repositories.usersRepository.findByUserId(userId);
 
@@ -39,21 +41,19 @@ export class UpdateScheduleForAppointmentService {
     }
 
     if (appointmentExist.customer.userId !== userId) {
-      throw new AppError("User not authorized get this appointment");
+      throw new AppError("User not authorized to cancel this appointment");
     }
 
     if (appointmentExist.status === StatusCollectionAppointment.CANCELED) {
-      throw new AppError(
-        "Appointment already canceled, you can't update the schedule",
-      );
+      throw new AppError("Appointment already canceled");
     }
 
     const appointment =
-      await this.repositories.collectionAppointmentsRepository.updateScheduleForAppointment(
+      await this.repositories.collectionAppointmentsRepository.cancelCollectionAppointment(
         {
           customerId: userId,
           appointmentId,
-          scheduleFor,
+          reason,
         },
       );
 

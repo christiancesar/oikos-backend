@@ -1,6 +1,6 @@
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
-import { ICollectionAppointmentsRepository } from "../repositories/ICollectionAppointmentsRepository";
-import { CollectionAppointmentEntity } from "../entities/CollectionAppointment";
+import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
+import { CollectionAppointmentEntity } from "../../entities/CollectionAppointment";
 import { AppError } from "@common/errors/AppError";
 
 type ListAppointmentsByUserServiceConsteructor = {
