@@ -11,7 +11,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder"]
+  previewFeatures = ["prismaSchemaFolder", "strictUndefinedChecks"]
 }
 
 model User {
@@ -19,9 +19,8 @@ model User {
   email    String @unique
   password String
 
-  profile            Profile?
-  company            Company[]
-  collectionSchedule CollectionSchedule[]
+  profile Profile?
+  company Company[]
 
   restrictions Restriction[]
 

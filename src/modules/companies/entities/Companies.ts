@@ -22,7 +22,7 @@ export enum CompanyType {
 }
 
 type CompanyEntityConstructor = {
-  identity: string;
+  identity: string; // cpf ou cnpj
   identityType: IdentityType;
   companyType: CompanyType;
   stateRegistration?: string | null; // Inscrição Estadual

@@ -1,13 +1,13 @@
-import { Router } from "express";
+import authenticationMiddleware from "@common/middlewares/authenticationMiddleware";
+import { circuitRoutes } from "@modules/circuit/circuitRoutes";
+import { companiesRoutes } from "@modules/companies/companiesRoutes";
+import { donationsRoutes } from "@modules/donation/donationRoutes";
+import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
+import { materialsRoutes } from "@modules/material/MaterialRegistrationRoutes";
 import { profileRoutes } from "@modules/profiles/profileRoutes";
 import { sessionsRouter } from "@modules/users/authenticationRoutes";
 import { usersRouter } from "@modules/users/usersRoutes";
-import { companiesRoutes } from "@modules/companies/companiesRoutes";
-import authenticationMiddleware from "@common/middlewares/authenticationMiddleware";
-import { materialsRoutes } from "@modules/material/MaterialRegistrationRoutes";
-import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
-import { circuitRoutes } from "@modules/circuit/circuitRoutes";
-import { donationsRoutes } from "@modules/donation/donationRoutes";
+import { Router } from "express";
 
 export const routes = Router();
 

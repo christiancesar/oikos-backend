@@ -56,3 +56,20 @@ export const unitOfMeasurement = {
     symbol: "m³",
   },
 } as const;
+
+export enum UnitOfMeasurement {
+  UN = "UN",
+  PC = "PC",
+  KG = "KG",
+  G = "G",
+  MG = "MG",
+  T = "T",
+  M = "M",
+  CM = "CM",
+  MM = "MM",
+  KM = "KM",
+  L = "L",
+  ML = "ML",
+  CL = "CL",
+  M3 = "M3",
+}

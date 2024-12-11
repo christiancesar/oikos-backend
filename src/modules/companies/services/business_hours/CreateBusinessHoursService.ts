@@ -1,3 +1,4 @@
+import { AppError } from "@common/errors/AppError";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 
 type CreateBusinessHoursServiceParams = {
@@ -21,7 +22,7 @@ export class CreateBusinessHoursService {
       await this.companiesRepository.findCompayById(companyId);
 
     if (!companyExist) {
-      throw new Error("Company not found");
+      throw new AppError("Company not found");
     }
 
     const businessHourExist =

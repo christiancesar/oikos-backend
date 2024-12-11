@@ -10,6 +10,7 @@ import { CreateWasteItemController } from "./controllers/waste_items/CreateWaste
 import { ListWasteItemsController } from "./controllers/waste_items/ListWasteItemsController";
 import { DeleteWasteItemController } from "./controllers/waste_items/DeleteWasteItemController";
 import { ListCompanyByUserController } from "./controllers/companies/ListCompanyByUserController";
+import { collectionTransactionRoutes } from "@modules/collection_transaction/collectionTransactionRoutes";
 
 const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();
@@ -55,4 +56,6 @@ companiesRoutes.delete(
   "/:companyId/waste/:wasteId",
   deleteWasteItemController.handle,
 );
+
+companiesRoutes.use("/:companyId/transactions", collectionTransactionRoutes);
 export { companiesRoutes };
