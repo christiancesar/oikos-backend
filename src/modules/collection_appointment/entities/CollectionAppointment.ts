@@ -32,6 +32,7 @@ type UserCollectionAppointment = {
 
 type CollectionAppointmentEntityContructor = {
   id?: string;
+  appointmentId?: string | null;
   status: StatusCollectionAppointment;
   company: CompanyCollectionAppointment;
   customer: UserCollectionAppointment;
@@ -44,6 +45,7 @@ type CollectionAppointmentEntityContructor = {
 
 export class CollectionAppointmentEntity {
   id: string;
+  appointmentId?: string | null;
   status: StatusCollectionAppointment;
   company: CompanyCollectionAppointment;
   reasonForCancellation?: string | null;
@@ -55,6 +57,7 @@ export class CollectionAppointmentEntity {
 
   constructor(data: CollectionAppointmentEntityContructor) {
     this.id = data.id ?? randomUUID();
+    this.appointmentId = data.appointmentId ?? null;
     this.customer = data.customer;
     this.status = data.status ?? StatusCollectionAppointment.CREATED;
     this.reasonForCancellation = data.reasonForCancellation ?? null;

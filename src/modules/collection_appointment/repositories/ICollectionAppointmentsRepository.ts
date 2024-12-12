@@ -7,6 +7,23 @@ export type CreateCollectionAppointmentDTO = {
   scheduleFor: Date;
 };
 
+export type AppointmentCompanyDTO = {
+  companyId: string;
+  appointmentId: string;
+};
+
+export type CancelAppointmentCustomerDTO = {
+  customerId: string;
+  appointmentId: string;
+  reason: string;
+};
+
+export type CancelAppointmentCompanyDTO = {
+  companyId: string;
+  appointmentId: string;
+  reason: string;
+};
+
 export interface ICollectionAppointmentsRepository {
   createCollectionAppointment(
     data: CreateCollectionAppointmentDTO,
@@ -20,11 +37,9 @@ export interface ICollectionAppointmentsRepository {
     appointmentId: string;
   }): Promise<CollectionAppointmentEntity | undefined>;
 
-  cancelCollectionAppointment(data: {
-    customerId: string;
-    appointmentId: string;
-    reason: string;
-  }): Promise<CollectionAppointmentEntity>;
+  cancelCollectionAppointment(
+    data: CancelAppointmentCustomerDTO,
+  ): Promise<CollectionAppointmentEntity>;
 
   updateScheduleForAppointment(data: {
     customerId: string;
@@ -36,19 +51,19 @@ export interface ICollectionAppointmentsRepository {
     companyId: string;
   }): Promise<CollectionAppointmentEntity[]>;
 
-  findCollectionAppointmentByCompanyId(data: {
-    companyId: string;
-    appointmentId: string;
-  }): Promise<CollectionAppointmentEntity | null>;
+  findCollectionAppointmentByCompanyId(
+    data: AppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity | null>;
 
-  confirmationCollectionAppointmentCompayId(data: {
-    companyId: string;
-    appointmentId: string;
-  }): Promise<CollectionAppointmentEntity>;
+  confirmationCollectionAppointmentCompayId(
+    data: AppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity>;
 
-  cancelCollectionAppointmentByCompanyId(data: {
-    companyId: string;
-    appointmentId: string;
-    reason: string;
-  }): Promise<CollectionAppointmentEntity>;
+  cancelCollectionAppointmentByCompanyId(
+    data: CancelAppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity>;
+
+  completeAppointmentByCompany(
+    data: AppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity>;
 }

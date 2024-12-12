@@ -3,6 +3,7 @@ import { CollectionTransactionEntity } from "../entities/CollectionTransaction";
 export type CreateCollectionTransactionDTO = {
   companyId: string;
   wasteId: string;
+  appointmentId?: string | null;
   collectionType: string;
   wasteType: string;
   tradingType: string;

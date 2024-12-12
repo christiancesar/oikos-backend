@@ -4,6 +4,8 @@ import {
   StatusCollectionAppointment,
 } from "../entities/CollectionAppointment";
 import {
+  AppointmentCompanyDTO,
+  CancelAppointmentCompanyDTO,
   CreateCollectionAppointmentDTO,
   ICollectionAppointmentsRepository,
 } from "./ICollectionAppointmentsRepository";
@@ -249,11 +251,9 @@ export class CollectionAppointmentsRepository
     return CollectionAppointmentMapper.toEntity(appointment);
   }
 
-  async cancelCollectionAppointmentByCompanyId(data: {
-    companyId: string;
-    appointmentId: string;
-    reason: string;
-  }): Promise<CollectionAppointmentEntity> {
+  async cancelCollectionAppointmentByCompanyId(
+    data: CancelAppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity> {
     const appointment = await prisma.collectionAppointment.update({
       where: {
         id: data.appointmentId,
@@ -262,6 +262,35 @@ export class CollectionAppointmentsRepository
       data: {
         status: StatusCollectionAppointment.CANCELED,
         reasonForCancellation: data.reason,
+      },
+      include: {
+        company: true,
+        customer: {
+          include: {
+            profile: {
+              include: {
+                address: true,
+              },
+            },
+          },
+        },
+        wastes: true,
+      },
+    });
+
+    return CollectionAppointmentMapper.toEntity(appointment);
+  }
+
+  async completeAppointmentByCompany(
+    data: AppointmentCompanyDTO,
+  ): Promise<CollectionAppointmentEntity> {
+    const appointment = await prisma.collectionAppointment.update({
+      where: {
+        id: data.appointmentId,
+        companyId: data.companyId,
+      },
+      data: {
+        status: StatusCollectionAppointment.COMPLETED,
       },
       include: {
         company: true,

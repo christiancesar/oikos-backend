@@ -3,6 +3,7 @@ import { ListAppointmentsByCompanyController } from "./controllers/companies/Lis
 import { ShowAppointmentByCompanyController } from "./controllers/companies/ShowAppointmentByCompanyController";
 import { CancelAppointmentByCompanyController } from "./controllers/companies/CancelAppointmentByCompanyController";
 import { ConfirmationAppointmentByCompanyController } from "./controllers/companies/ConfirmationAppointmentByCompanyController";
+import { CompleteAppointmentByCompanyController } from "./controllers/companies/CompleteAppointmentByCompanyController";
 
 const collectionAppointmentsCompaniesRoutes = Router({ mergeParams: true });
 
@@ -14,6 +15,8 @@ const cancelAppointmentByCompanyController =
   new CancelAppointmentByCompanyController();
 const confirmationAppointmentByCompanyController =
   new ConfirmationAppointmentByCompanyController();
+const completeAppointmentByCompanyController =
+  new CompleteAppointmentByCompanyController();
 
 collectionAppointmentsCompaniesRoutes.get(
   "/",
@@ -26,13 +29,18 @@ collectionAppointmentsCompaniesRoutes.get(
 );
 
 collectionAppointmentsCompaniesRoutes.patch(
-  "/:appointmentId",
+  "/:appointmentId/confirmation",
   confirmationAppointmentByCompanyController.handle,
 );
 
 collectionAppointmentsCompaniesRoutes.delete(
   "/:appointmentId",
   cancelAppointmentByCompanyController.handle,
+);
+
+collectionAppointmentsCompaniesRoutes.patch(
+  "/:appointmentId/complete",
+  completeAppointmentByCompanyController.handle,
 );
 
 export { collectionAppointmentsCompaniesRoutes };
