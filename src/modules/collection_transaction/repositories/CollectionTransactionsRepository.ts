@@ -20,6 +20,7 @@ export class CollectionTransactionsRepository
     const collection = await prisma.collectionTransaction.create({
       data: {
         collectionType: raw.collectionType,
+        appointmentId: raw.appointmentId,
         wasteType: raw.wasteType,
         tradingType: raw.tradingType,
         measurement: raw.measurement,
