@@ -13,7 +13,7 @@ type UserPrisma = Prisma.UserGetPayload<{
         address: true;
       };
     };
-    company: {
+    companies: {
       include: {
         address: true;
         businessHours: {
@@ -39,8 +39,8 @@ export class UsersMapper {
       email: data.email,
       password: "",
       profile: data.profile ? ProfileMapper.toDomain(data.profile) : null,
-      company: data.company
-        ? data.company.map((c) => {
+      companies: data.companies
+        ? data.companies.map((c) => {
             return CompaniesMapper.toDomain(c);
           })
         : null,

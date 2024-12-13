@@ -30,7 +30,7 @@ export class UsersRepository implements IUsersRepository {
             address: true,
           },
         },
-        company: {
+        companies: {
           include: {
             address: true,
             businessHours: {

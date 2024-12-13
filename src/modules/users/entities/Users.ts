@@ -7,7 +7,7 @@ type UserEntityConstructor = {
   email: string;
   password: string;
   profile?: ProfileEntity | null;
-  company?: CompanyEntity[] | null;
+  companies?: CompanyEntity[] | null;
   createdAt?: Date;
   updatedAt?: Date | null;
 };
@@ -17,7 +17,7 @@ export class UserEntity {
   email: string;
   password: string;
   profile?: ProfileEntity | null;
-  company?: CompanyEntity[] | null;
+  companies?: CompanyEntity[] | null;
   createdAt: Date;
   updatedAt?: Date | null;
 
@@ -25,7 +25,7 @@ export class UserEntity {
     email,
     password,
     profile,
-    company,
+    companies,
     updatedAt,
     createdAt,
     id,
@@ -34,7 +34,7 @@ export class UserEntity {
     this.email = email;
     this.password = password;
     this.profile = profile ?? null;
-    this.company = company ?? [];
+    this.companies = companies ?? [];
     this.updatedAt = updatedAt ?? null;
     this.createdAt = createdAt ?? new Date();
   }
