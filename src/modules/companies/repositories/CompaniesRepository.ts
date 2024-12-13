@@ -54,7 +54,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -78,7 +77,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -102,7 +100,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -126,7 +123,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -150,7 +146,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -202,7 +197,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 
@@ -489,7 +483,6 @@ export class CompaniesRepository implements ICompaniesRepository {
             material: true,
           },
         },
-        user: true,
       },
     });
 

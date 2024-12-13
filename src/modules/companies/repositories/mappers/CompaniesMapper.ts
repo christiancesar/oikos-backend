@@ -26,7 +26,6 @@ type CompanyPrisma = Prisma.CompanyGetPayload<{
         material: true;
       };
     };
-    user: true;
   };
 }>;
 
