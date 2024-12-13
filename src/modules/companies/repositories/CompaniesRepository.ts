@@ -11,7 +11,10 @@ import {
   UpdateCompaniesDTO,
 } from "./dtos/CompaniesRepositoryDTO";
 import { CompaniesMapper } from "./mappers/CompaniesMapper";
-import { ICompaniesRepository } from "./ICompaniesRepository";
+import {
+  ICompaniesRepository,
+  SearchWasteItemsDTO,
+} from "./ICompaniesRepository";
 import { ItemEntity, WasteType } from "../entities/Item";
 import { unitOfMeasurement } from "../entities/MeasurementConst";
 
@@ -417,5 +420,79 @@ export class CompaniesRepository implements ICompaniesRepository {
           item.id,
         ),
     );
+  }
+
+  async searchWasteItemsByCompanyNames({
+    company,
+    category,
+    waste,
+  }: SearchWasteItemsDTO): Promise<CompanyEntity[]> {
+    const companies = await prisma.company.findMany({
+      where: {
+        AND: [
+          // Verifica se o parâmetro "company" foi informado
+          company
+            ? {
+                OR: [
+                  {
+                    corporateName: {
+                      contains: company,
+                    },
+                  },
+                  {
+                    businessName: {
+                      contains: company,
+                    },
+                  },
+                ],
+              }
+            : {},
+
+          // Verifica se o parâmetro "waste" ou "category" foi informado
+          waste || category
+            ? {
+                wasteItems: {
+                  some: {
+                    material: {
+                      OR: [
+                        waste
+                          ? {
+                              name: {
+                                contains: waste,
+                              },
+                            }
+                          : {},
+                        category
+                          ? {
+                              category: {
+                                contains: category,
+                              },
+                            }
+                          : {},
+                      ],
+                    },
+                  },
+                },
+              }
+            : {},
+        ],
+      },
+      include: {
+        address: true,
+        businessHours: {
+          include: {
+            timeSlots: true,
+          },
+        },
+        wasteItems: {
+          include: {
+            material: true,
+          },
+        },
+        user: true,
+      },
+    });
+
+    return companies.map(CompaniesMapper.toDomain);
   }
 }

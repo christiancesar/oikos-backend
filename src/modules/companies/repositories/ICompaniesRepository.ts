@@ -11,6 +11,12 @@ import {
 } from "./dtos/CompaniesRepositoryDTO";
 import { ItemEntity } from "../entities/Item";
 
+export type SearchWasteItemsDTO = {
+  company: string;
+  waste: string;
+  category: string;
+};
+
 export interface ICompaniesRepository {
   createCompany(data: CreateCompaniesDTO): Promise<CompanyEntity>;
   findCompayById(id: string): Promise<CompanyEntity | null>;
@@ -34,4 +40,8 @@ export interface ICompaniesRepository {
     companyId: string;
   }): Promise<void>;
   listWasteItemsByCompanyId(companyId: string): Promise<ItemEntity[]>;
+
+  searchWasteItemsByCompanyNames(
+    data: SearchWasteItemsDTO,
+  ): Promise<CompanyEntity[]>;
 }

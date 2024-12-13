@@ -12,6 +12,7 @@ import { DeleteWasteItemController } from "./controllers/waste_items/DeleteWaste
 import { ListCompanyByUserController } from "./controllers/companies/ListCompanyByUserController";
 import { collectionTransactionRoutes } from "@modules/collection_transaction/collectionTransactionRoutes";
 import { collectionAppointmentsCompaniesRoutes } from "@modules/collection_appointment/collectionAppointmentsCompaniesRoutes";
+import { SearchWasteItemController } from "./controllers/search/SearchWasteItemController";
 
 const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();
@@ -29,9 +30,16 @@ const createWasteItemController = new CreateWasteItemController();
 const listWasteItemsController = new ListWasteItemsController();
 const deleteWasteItemController = new DeleteWasteItemController();
 
+const searchWasteItemController = new SearchWasteItemController();
+
 companiesRoutes.post("/", createCompanyController.handle);
+
+companiesRoutes.get("/search", searchWasteItemController.handle);
+
 companiesRoutes.get("/", listCompaniesByUserIdController.handle);
+
 companiesRoutes.get("/:companyId", getCompanyController.handle);
+
 companiesRoutes.patch("/:companyId", updateCompanyController.handle);
 
 companiesRoutes.get("/:companyId/address", getAddressCompanyController.handle);
@@ -52,7 +60,9 @@ companiesRoutes.post(
 );
 
 companiesRoutes.post("/:companyId/waste", createWasteItemController.handle);
+
 companiesRoutes.get("/:companyId/waste", listWasteItemsController.handle);
+
 companiesRoutes.delete(
   "/:companyId/waste/:wasteId",
   deleteWasteItemController.handle,
@@ -64,4 +74,5 @@ companiesRoutes.use(
   "/:companyId/appointments",
   collectionAppointmentsCompaniesRoutes,
 );
+
 export { companiesRoutes };
