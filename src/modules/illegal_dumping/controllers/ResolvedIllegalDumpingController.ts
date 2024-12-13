@@ -5,14 +5,13 @@ import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRe
 import { ResolvedIllegalDumpingService } from "../services/ResolvedIllegalDumpingService";
 
 const ResolvedIllegalDumpingRequestBodySchemaValidation = zod.object({
-  solverId: zod.string().uuid(),
   description: zod.string().min(10),
 });
 
 export class ResolvedIllegalDumpingController {
   async handle(request: Request, response: Response) {
-    const { id } = request.params;
-    const { solverId, description } =
+    const { companyId, denunciationId } = request.params;
+    const { description } =
       ResolvedIllegalDumpingRequestBodySchemaValidation.parse(request.body);
 
     const illegalDumpingRepository = new IllegalDumpingRepository();
@@ -22,7 +21,11 @@ export class ResolvedIllegalDumpingController {
       companiesRepository,
     );
 
-    const illegal = await service.execute({ id, solverId, description });
+    const illegal = await service.execute({
+      id: denunciationId,
+      solverId: companyId,
+      description,
+    });
 
     response.json(illegal);
   }

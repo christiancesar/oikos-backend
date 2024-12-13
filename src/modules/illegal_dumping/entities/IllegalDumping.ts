@@ -8,6 +8,7 @@ export enum PriorityIllegalDumping {
 
 export enum StatusIllegalDumping {
   OPEN = "OPEN",
+  ASSIGNED = "ASSIGNED",
   RESOLVED = "RESOLVED",
 }
 
@@ -61,7 +62,7 @@ export class IllegalDumpingEntity {
     this.description = data.description;
     this.longitude = data.longitude;
     this.latitude = data.latitude;
-    this.status = this.status ?? StatusIllegalDumping.OPEN;
+    this.status = data.status ?? StatusIllegalDumping.OPEN;
     this.attachments = data.attachments;
     this.solver = data.solver ?? new Solver({});
     this.createdAt = data.createdAt;

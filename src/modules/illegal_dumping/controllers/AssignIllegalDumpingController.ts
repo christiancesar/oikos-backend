@@ -6,7 +6,6 @@ import { IllegalDumpingRepository } from "../repositories/IllegalDumpingReposito
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 
 const AssignIllegalDumpingRequestBodySchemaValidation = zod.object({
-  solverId: zod.string().uuid(),
   priority: zod.nativeEnum(PriorityIllegalDumping),
   solveUntil: zod
     .string()
@@ -24,8 +23,8 @@ const AssignIllegalDumpingRequestBodySchemaValidation = zod.object({
 
 export class AssignIllegalDumpingController {
   async handle(req: Request, response: Response) {
-    const { id } = req.params;
-    const { priority, solveUntil, solverId } =
+    const { companyId, denunciationId } = req.params;
+    const { priority, solveUntil } =
       AssignIllegalDumpingRequestBodySchemaValidation.parse(req.body);
 
     const companiesRepository = new CompaniesRepository();
@@ -36,8 +35,8 @@ export class AssignIllegalDumpingController {
     );
 
     const illegal = await service.execute({
-      id,
-      solverId,
+      denunciationId,
+      solverId: companyId,
       priority,
       solveUntil,
     });

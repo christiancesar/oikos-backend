@@ -27,7 +27,8 @@ export class IllegalDumpingService {
     return illegalDumpingExist;
   }
 
-  async list(): Promise<IllegalDumpingEntity[]> {
-    return this.repository.listAllIllegalsDumping();
+  async list({ status }: { status?: string }): Promise<IllegalDumpingEntity[]> {
+    const statusSearch = status?.trim() === "" ? undefined : status;
+    return this.repository.listAllIllegalsDumping({ status: statusSearch });
   }
 }

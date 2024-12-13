@@ -15,6 +15,11 @@ export type assignIllegalDumpingDTO = {
   solveUntil: Date;
 };
 
+export type unassignIllegalDumpingDTO = {
+  id: string;
+  solverId: string;
+};
+
 export type MarkAsResolvedDTO = {
   id: string;
   solverId: string;
@@ -27,10 +32,18 @@ export interface IIllegalDumpingRepository {
   assignIllegalDumping(
     data: assignIllegalDumpingDTO,
   ): Promise<IllegalDumpingEntity>;
-  listAllIllegalsDumping(): Promise<IllegalDumpingEntity[]>;
+  listAllIllegalsDumping({
+    status,
+  }: {
+    status?: string;
+  }): Promise<IllegalDumpingEntity[]>;
   findIllegalsDumpingByIllegalIdAndSolverId(data: {
     illegalId: string;
     solverId: string;
   }): Promise<IllegalDumpingEntity | null>;
   markAsResolved(data: MarkAsResolvedDTO): Promise<IllegalDumpingEntity>;
+
+  unassignIllegalDumping(
+    unassignIllegalDumpingDTO: unassignIllegalDumpingDTO,
+  ): Promise<IllegalDumpingEntity>;
 }

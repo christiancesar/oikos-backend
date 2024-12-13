@@ -13,8 +13,9 @@ import { ListCompanyByUserController } from "./controllers/companies/ListCompany
 import { collectionTransactionRoutes } from "@modules/collection_transaction/collectionTransactionRoutes";
 import { collectionAppointmentsCompaniesRoutes } from "@modules/collection_appointment/collectionAppointmentsCompaniesRoutes";
 import { SearchWasteItemController } from "./controllers/search/SearchWasteItemController";
+import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
 
-const companiesRoutes = Router();
+const companiesRoutes = Router({ mergeParams: true });
 const createCompanyController = new CreateCompanyController();
 const getCompanyController = new GetCompanyController();
 const updateCompanyController = new UpdateCompanyController();
@@ -31,6 +32,10 @@ const listWasteItemsController = new ListWasteItemsController();
 const deleteWasteItemController = new DeleteWasteItemController();
 
 const searchWasteItemController = new SearchWasteItemController();
+
+companiesRoutes.use("/denunciations", illegalDumpingRoutes);
+
+companiesRoutes.use("/:companyId/denunciations", illegalDumpingRoutes);
 
 companiesRoutes.post("/", createCompanyController.handle);
 

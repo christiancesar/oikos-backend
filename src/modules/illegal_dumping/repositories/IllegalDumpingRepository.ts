@@ -9,6 +9,7 @@ import {
   CreateReportDTO,
   IIllegalDumpingRepository,
   MarkAsResolvedDTO,
+  unassignIllegalDumpingDTO,
 } from "./IIllegalDumpingRepository";
 import { IllegalDumpingMapper } from "./Mappers/IllegalDumpingMapper";
 
@@ -63,6 +64,7 @@ export class IllegalDumpingRepository implements IIllegalDumpingRepository {
       data: {
         priority,
         solveUntil,
+        status: StatusIllegalDumping.ASSIGNED,
         solver: {
           connect: {
             id: solverId,
@@ -77,8 +79,36 @@ export class IllegalDumpingRepository implements IIllegalDumpingRepository {
     return IllegalDumpingMapper.toDomain(updatedReport);
   }
 
-  async listAllIllegalsDumping(): Promise<IllegalDumpingEntity[]> {
+  async unassignIllegalDumping(
+    unassignIllegalDumpingDTO: unassignIllegalDumpingDTO,
+  ): Promise<IllegalDumpingEntity> {
+    const updatedReport = await prisma.illegalDumping.update({
+      where: {
+        id: unassignIllegalDumpingDTO.id,
+      },
+      data: {
+        priority: "LOW",
+        solveUntil: null,
+        status: StatusIllegalDumping.OPEN,
+        solver: {
+          disconnect: true,
+        },
+      },
+      include: {
+        attachments: true,
+        solver: true,
+      },
+    });
+    return IllegalDumpingMapper.toDomain(updatedReport);
+  }
+
+  async listAllIllegalsDumping({
+    status,
+  }: {
+    status?: string;
+  }): Promise<IllegalDumpingEntity[]> {
     const illegals = await prisma.illegalDumping.findMany({
+      where: status ? { status } : {},
       include: {
         attachments: true,
         solver: true,

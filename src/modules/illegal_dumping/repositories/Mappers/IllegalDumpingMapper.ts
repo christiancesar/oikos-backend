@@ -31,13 +31,15 @@ export class IllegalDumpingMapper {
         })
       : null;
 
+    const status =
+      StatusIllegalDumping[data.status as keyof typeof StatusIllegalDumping];
+
     return new IllegalDumpingEntity({
       id: data.id,
       description: data.description,
       longitude: data.longitude,
       latitude: data.latitude,
-      status:
-        StatusIllegalDumping[data.status as keyof typeof StatusIllegalDumping],
+      status,
       solver,
       attachments: data.attachments.map((attachment) => attachment.url),
       createdAt: data.createdAt,
