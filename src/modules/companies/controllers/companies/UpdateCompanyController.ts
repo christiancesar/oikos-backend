@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { UpdateCompanyService } from "@modules/companies/services/company/UpdateCompanyService";
 import * as zod from "zod";
@@ -7,6 +6,7 @@ import {
   CompanyType,
   IdentityType,
 } from "@modules/companies/entities/Companies";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 const updateCompanyRequestBodySchemaValidation = zod.object({
   company: zod.object({

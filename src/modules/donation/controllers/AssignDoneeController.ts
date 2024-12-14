@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
 import { DonationsRepository } from "../repositories/DonationsRepository";
 import { AssignDoneeService } from "../services/AssignDoneeService";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 export class AssignDoneeController {
   async handle(request: Request, response: Response) {

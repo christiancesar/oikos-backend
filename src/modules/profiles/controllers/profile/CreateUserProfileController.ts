@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { ProfileRepository } from "../../repositories/ProfileRepository";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
 import { CreateOrUpdateProfileService } from "../../services/CreateOrUpdateProfileService";
 import * as zod from "zod";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 const CreateOrUpdateProfileControllerRequestBodySchema = zod.object({
   firstName: zod

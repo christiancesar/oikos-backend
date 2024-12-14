@@ -1,9 +1,9 @@
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
 import { Request, Response } from "express";
 import * as zod from "zod";
 import { DonationCondition } from "../entities/Donation";
 import { DonationsRepository } from "../repositories/DonationsRepository";
 import { CreateDonationService } from "../services/CreateDonationService";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 const createDonationBodySchemaValidation = zod.object({
   description: zod.string().min(150),

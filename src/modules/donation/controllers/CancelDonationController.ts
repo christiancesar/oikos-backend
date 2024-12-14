@@ -1,7 +1,7 @@
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
 import { Request, Response } from "express";
 import { DonationsRepository } from "../repositories/DonationsRepository";
 import { CancelDonationService } from "../services/CancelDonationService";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 export class CancelDonationController {
   async handle(request: Request, response: Response) {

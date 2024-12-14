@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -97,17 +97,8 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -123,6 +114,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -131,14 +133,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import "dotenv/config";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { prisma } from "../prisma/index";</span>
-<span class="cstat-no" title="statement not covered" >import { interceptErrorMiddleware } from "@common/middlewares/interceptErrorMiddleware";</span>
-<span class="cstat-no" title="statement not covered" >import cors from "cors";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import "dotenv/config";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >import path from "path";</span>
 <span class="cstat-no" title="statement not covered" >import express from "express";</span>
 <span class="cstat-no" title="statement not covered" >import "express-async-errors";</span>
+<span class="cstat-no" title="statement not covered" >import { enviroment } from "@common/env/env";</span>
+<span class="cstat-no" title="statement not covered" >import cors from "cors";</span>
+<span class="cstat-no" title="statement not covered" >import { interceptErrorMiddleware } from "@common/middlewares/interceptErrorMiddleware";</span>
+<span class="cstat-no" title="statement not covered" >import { prisma } from "../prisma/index";</span>
 <span class="cstat-no" title="statement not covered" >import { routes } from "./routes";</span>
-<span class="cstat-no" title="statement not covered" >import path from "path";</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const server = express();</span>
 <span class="cstat-no" title="statement not covered" >server.use(cors());</span>
@@ -153,7 +156,7 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >async function main() {</span>
 <span class="cstat-no" title="statement not covered" >  await prisma.$connect();</span>
-<span class="cstat-no" title="statement not covered" >  server.listen(process.env.PORT, () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  server.listen(enviroment.PORT, () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    console.log(`Server is running on port ${process.env.PORT}`);</span>
 <span class="cstat-no" title="statement not covered" >  });</span>
 <span class="cstat-no" title="statement not covered" >}</span>
@@ -172,7 +175,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-14T18:09:51.170Z
+                at 2024-12-14T19:54:45.701Z
             </div>
         <script src="../prettify.js"></script>
         <script>

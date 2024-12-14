@@ -4,7 +4,7 @@ import {
 } from "@modules/companies/entities/Companies";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { CreateCompanyService } from "@modules/companies/services/company/CreateCompanyService";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 import { Request, Response } from "express";
 import * as zod from "zod";
 

@@ -1,6 +1,6 @@
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { ListCompanyByUserService } from "@modules/companies/services/company/ListCompanyByUserService";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 import { Request, Response } from "express";
 
 export class ListCompanyByUserController {

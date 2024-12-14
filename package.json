@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "\"A plataforma será um facilitador na reciclagem e o descarte consciente de resíduos sólidos por meio da conexão entre indivíduos, empresas e catadores.\"",
   "main": "dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "prisma": {
     "seed": "ts-node prisma/seeds/seed.ts"
   },
