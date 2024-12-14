@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import * as zod from "zod";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
-import { ResolvedIllegalDumpingService } from "../services/ResolvedIllegalDumpingService";
+import { ResolvedIllegalDumpingService } from "../services/companies/ResolvedIllegalDumpingService";
 
 const ResolvedIllegalDumpingRequestBodySchemaValidation = zod.object({
   description: zod.string().min(10),

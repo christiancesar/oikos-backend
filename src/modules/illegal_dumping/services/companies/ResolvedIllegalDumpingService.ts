@@ -1,7 +1,8 @@
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
-import { IIllegalDumpingRepository } from "../repositories/IIllegalDumpingRepository";
-import { IllegalDumpingEntity } from "../entities/IllegalDumping";
+
 import { AppError } from "@common/errors/AppError";
+import { IIllegalDumpingRepository } from "@modules/illegal_dumping/repositories/IIllegalDumpingRepository";
+import { IllegalDumpingEntity } from "@modules/illegal_dumping/entities/IllegalDumping";
 
 type ResolvedIllegalDumpingServiceParams = {
   id: string;

@@ -3,15 +3,17 @@ import { ICompaniesRepository } from "@modules/companies/repositories/ICompanies
 import {
   IllegalDumpingEntity,
   StatusIllegalDumping,
-} from "../entities/IllegalDumping";
-import { IIllegalDumpingRepository } from "../repositories/IIllegalDumpingRepository";
+} from "@modules/illegal_dumping/entities/IllegalDumping";
+import { IIllegalDumpingRepository } from "@modules/illegal_dumping/repositories/IIllegalDumpingRepository";
 
-type UnassignIllegalDumpingServiceParams = {
+type AssignIllegalDumpingServiceParams = {
   denunciationId: string;
   solverId: string;
+  priority: string;
+  solveUntil: Date;
 };
 
-export class UnassignIllegalDumpingService {
+export class AssignIllegalDumpingService {
   constructor(
     private illegalDumpingRepository: IIllegalDumpingRepository,
     private companiesRepository: ICompaniesRepository,
@@ -19,8 +21,10 @@ export class UnassignIllegalDumpingService {
 
   async execute({
     denunciationId,
+    priority,
+    solveUntil,
     solverId,
-  }: UnassignIllegalDumpingServiceParams): Promise<IllegalDumpingEntity> {
+  }: AssignIllegalDumpingServiceParams): Promise<IllegalDumpingEntity> {
     const companyExist =
       await this.companiesRepository.findCompayById(solverId);
 
@@ -35,20 +39,16 @@ export class UnassignIllegalDumpingService {
       throw new AppError("Illegal dumping not found");
     }
 
-    if (illegalDumpingExist.status !== StatusIllegalDumping.ASSIGNED) {
-      throw new AppError("Illegal dumping already unassigned or resolved");
-    }
-
-    if (illegalDumpingExist.solver?.company?.id !== solverId) {
-      throw new AppError(
-        "You are not allowed to unassign this illegal dumping",
-      );
+    if (illegalDumpingExist.status !== StatusIllegalDumping.OPEN) {
+      throw new AppError("Illegal dumping already assigned or resolved");
     }
 
     const updatedIllegalDumping =
-      await this.illegalDumpingRepository.unassignIllegalDumping({
+      await this.illegalDumpingRepository.assignIllegalDumping({
         id: denunciationId,
+        priority,
         solverId,
+        solveUntil,
       });
 
     return updatedIllegalDumping;

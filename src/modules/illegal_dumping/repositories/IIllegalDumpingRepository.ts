@@ -37,6 +37,15 @@ export interface IIllegalDumpingRepository {
   }: {
     status?: string;
   }): Promise<IllegalDumpingEntity[]>;
+
+  listAllIllegalsDumpingByCompanyId({
+    status,
+    solverId,
+  }: {
+    status?: string;
+    solverId: string;
+  }): Promise<IllegalDumpingEntity[]>;
+
   findIllegalsDumpingByIllegalIdAndSolverId(data: {
     illegalId: string;
     solverId: string;

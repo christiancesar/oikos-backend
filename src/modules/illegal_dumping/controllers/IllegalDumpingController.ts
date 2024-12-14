@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import * as zod from "zod";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
-import { IllegalDumpingService } from "../services/IllegalDumpingService";
 import { StatusIllegalDumping } from "../entities/IllegalDumping";
+import { ShowIllegalDumpingService } from "../services/companies/ShowIllegalDumpingService";
+import { CreateIllegalDumpingService } from "../services/CreateIllegalDumpingService";
+import { ListAllIllegalDumpingService } from "../services/companies/ListAllIllegalDumpingService";
 
 const CreateIllegalDumpingRequestBodySchemaValidation = zod.object({
   description: zod.string().min(10),
@@ -19,9 +21,9 @@ export class IllegalDumpingController {
       CreateIllegalDumpingRequestBodySchemaValidation.parse(request.body);
 
     const repository = new IllegalDumpingRepository();
-    const service = new IllegalDumpingService(repository);
+    const service = new CreateIllegalDumpingService(repository);
 
-    const illegal = await service.create({
+    const illegal = await service.execute({
       description,
       latitude,
       longitude,
@@ -34,8 +36,8 @@ export class IllegalDumpingController {
     const { denunciationId } = req.params;
 
     const repository = new IllegalDumpingRepository();
-    const service = new IllegalDumpingService(repository);
-    const illegal = await service.show(denunciationId);
+    const service = new ShowIllegalDumpingService(repository);
+    const illegal = await service.execute(denunciationId);
 
     response.json(illegal);
   }
@@ -45,8 +47,8 @@ export class IllegalDumpingController {
     const { status } = serachIllegalDumpingQuerySchemaValidation.parse(
       request.query,
     );
-    const service = new IllegalDumpingService(repository);
-    const illegals = await service.list({ status });
+    const service = new ListAllIllegalDumpingService(repository);
+    const illegals = await service.execute({ status });
 
     response.json(illegals);
   }

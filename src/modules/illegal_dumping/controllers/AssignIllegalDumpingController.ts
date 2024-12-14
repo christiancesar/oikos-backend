@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import * as zod from "zod";
 import { PriorityIllegalDumping } from "../entities/IllegalDumping";
-import { AssignIllegalDumpingService } from "../services/AssignIllegalDumpingService";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
+import { AssignIllegalDumpingService } from "../services/companies/AssignIllegalDumpingService";
 
 const AssignIllegalDumpingRequestBodySchemaValidation = zod.object({
   priority: zod.nativeEnum(PriorityIllegalDumping),

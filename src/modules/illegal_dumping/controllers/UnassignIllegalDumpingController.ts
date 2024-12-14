@@ -1,7 +1,7 @@
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { Request, Response } from "express";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
-import { UnassignIllegalDumpingService } from "../services/UnassignIllegalDumpingService";
+import { UnassignIllegalDumpingService } from "../services/companies/UnassignIllegalDumpingService";
 
 export class UnassignIllegalDumpingController {
   async handle(req: Request, response: Response) {

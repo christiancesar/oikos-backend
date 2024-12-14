@@ -118,6 +118,28 @@ export class IllegalDumpingRepository implements IIllegalDumpingRepository {
     return illegals.map((illegal) => IllegalDumpingMapper.toDomain(illegal));
   }
 
+  async listAllIllegalsDumpingByCompanyId({
+    status,
+    solverId,
+  }: {
+    status?: string;
+    solverId: string;
+  }): Promise<IllegalDumpingEntity[]> {
+    const illegals = await prisma.illegalDumping.findMany({
+      where: status
+        ? { status, solverId }
+        : {
+            solverId,
+          },
+      include: {
+        attachments: true,
+        solver: true,
+      },
+    });
+
+    return illegals.map((illegal) => IllegalDumpingMapper.toDomain(illegal));
+  }
+
   async findIllegalsDumpingByIllegalIdAndSolverId(data: {
     illegalId: string;
     solverId: string;
