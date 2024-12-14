@@ -102,7 +102,7 @@ export class ProfileRepository implements IProfileRepository {
     });
   }
 
-  async findByProdileId(id: string): Promise<ProfileEntity | null> {
+  async findByProfileId(id: string): Promise<ProfileEntity | null> {
     return prisma.profile.findFirst({
       where: {
         id,

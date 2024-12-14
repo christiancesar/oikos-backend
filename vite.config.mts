@@ -11,6 +11,9 @@ export default defineConfig({
   test: {
     globals: true,
     root: "./",
-    include: ["src/**/*.spec.ts"],
+    include: ["src/modules/**/services/**/*.spec.ts"],
+    coverage: {
+      include: ["src/modules/**/services/**"],
+    },
   },
 });

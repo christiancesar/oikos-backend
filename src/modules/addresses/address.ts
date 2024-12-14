@@ -11,7 +11,7 @@ type AddressEntityConstructor = {
   zipCode: string;
   latitude?: number | null;
   longitude?: number | null;
-  createdAt: Date;
+  createdAt?: Date | null;
   updatedAt?: Date | null;
 };
 

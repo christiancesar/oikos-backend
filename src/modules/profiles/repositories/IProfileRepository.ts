@@ -22,7 +22,7 @@ export type CreateAddressProfileDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
@@ -38,7 +38,7 @@ export type UpdateAddressProfileDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
@@ -58,19 +58,19 @@ export type CreateOrUpdateDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 
 export interface IProfileRepository {
   createOrUpdate(data: CreateOrUpdateDTO): Promise<ProfileEntity>;
-  findByProdileId(id: string): Promise<ProfileEntity | null>;
+  findByProfileId(id: string): Promise<ProfileEntity | null>;
   findByUserId(userId: string): Promise<ProfileEntity | null>;
 }
