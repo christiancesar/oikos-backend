@@ -1,6 +1,6 @@
 import { AppError } from "@common/errors/AppError";
 import { UserEntity } from "@modules/users/entities/Users";
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 
 export class GetUserService {
   constructor(private usersRepository: IUsersRepository) {}

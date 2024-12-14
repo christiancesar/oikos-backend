@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { BCryptHashProvider } from "../provider/BCryptHashProvider";
-import { UsersRepository } from "../repositories/UsersRepository";
+import { UsersRepository } from "../repositories/prisma/UsersRepository";
 import { AuthenticationService } from "../services/authentication/AuthenticationService";
 
 export default class AuthenticationController {
