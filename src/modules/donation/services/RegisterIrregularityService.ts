@@ -1,7 +1,11 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IDonationsRepository } from "../repositories/IDonationsRepository";
 import { AppError } from "@common/errors/AppError";
-import { DonationEntity, DonationIrragularity } from "../entities/Donation";
+import {
+  DonationEntity,
+  DonationIrragularity,
+  DonationStatus,
+} from "../entities/Donation";
 
 export class RegisterIrregularityService {
   constructor(
@@ -46,7 +50,15 @@ export class RegisterIrregularityService {
       }),
     );
 
-    if (donationExist.status === "CLOSED") {
+    if (
+      [DonationStatus.COMPLETED, DonationStatus.CANCELLED].includes(
+        donationExist.status,
+      )
+    ) {
+      throw new AppError("Donation already completed or cancelled");
+    }
+
+    if (donationExist.status === DonationStatus.CLOSED) {
       await this.donationsRepository.closeDonation({
         donationId,
         reason: donationExist.reasonForClosed!,

@@ -4,9 +4,6 @@ import { randomUUID } from "crypto";
 export enum DonationStatus {
   OPEN = "OPEN",
   ASSIGNED = "ASSIGNED",
-  ACCEPTED = "ACCEPTED",
-  PENDING = "PENDING",
-  REJECTED = "REJECTED",
   CANCELLED = "CANCELLED",
   CLOSED = "CLOSED",
   COMPLETED = "COMPLETED",
@@ -61,7 +58,7 @@ export class DonationEntity {
   donorId: string; // doador
   doneeId?: string | null; // donatário
   attachments?: string[] | null;
-  irregularitiesQuantity?: number | null;
+  irregularitiesQuantity: number;
   irregularities?: DonationIrragularity[] | null;
   reasonForCancellation?: string | null;
   reasonForClosed?: string | null;
@@ -92,10 +89,10 @@ export class DonationEntity {
   }
 
   protected addIrregularitiesQuantity() {
-    const quantity = this.irregularities?.length;
+    const quantity = this.irregularities?.length ?? 0;
     this.irregularitiesQuantity = quantity;
 
-    if (quantity === MAX_IRREGULARITiES_QUANTITY) {
+    if (quantity >= MAX_IRREGULARITiES_QUANTITY) {
       this.closeDonationByIrregularities();
     }
   }

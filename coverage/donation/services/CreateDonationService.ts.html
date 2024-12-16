@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,7 +92,15 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,25 +113,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import IUsersRepository from "@modules/users/repositories/IUsersRepository";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IDonationsRepository } from "../repositories/IDonationsRepository";
-import { DonationEntity } from "../entities/Donation";
+import { DonationCondition, DonationEntity } from "../entities/Donation";
 import { AppError } from "@common/errors/AppError";
 &nbsp;
 export type CreateDonationServiceParams = {
@@ -134,22 +150,30 @@ export type CreateDonationServiceParams = {
   donorId: string;
 };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export class CreateDonationService {</span>
-<span class="cstat-no" title="statement not covered" >  constructor(</span>
-<span class="cstat-no" title="statement not covered" >    private donationRepository: IDonationsRepository,</span>
-<span class="cstat-no" title="statement not covered" >    private usersRepository: IUsersRepository,</span>
-<span class="cstat-no" title="statement not covered" >  ) {}</span>
+export class CreateDonationService {
+  constructor(
+    private donationRepository: IDonationsRepository,
+    private usersRepository: IUsersRepository,
+  ) {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async execute(data: CreateDonationServiceParams): Promise&lt;DonationEntity&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const userExist = await this.usersRepository.findByUserId(data.donorId);</span>
+  async execute(data: CreateDonationServiceParams): Promise&lt;DonationEntity&gt; {
+    const userExist = await this.usersRepository.findByUserId(data.donorId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!userExist) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError("User not found");</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    if (!userExist) {
+      throw new AppError("User not found");
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return this.donationRepository.createDonation(data);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    if (
+      ![DonationCondition.NEW, DonationCondition.USED].includes(
+        DonationCondition[data.condition as keyof typeof DonationCondition],
+      )
+    ) {
+      throw new AppError("Invalid donation condition");
+    }
+&nbsp;
+    return this.donationRepository.createDonation(data);
+  }
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +181,7 @@ export type CreateDonationServiceParams = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-16T05:06:08.014Z
+                at 2024-12-16T22:25:25.581Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

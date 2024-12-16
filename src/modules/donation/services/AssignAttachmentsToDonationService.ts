@@ -14,6 +14,12 @@ export class AssignAttachmentsToDonationService {
       throw new AppError("No files provided");
     }
 
+    files.forEach((file) => {
+      if (file.trim() === "") {
+        throw new AppError("File name cannot be empty");
+      }
+    });
+
     const donation =
       await this.donationsRepository.findByDonationId(donationId);
     if (!donation) {
