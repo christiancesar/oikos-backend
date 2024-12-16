@@ -3,7 +3,6 @@ import { circuitRoutes } from "@modules/circuit/circuitRoutes";
 import { companiesRoutes } from "@modules/companies/companiesRoutes";
 import { donationsRoutes } from "@modules/donation/donationRoutes";
 import { createIllegalDumpingRoutes } from "@modules/illegal_dumping/createIllegalDumpingRoutes";
-import { illegalDumpingRoutes } from "@modules/illegal_dumping/illegalDumpingRoutes";
 import { materialsRoutes } from "@modules/material/MaterialRegistrationRoutes";
 import { profileRoutes } from "@modules/profiles/profileRoutes";
 import { sessionsRouter } from "@modules/users/authenticationRoutes";
@@ -14,7 +13,7 @@ export const routes = Router();
 
 routes.use("/users", usersRouter);
 routes.use("/sessions", sessionsRouter);
-routes.use("/denunciations", illegalDumpingRoutes);
+routes.use("/denunciations", createIllegalDumpingRoutes);
 
 routes.use(authenticationMiddleware);
 routes.use("/profile", profileRoutes);
