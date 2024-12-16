@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,66 +93,69 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { AppError } from "@common/errors/AppError";
+import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 import { IllegalDumpingEntity } from "@modules/illegal_dumping/entities/IllegalDumping";
 import { IIllegalDumpingRepository } from "@modules/illegal_dumping/repositories/IIllegalDumpingRepository";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export class ListAllIllegalsDumpingByCompanyService {</span>
-<span class="cstat-no" title="statement not covered" >  constructor(</span>
-<span class="cstat-no" title="statement not covered" >    private repository: IIllegalDumpingRepository,</span>
-<span class="cstat-no" title="statement not covered" >    private companies: ICompaniesRepository,</span>
-<span class="cstat-no" title="statement not covered" >  ) {}</span>
+export class ListAllIllegalsDumpingByCompanyService {
+  constructor(
+    private repository: IIllegalDumpingRepository,
+    private companies: ICompaniesRepository,
+  ) {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async execute({</span>
-<span class="cstat-no" title="statement not covered" >    status,</span>
-<span class="cstat-no" title="statement not covered" >    companyId,</span>
-<span class="cstat-no" title="statement not covered" >  }: {</span>
+  async execute({
+    status,
+    companyId,
+  }: {
     status?: string;
     companyId: string;
-<span class="cstat-no" title="statement not covered" >  }): Promise&lt;IllegalDumpingEntity[]&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const company = await this.companies.findCompayById(companyId);</span>
+  }): Promise&lt;IllegalDumpingEntity[]&gt; {
+    const company = await this.companies.findCompayById(companyId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!company) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error("Company not found");</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    if (!company) {
+      throw new AppError("Company not found");
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const statusSearch = status?.trim() === "" ? undefined : status;</span>
-<span class="cstat-no" title="statement not covered" >    return this.repository.listAllIllegalsDumpingByCompanyId({</span>
-<span class="cstat-no" title="statement not covered" >      status: statusSearch,</span>
-<span class="cstat-no" title="statement not covered" >      solverId: companyId,</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    const statusSearch = status?.trim() === "" ? undefined : status;
+    return this.repository.listAllIllegalsDumpingByCompanyId({
+      status: statusSearch,
+      solverId: companyId,
+    });
+  }
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -160,7 +163,7 @@ import { IIllegalDumpingRepository } from "@modules/illegal_dumping/repositories
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-16T03:31:12.751Z
+                at 2024-12-16T05:06:08.014Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

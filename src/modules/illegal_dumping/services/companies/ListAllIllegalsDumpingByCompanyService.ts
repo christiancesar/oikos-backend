@@ -1,3 +1,4 @@
+import { AppError } from "@common/errors/AppError";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 import { IllegalDumpingEntity } from "@modules/illegal_dumping/entities/IllegalDumping";
 import { IIllegalDumpingRepository } from "@modules/illegal_dumping/repositories/IIllegalDumpingRepository";
@@ -18,7 +19,7 @@ export class ListAllIllegalsDumpingByCompanyService {
     const company = await this.companies.findCompayById(companyId);
 
     if (!company) {
-      throw new Error("Company not found");
+      throw new AppError("Company not found");
     }
 
     const statusSearch = status?.trim() === "" ? undefined : status;

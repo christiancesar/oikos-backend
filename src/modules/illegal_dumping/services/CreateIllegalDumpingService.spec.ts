@@ -8,7 +8,7 @@ import { makeIllegalDumping } from "../factories/makeIllegalDumping";
 let illegalRepository: IllegalDumpingRepositoryInMemory;
 let service: CreateIllegalDumpingService;
 
-describe("Criar materiais, residuos solidos, descartes", () => {
+describe("Criar uma denuncia", () => {
   beforeEach(() => {
     illegalRepository = new IllegalDumpingRepositoryInMemory();
     service = new CreateIllegalDumpingService(illegalRepository);

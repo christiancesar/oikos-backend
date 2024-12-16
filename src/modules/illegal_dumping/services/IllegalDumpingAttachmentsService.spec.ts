@@ -10,7 +10,7 @@ let illegalRepository: IllegalDumpingRepositoryInMemory;
 let IllegalService: CreateIllegalDumpingService;
 let attachmentsService: IllegalDumpingAttachmentsService;
 
-describe("Criar materiais, residuos solidos, descartes", () => {
+describe("Atribui anexos a denuncia", () => {
   beforeEach(() => {
     illegalRepository = new IllegalDumpingRepositoryInMemory();
     IllegalService = new CreateIllegalDumpingService(illegalRepository);
