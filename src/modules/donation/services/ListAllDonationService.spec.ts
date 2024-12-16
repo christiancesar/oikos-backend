@@ -62,6 +62,7 @@ describe("Criar uma doação", () => {
     expect(await listAllDonationService.execute()).toHaveLength(3);
   });
 
+  // Ao rodar os testes anteriores foi percebido que não foi implementado a funcionalidade de filtrar doações por condição e status. E também validação destes status e condições, foram implementados.
   it("Deve ser possível o usuario filtrar doações que as condições são novas. [estrutural] [positivo]", async () => {
     const user1 = await usersRepository.createUser({
       email: "user-one@mail,com",
@@ -192,7 +193,7 @@ describe("Criar uma doação", () => {
     ).toHaveLength(2);
   });
 
-  it("Nao deve deve ser possível o usuario filtrar doações que as condições ou status não existam. [estrutural] [positivo]", async () => {
+  it("Nao deve deve ser possível o usuario filtrar doações que as condições ou status não existam. [estrutural] [negativo]", async () => {
     const user1 = await usersRepository.createUser({
       email: "user-one@mail,com",
       password: "123456",
@@ -237,7 +238,7 @@ describe("Criar uma doação", () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it("Nao deve deve ser possível o usuario filtrar doações que as condições ou status não existam. [estrutural] [positivo]", async () => {
+  it("Nao deve deve ser possível o usuario filtrar doações que as condições ou status não existam. [estrutural] [negativo]", async () => {
     const user1 = await usersRepository.createUser({
       email: "user-one@mail,com",
       password: "123456",

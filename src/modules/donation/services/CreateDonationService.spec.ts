@@ -38,7 +38,7 @@ describe("Criar uma doação", () => {
     expect(donation).toHaveProperty("id");
   });
 
-  it("Não deve ser possível um usuario sem cadastro criar uma doação. [funcional] [positivo]", async () => {
+  it("Não deve ser possível um usuario sem cadastro criar uma doação. [funcional] [negativo]", async () => {
     await usersRepository.createUser({
       email: "user-one@mail,com",
       password: "123456",
@@ -87,7 +87,7 @@ describe("Criar uma doação", () => {
     expect(donation2.condition).toBe(DonationCondition.NEW);
   });
 
-  it("Não deve ser possível criar uma doação informando as condições uso diferente de nova ou usada. [estrutural] [positivo]", async () => {
+  it("Não deve ser possível criar uma doação informando as condições uso diferente de nova ou usada. [estrutural] [negativo]", async () => {
     const user = await usersRepository.createUser({
       email: "user-one@mail,com",
       password: "123456",
