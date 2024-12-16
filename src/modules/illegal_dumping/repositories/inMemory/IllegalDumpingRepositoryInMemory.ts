@@ -4,7 +4,6 @@ import {
   Solver,
   StatusIllegalDumping,
 } from "@modules/illegal_dumping/entities/IllegalDumping";
-import { randomUUID } from "node:crypto";
 import {
   CreateReportDTO,
   MarkAsResolvedDTO,
@@ -24,7 +23,6 @@ export class IllegalDumpingRepositoryInMemory
     longitude,
   }: CreateReportDTO): Promise<IllegalDumpingEntity> {
     const illegal = new IllegalDumpingEntity({
-      id: randomUUID(),
       description,
       latitude,
       longitude,
@@ -50,10 +48,9 @@ export class IllegalDumpingRepositoryInMemory
     solveUntil,
   }: assignIllegalDumpingDTO): Promise<IllegalDumpingEntity> {
     const illegalIndex = this.illegals.findIndex(
-      (illegal) =>
-        illegal.id === id && illegal.solver?.company?.id === solverId,
+      (illegal) => illegal.id === id && illegal.id === id,
     );
-    console.log(this.illegals[illegalIndex]);
+
     Object.assign<IllegalDumpingEntity, IllegalDumpingEntity>(
       this.illegals[illegalIndex],
       {

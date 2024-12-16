@@ -1,6 +1,7 @@
 import { Optional } from "@common/Optional";
 import {
   IllegalDumpingEntity,
+  Solver,
   StatusIllegalDumping,
 } from "../entities/IllegalDumping";
 
@@ -13,7 +14,7 @@ export function makeIllegalDumping(
     attachments: illegal?.attachments ? illegal.attachments : [],
     latitude: illegal?.latitude ? illegal.latitude : 0,
     longitude: illegal?.longitude ? illegal.longitude : 0,
-    solver: {},
+    solver: new Solver({}),
     createdAt: new Date(),
   });
 }
