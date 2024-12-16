@@ -23,10 +23,10 @@ export interface ICompaniesRepository {
   findCompanyByUserId(userId: string): Promise<CompanyEntity | null>;
   findCompanyByIdentity(identity: string): Promise<CompanyEntity | null>;
   listCompaniesByUserId(userId: string): Promise<CompanyEntity[]>;
-  updateCompany(profile: UpdateCompaniesDTO): Promise<CompanyEntity>;
+  updateCompany(company: UpdateCompaniesDTO): Promise<CompanyEntity>;
 
   createAddress(data: CreateAddressCompaniesDTO): Promise<AddressEntity>;
-  findAddressByCompaniesId(profileId: string): Promise<AddressEntity | null>;
+  findAddressByCompaniesId(companyId: string): Promise<AddressEntity | null>;
   updateAddress(data: UpdateAddressCompaniesDTO): Promise<AddressEntity>;
 
   getBusinessHoursByCompanyId(companyId: string): Promise<BusinessHourEntity[]>;
@@ -34,7 +34,10 @@ export interface ICompaniesRepository {
   deleteBusinessHoursByCompanyId(companyId: string): Promise<void>;
 
   createWasteItem(data: CreateWasteItemDTO): Promise<ItemEntity>;
-  findWasteItemById(wasteId: string): Promise<ItemEntity | null>;
+  findWasteItemById(data: {
+    wasteId: string;
+    companyId: string;
+  }): Promise<ItemEntity | null>;
   deleteWasteItemById(data: {
     wasteId: string;
     companyId: string;

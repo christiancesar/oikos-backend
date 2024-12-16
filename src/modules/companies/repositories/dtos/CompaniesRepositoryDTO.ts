@@ -3,6 +3,7 @@ export type CreateCompaniesDTO = {
   company: {
     identity: string;
     identityType: string;
+    acceptAppointments: boolean;
     companyType: string;
     stateRegistration?: string | null;
     status: boolean;

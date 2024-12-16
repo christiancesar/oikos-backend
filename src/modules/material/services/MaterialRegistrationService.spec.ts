@@ -1,21 +1,12 @@
 import { AppError } from "@common/errors/AppError";
-import { Optional } from "@common/Optional";
 import "dotenv/config";
 import { beforeEach, describe, expect, it } from "vitest";
-import { MaterialEntity } from "../entities/MaterialRegistration";
+import { makeMaterial } from "../factories/makeMaterial";
 import { MaterialsRepositoryInMemory } from "../repositories/inMemory/MaterialsRepositoryInMemory";
 import { MaterialService } from "./MaterialRegistrationService";
 
 let materialsRepository: MaterialsRepositoryInMemory;
 let service: MaterialService;
-
-function makeMaterial(material?: Optional<MaterialEntity>): MaterialEntity {
-  return new MaterialEntity({
-    name: material?.name ? material?.name : "Garrafa PET de água",
-    category: material?.category ? material?.category : "plásticos, PET",
-    createdAt: new Date(),
-  });
-}
 
 describe("Criar materiais, residuos solidos, descartes", () => {
   beforeEach(() => {

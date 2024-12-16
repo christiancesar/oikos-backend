@@ -7,8 +7,8 @@ import { ProfileRepositoryInMemory } from "../repositories/inMemory/ProfileRepos
 import { CreateOrUpdateProfileService } from "./CreateOrUpdateProfileService";
 import { AppError } from "@common/errors/AppError";
 import { GetProfileService } from "./GetProfileService";
-import { makeAddress } from "../tests/factories/makeAddress";
 import { makeProfile } from "../tests/factories/makeProfile";
+import { makeAddress } from "@modules/addresses/factories/makeAddress";
 
 let usersRepository: UsersRepositoryInMemory;
 let profileRepository: ProfileRepositoryInMemory;

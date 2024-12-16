@@ -12,6 +12,12 @@ export class IllegalDumpingAttachmentsService {
       throw new AppError("No files provided");
     }
 
+    files.forEach((file) => {
+      if (file.trim() === "") {
+        throw new AppError("File name cannot be empty");
+      }
+    });
+
     const illegal = await this.repository.findById(denuciationId);
     if (!illegal) {
       throw new AppError("Illegal dumping not found");

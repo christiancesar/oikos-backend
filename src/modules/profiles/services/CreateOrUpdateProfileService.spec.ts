@@ -7,7 +7,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { ProfileRepositoryInMemory } from "../repositories/inMemory/ProfileRepositoryInMemory";
 import { CreateOrUpdateProfileService } from "./CreateOrUpdateProfileService";
 import { makeProfile } from "../tests/factories/makeProfile";
-import { makeAddress } from "../tests/factories/makeAddress";
+import { makeAddress } from "@modules/addresses/factories/makeAddress";
 
 let usersRepository: UsersRepositoryInMemory;
 let profileRepository: ProfileRepositoryInMemory;
