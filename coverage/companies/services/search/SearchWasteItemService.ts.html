@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,19 +94,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { CompanyEntity } from "@modules/companies/entities/Companies";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 &nbsp;
@@ -116,19 +116,19 @@ type SeachWasteItems = {
   category?: string;
 };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export class SearchWasteItemService {</span>
-<span class="cstat-no" title="statement not covered" >  constructor(private companiesRepository: ICompaniesRepository) {}</span>
+export class SearchWasteItemService {
+  constructor(private companiesRepository: ICompaniesRepository) {}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async execute(search: SeachWasteItems): Promise&lt;CompanyEntity[]&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    let companies: CompanyEntity[] = [];</span>
-<span class="cstat-no" title="statement not covered" >    companies = await this.companiesRepository.searchWasteItemsByCompanyNames({</span>
-<span class="cstat-no" title="statement not covered" >      category: search.category ?? "",</span>
-<span class="cstat-no" title="statement not covered" >      company: search.company ?? "",</span>
-<span class="cstat-no" title="statement not covered" >      waste: search.waste ?? "",</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    return companies;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+  async execute(search: SeachWasteItems): Promise&lt;CompanyEntity[]&gt; {
+    let companies: CompanyEntity[] = [];
+    companies = await this.companiesRepository.searchWasteItemsByCompanyNames({
+      category: search.category ?? "",
+      company: search.company ?? "",
+      waste: search.waste ?? "",
+    });
+    return companies;
+  }
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +136,7 @@ type SeachWasteItems = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-17T17:25:39.478Z
+                at 2024-12-17T19:45:30.428Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -1,6 +1,6 @@
 import { AppError } from "@common/errors/AppError";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 
 export class ListCompanyByUserService {
   constructor(
@@ -12,13 +12,6 @@ export class ListCompanyByUserService {
     const userExist = await this.usersRepository.findByUserId(userId);
     if (!userExist) {
       throw new AppError("User not exists");
-    }
-
-    const companiesExist =
-      await this.companiesRepository.findCompanyByUserId(userId);
-
-    if (!companiesExist) {
-      throw new AppError("User not have company");
     }
 
     const companies =

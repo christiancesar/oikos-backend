@@ -6,14 +6,14 @@ type UpdateAddressCompanyServiceParams = {
   address: {
     street: string;
     number: string;
-    complement?: string;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    complement?: string | null;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 export class UpdateAddressCompanyService {

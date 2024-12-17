@@ -106,7 +106,6 @@ export class CreateAppointmentService {
     );
 
     const wasteItemsExist = data.wastes.every((wasteId) => {
-      console.log(wasteItemsIds.includes(wasteId));
       return wasteItemsIds.includes(wasteId);
     });
 

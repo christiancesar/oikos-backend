@@ -7,7 +7,7 @@ export function makeMaterial(
   return new MaterialEntity(
     {
       name: material?.name ? material?.name : "Garrafa PET de água",
-      category: material?.category ? material?.category : "plásticos, PET",
+      category: material?.category ? material?.category : "plasticos, PET",
       createdAt: new Date(),
     },
     material?.id,

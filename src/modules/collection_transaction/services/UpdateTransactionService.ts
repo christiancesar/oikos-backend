@@ -71,7 +71,6 @@ export class UpdateTransactionService {
     if (!Object.values(WasteType).includes(data.wasteType)) {
       throw new AppError("Invalid waste type");
     }
-    console.log(data.tradingType);
     if (!Object.values(TradingType).includes(data.tradingType)) {
       throw new AppError("Invalid trading type");
     }

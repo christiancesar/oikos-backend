@@ -1,5 +1,5 @@
 import { AppError } from "@common/errors/AppError";
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { ICompaniesRepository } from "../../repositories/ICompaniesRepository";
 import {
   CompanyEntity,
@@ -47,19 +47,34 @@ export class UpdateCompanyService {
     );
 
     if (!companyExist) {
-      throw new AppError("Profile not found");
+      throw new AppError("Company not found");
     }
 
     const startedActivityIn = new Date(company.startedActivityIn);
     company.startedActivityIn = startedActivityIn;
 
     // empresa precisa ter endereço, horário de funcionamento e itens de resíduos cadastrados para aceitar agendamentos
-    if (
-      !companyExist.address ||
-      !companyExist.businessHours ||
-      !companyExist.wasteItems
-    ) {
-      company.acceptAppointments = false;
+    if (company.acceptAppointments) {
+      const businessHoursNotExists = !!(
+        !companyExist.businessHours ||
+        companyExist.businessHours.length === 0 ||
+        null
+      );
+
+      const wasteItemsNotExists = !!(
+        !companyExist.wasteItems ||
+        companyExist.wasteItems.length === 0 ||
+        null
+      );
+
+      const notEligible =
+        !companyExist.address || businessHoursNotExists || wasteItemsNotExists;
+
+      if (notEligible) {
+        throw new AppError(
+          "Company needs to have address, business hours and waste items registered to accept appointments",
+        );
+      }
     }
 
     const companyUpdated =

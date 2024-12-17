@@ -237,8 +237,10 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       companies = this.companies.filter((company) =>
         company.wasteItems?.some(
           (wasteItem) =>
-            wasteItem.waste.category.toLowerCase() === category.toLowerCase() ||
-            wasteItem.waste.name.toLowerCase() === waste.toLowerCase(),
+            wasteItem.waste.category
+              .toLowerCase()
+              .includes(category.toLowerCase()) ||
+            wasteItem.waste.name.toLowerCase().includes(waste.toLowerCase()),
         ),
       );
     }
@@ -253,18 +255,18 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
 
     if (!categoryIsEmpty) {
       companies = this.companies.filter((company) =>
-        company.wasteItems?.some(
-          (wasteItem) =>
-            wasteItem.waste.category.toLowerCase() === category.toLowerCase(),
+        company.wasteItems?.filter((wasteItem) =>
+          wasteItem.waste.category
+            .toLowerCase()
+            .includes(category.toLowerCase()),
         ),
       );
     }
 
     if (!wasteIsEmpty) {
       companies = this.companies.filter((company) =>
-        company.wasteItems?.some(
-          (wasteItem) =>
-            wasteItem.waste.name.toLowerCase() === waste.toLowerCase(),
+        company.wasteItems?.some((wasteItem) =>
+          wasteItem.waste.name.toLowerCase().includes(waste.toLowerCase()),
         ),
       );
     }
