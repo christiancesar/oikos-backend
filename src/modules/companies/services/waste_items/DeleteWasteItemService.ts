@@ -18,8 +18,10 @@ export class DeleteWasteItemService {
       throw new AppError("Company not found");
     }
 
-    const wasteExist =
-      await this.companiesRepository.findWasteItemById(wasteId);
+    const wasteExist = await this.companiesRepository.findWasteItemById({
+      wasteId,
+      companyId,
+    });
 
     if (!wasteExist) {
       throw new AppError("Waste item not found");

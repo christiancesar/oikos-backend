@@ -208,9 +208,12 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
     const companyIndex = this.companies.findIndex(
       (company) => company.id === data.companyId,
     );
+    console.log("delete before", this.companies[companyIndex].wasteItems);
     this.companies[companyIndex].wasteItems = this.companies[
       companyIndex
     ].wasteItems?.filter((wasteItem) => wasteItem.id !== data.wasteId);
+
+    console.log("delete after", this.companies[companyIndex].wasteItems);
   }
 
   async listWasteItemsByCompanyId(companyId: string): Promise<ItemEntity[]> {
