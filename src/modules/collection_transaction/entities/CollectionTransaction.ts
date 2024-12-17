@@ -78,7 +78,6 @@ export class CollectionTransactionEntity {
     this.measurement = data.measurement;
     this.quantity = data.quantity;
     this.unitAmount = data.unitAmount ?? 0;
-    this.grossAmount = data.grossAmount ?? 0;
     this.discountAmount = data.discountAmount ?? 0;
     this.netAmount = data.netAmount ?? 0;
     this.latitude = data.latitude ?? 0;
@@ -86,10 +85,6 @@ export class CollectionTransactionEntity {
     this.createdAt = data.createdAt ?? new Date();
     this.updatedAt = data.updatedAt;
 
-    this.calculate();
-  }
-
-  protected calculate(): void {
     this.grossAmount = this.quantity * this.unitAmount;
     this.netAmount = this.grossAmount - this.discountAmount;
   }

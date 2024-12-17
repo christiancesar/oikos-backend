@@ -229,7 +229,7 @@ describe("Criar uma doação", () => {
       quantity: 1,
     });
 
-    expect(
+    await expect(
       async () =>
         await listAllDonationService.execute({
           condition: "non-existent-condition",
@@ -274,7 +274,7 @@ describe("Criar uma doação", () => {
       quantity: 1,
     });
 
-    expect(
+    await expect(
       async () =>
         await listAllDonationService.execute({
           condition: DonationCondition.USED,

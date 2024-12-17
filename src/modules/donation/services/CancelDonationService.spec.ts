@@ -61,7 +61,7 @@ describe("Cancelar uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await cancelDonationService.execute({
         userId: user1.id,
         reason: "Não quero mais doar",
@@ -86,7 +86,7 @@ describe("Cancelar uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await cancelDonationService.execute({
         userId: "non-existent-id",
         reason: "Não quero mais doar",
@@ -116,7 +116,7 @@ describe("Cancelar uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await cancelDonationService.execute({
         userId: user2.id,
         reason: "Não quero mais doar",
@@ -147,7 +147,7 @@ describe("Cancelar uma doação", () => {
       reason: "Não quero mais doar",
     });
 
-    expect(async () => {
+    await expect(async () => {
       await cancelDonationService.execute({
         userId: user1.id,
         reason: "Não quero mais doar",

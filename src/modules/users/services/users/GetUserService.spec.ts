@@ -35,6 +35,8 @@ describe("Serviço de pesquisa de Usuário", () => {
       password: "123456",
     });
 
-    expect(() => getUserService.execute("id")).rejects.toBeInstanceOf(AppError);
+    await expect(() => getUserService.execute("id")).rejects.toBeInstanceOf(
+      AppError,
+    );
   });
 });

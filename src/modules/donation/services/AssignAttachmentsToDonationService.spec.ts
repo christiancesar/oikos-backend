@@ -48,7 +48,7 @@ describe("Atribuir anexos a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignAttachmentsToDonationService.execute({
         donationId: donation.id,
         files: [],
@@ -67,7 +67,7 @@ describe("Atribuir anexos a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignAttachmentsToDonationService.execute({
         donationId: "e9a0c17e-7049-4fb0-a682-ce148ac4b6c3",
         files: ["file1.jpg", "file2.jpg"],
@@ -87,7 +87,7 @@ describe("Atribuir anexos a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignAttachmentsToDonationService.execute({
         donationId: donation.id,
         files: ["", ""],

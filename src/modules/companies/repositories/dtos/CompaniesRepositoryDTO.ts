@@ -37,14 +37,14 @@ export type CreateAddressCompaniesDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 
@@ -53,14 +53,14 @@ export type UpdateAddressCompaniesDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 

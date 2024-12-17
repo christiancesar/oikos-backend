@@ -44,7 +44,7 @@ describe("Criar uma doação", () => {
       password: "123456",
     });
 
-    expect(async () => {
+    await expect(async () => {
       await createDonationService.execute({
         donorId: "8ec121cb-0bc0-4ad7-9d43-6ebcfab7f482",
         additionalNotes:
@@ -93,7 +93,7 @@ describe("Criar uma doação", () => {
       password: "123456",
     });
 
-    expect(async () => {
+    await expect(async () => {
       await createDonationService.execute({
         donorId: user.id,
         additionalNotes:

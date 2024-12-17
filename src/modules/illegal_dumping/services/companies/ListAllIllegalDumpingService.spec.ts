@@ -92,7 +92,7 @@ describe("Lista denuncias", () => {
       longitude: 0,
     });
 
-    expect(
+    await expect(
       async () =>
         await listAllIllegalDumpingService.execute({
           status: "status-invalido",

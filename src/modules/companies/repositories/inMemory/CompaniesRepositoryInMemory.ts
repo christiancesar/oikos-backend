@@ -10,7 +10,8 @@ import {
   IdentityType,
 } from "@modules/companies/entities/Companies";
 import { ItemEntity, WasteType } from "@modules/companies/entities/Item";
-import { makeWasteItem } from "@modules/companies/factories/makeWasteItem";
+import { unitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
+import { makeMaterial } from "@modules/material/factories/makeMaterial";
 import {
   CreateAddressCompaniesDTO,
   CreateBusinessHours,
@@ -23,8 +24,6 @@ import {
   ICompaniesRepository,
   SearchWasteItemsDTO,
 } from "../ICompaniesRepository";
-import { unitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
-import { makeMaterial } from "@modules/material/factories/makeMaterial";
 
 type CompanyInMemory = CompanyEntity & {
   userId: string;
@@ -168,7 +167,7 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
     );
 
     const wasteItemIndex = this.companies[companyIndex].wasteItems?.push(
-      makeWasteItem({
+      new ItemEntity({
         unit: unitOfMeasurement[
           data.waste.unit as keyof typeof unitOfMeasurement
         ],
@@ -208,12 +207,10 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
     const companyIndex = this.companies.findIndex(
       (company) => company.id === data.companyId,
     );
-    console.log("delete before", this.companies[companyIndex].wasteItems);
+
     this.companies[companyIndex].wasteItems = this.companies[
       companyIndex
     ].wasteItems?.filter((wasteItem) => wasteItem.id !== data.wasteId);
-
-    console.log("delete after", this.companies[companyIndex].wasteItems);
   }
 
   async listWasteItemsByCompanyId(companyId: string): Promise<ItemEntity[]> {

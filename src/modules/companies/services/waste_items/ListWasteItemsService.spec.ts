@@ -144,7 +144,7 @@ describe("Listar materiais pot um empresa", () => {
       },
     });
 
-    expect(async () => {
+    await expect(async () => {
       await listWasteItemsService.execute({ companyId: "invalid-id" });
     }).rejects.toBeInstanceOf(AppError);
   });

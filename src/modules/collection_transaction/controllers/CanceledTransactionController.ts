@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as zod from "zod";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
-import { CanceledTransactionService } from "../service/CanceledTransactionService";
+import { CanceledTransactionService } from "../services/CanceledTransactionService";
 
 const cancelTransactionParamsSchemaValidation = zod.object({
   companyId: zod.string().uuid(),

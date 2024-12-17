@@ -97,7 +97,7 @@ describe("Desatribuir uma denuncia a uma empresa", () => {
       solverId: company.id,
     });
 
-    expect(
+    await await expect(
       async () =>
         await unassignIllegalDumpingService.execute({
           denunciationId: illegal.id,
@@ -127,7 +127,7 @@ describe("Desatribuir uma denuncia a uma empresa", () => {
       solverId: company.id,
     });
 
-    expect(
+    await expect(
       async () =>
         await unassignIllegalDumpingService.execute({
           denunciationId: illegal.id,
@@ -157,7 +157,7 @@ describe("Desatribuir uma denuncia a uma empresa", () => {
       solverId: company.id,
     });
 
-    expect(
+    await expect(
       async () =>
         await unassignIllegalDumpingService.execute({
           denunciationId: randomUUID(),
@@ -192,7 +192,7 @@ describe("Desatribuir uma denuncia a uma empresa", () => {
       company: { ...makeCompany() },
     });
 
-    expect(
+    await expect(
       async () =>
         await unassignIllegalDumpingService.execute({
           denunciationId: illegal.id,

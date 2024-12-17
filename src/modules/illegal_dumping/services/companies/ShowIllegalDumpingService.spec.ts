@@ -33,7 +33,7 @@ describe("Mostrar uma denuncia especifica", () => {
   });
 
   it("Não deve ser possivel pesquisar uma denuncia pelo identificador invalido[funcional] [negativa]", async () => {
-    expect(async () => {
+    await expect(async () => {
       await showIllegalDumpingService.execute("invalid_id");
     }).rejects.toBeInstanceOf(AppError);
   });

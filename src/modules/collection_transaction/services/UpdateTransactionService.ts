@@ -13,7 +13,8 @@ import {
 } from "../entities/CollectionTransaction";
 import { ICollectionTransactionsRepository } from "../repositories/ICollectionTransactions";
 
-type CreateCollectionTransaction = {
+type UpdateTransaction = {
+  transactionId: string;
   companyId: string;
   collectionType: CollectionType;
   wasteId: string;
@@ -29,18 +30,25 @@ type CreateCollectionTransaction = {
   longitude?: number;
 };
 
-type CreateTransactionServiceConstructor = {
+type UpdateTransactionServiceConstructor = {
   collectionTransactionsRepository: ICollectionTransactionsRepository;
   companiesRepository: ICompaniesRepository;
   materialsRepository: MaterialRepository;
 };
 
-export class CreateTransactionService {
-  constructor(private repositories: CreateTransactionServiceConstructor) {}
+export class UpdateTransactionService {
+  constructor(private repositories: UpdateTransactionServiceConstructor) {}
 
-  async execute(
-    data: CreateCollectionTransaction,
-  ): Promise<CollectionTransactionEntity> {
+  async execute(data: UpdateTransaction): Promise<CollectionTransactionEntity> {
+    const transaction =
+      await this.repositories.collectionTransactionsRepository.findCollectionTransactionById(
+        data.transactionId,
+      );
+
+    if (!transaction) {
+      throw new AppError("Transaction not found");
+    }
+
     const company = await this.repositories.companiesRepository.findCompayById(
       data.companyId,
     );
@@ -55,6 +63,21 @@ export class CreateTransactionService {
 
     if (!material) {
       throw new AppError("Material not found");
+    }
+    if (!Object.values(CollectionType).includes(data.collectionType)) {
+      throw new AppError("Invalid collection type");
+    }
+
+    if (!Object.values(WasteType).includes(data.wasteType)) {
+      throw new AppError("Invalid waste type");
+    }
+    console.log(data.tradingType);
+    if (!Object.values(TradingType).includes(data.tradingType)) {
+      throw new AppError("Invalid trading type");
+    }
+
+    if (!Object.values(UnitOfMeasurement).includes(data.measurement)) {
+      throw new AppError("Invalid measurement type");
     }
 
     const collectionTransaction = new CollectionTransactionEntity({
@@ -81,8 +104,9 @@ export class CreateTransactionService {
     });
 
     const colletion =
-      await this.repositories.collectionTransactionsRepository.createCollectionTransaction(
+      await this.repositories.collectionTransactionsRepository.updateCollectionTransaction(
         {
+          transactionId: data.transactionId,
           companyId: collectionTransaction.company.id,
           wasteId: collectionTransaction.waste.id,
           measurement: collectionTransaction.measurement.symbol,

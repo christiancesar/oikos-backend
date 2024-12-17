@@ -154,7 +154,7 @@ describe("Listar todas as denuncias atribuidas a uma empresa", () => {
       }
     }
 
-    expect(async () => {
+    await expect(async () => {
       await listAllIllegalsDumpingByCompanyService.execute({
         companyId: randomUUID(),
         status: StatusIllegalDumping.RESOLVED,

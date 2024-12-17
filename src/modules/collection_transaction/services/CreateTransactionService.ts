@@ -5,7 +5,7 @@ import {
   UnitOfMeasurement,
 } from "@modules/companies/entities/MeasurementConst";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
-import { MaterialRepository } from "@modules/material/repositories/MaterialRegistrationRepository";
+import { IMaterialRepository } from "@modules/material/repositories/IMaterialRegistrationRepository";
 import {
   CollectionTransactionEntity,
   CollectionType,
@@ -13,8 +13,7 @@ import {
 } from "../entities/CollectionTransaction";
 import { ICollectionTransactionsRepository } from "../repositories/ICollectionTransactions";
 
-type UpdateTransaction = {
-  transactionId: string;
+type CreateCollectionTransaction = {
   companyId: string;
   collectionType: CollectionType;
   wasteId: string;
@@ -30,25 +29,18 @@ type UpdateTransaction = {
   longitude?: number;
 };
 
-type UpdateTransactionServiceConstructor = {
+type CreateTransactionServiceConstructor = {
   collectionTransactionsRepository: ICollectionTransactionsRepository;
   companiesRepository: ICompaniesRepository;
-  materialsRepository: MaterialRepository;
+  materialsRepository: IMaterialRepository;
 };
 
-export class UpdateTransactionService {
-  constructor(private repositories: UpdateTransactionServiceConstructor) {}
+export class CreateTransactionService {
+  constructor(private repositories: CreateTransactionServiceConstructor) {}
 
-  async execute(data: UpdateTransaction): Promise<CollectionTransactionEntity> {
-    const transaction =
-      await this.repositories.collectionTransactionsRepository.findCollectionTransactionById(
-        data.transactionId,
-      );
-
-    if (!transaction) {
-      throw new AppError("Transaction not found");
-    }
-
+  async execute(
+    data: CreateCollectionTransaction,
+  ): Promise<CollectionTransactionEntity> {
     const company = await this.repositories.companiesRepository.findCompayById(
       data.companyId,
     );
@@ -89,9 +81,8 @@ export class UpdateTransactionService {
     });
 
     const colletion =
-      await this.repositories.collectionTransactionsRepository.updateCollectionTransaction(
+      await this.repositories.collectionTransactionsRepository.createCollectionTransaction(
         {
-          transactionId: data.transactionId,
           companyId: collectionTransaction.company.id,
           wasteId: collectionTransaction.waste.id,
           measurement: collectionTransaction.measurement.symbol,

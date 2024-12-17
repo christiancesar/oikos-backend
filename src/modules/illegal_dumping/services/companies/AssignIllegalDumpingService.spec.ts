@@ -67,7 +67,7 @@ describe("Atribuir uma denuncia a uma empresa", () => {
       company: { ...makeCompany() },
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignIllegalDumpingService.execute({
         denunciationId: "invalid-id",
         priority: "high",
@@ -84,7 +84,7 @@ describe("Atribuir uma denuncia a uma empresa", () => {
       longitude: 0,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignIllegalDumpingService.execute({
         denunciationId: illegal.id,
         priority: "high",
@@ -94,7 +94,7 @@ describe("Atribuir uma denuncia a uma empresa", () => {
     }).rejects.toBeInstanceOf(AppError);
   });
 
-  it("Não deve ser possivel uma empresa atribuir a uma denuncia que o status seja diferente de open [funcional] [negativo]", async () => {
+  it("Não deve ser possivel uma empresa atribuir a uma denuncia que o status seja diferente de aberta [funcional] [negativo]", async () => {
     const illegal = await createIllegalDumpingService.execute({
       description: "Denuncia Teste",
       latitude: 0,
@@ -115,7 +115,7 @@ describe("Atribuir uma denuncia a uma empresa", () => {
       solverId: company.id,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignIllegalDumpingService.execute({
         denunciationId: illegal.id,
         priority: "high",

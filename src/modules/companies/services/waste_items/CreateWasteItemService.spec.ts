@@ -62,7 +62,7 @@ describe("Criar materiais para uma empresa", () => {
       }),
     );
 
-    expect(async () => {
+    await expect(async () => {
       await createWasteItemService.execute({
         companyId: company.id,
         waste: {
@@ -88,7 +88,7 @@ describe("Criar materiais para uma empresa", () => {
       }),
     );
 
-    expect(async () => {
+    await expect(async () => {
       await createWasteItemService.execute({
         companyId: "company-id-not-exists",
         waste: {
@@ -114,7 +114,7 @@ describe("Criar materiais para uma empresa", () => {
       }),
     );
 
-    expect(async () => {
+    await expect(async () => {
       await createWasteItemService.execute({
         companyId: company.id,
         waste: {

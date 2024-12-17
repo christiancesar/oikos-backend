@@ -1,7 +1,7 @@
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 import { CollectionAppointmentEntity } from "../../entities/CollectionAppointment";
 import { IMaterialRepository } from "@modules/material/repositories/IMaterialRegistrationRepository";
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
 import { AppError } from "@common/errors/AppError";
 
@@ -36,41 +36,41 @@ export class CreateAppointmentService {
       throw new AppError("The company does not accept appointments");
     }
 
-    if (!company.businessHours) {
+    if (!company.businessHours || company.businessHours.length === 0) {
       throw new AppError(
         "The company does not have business hours yet, try other company",
       );
     }
 
-    company.businessHours.forEach((businessHour) => {
-      const dayOfWeek = parseInt(businessHour.dayOfWeek, 10);
+    // company.businessHours.forEach((businessHour) => {
+    //   const dayOfWeek = parseInt(businessHour.dayOfWeek, 10);
 
-      const dayOfWeekExist = dayOfWeek === data.scheduleFor.getDay();
+    //   const dayOfWeekExist = dayOfWeek === data.scheduleFor.getDay();
 
-      if (dayOfWeekExist) {
-        if (businessHour.timeSlots.length === 0) {
-          throw new AppError(
-            "The company does not have time slots available for this day",
-          );
-        }
+    //   if (dayOfWeekExist) {
+    //     if (businessHour.timeSlots.length === 0) {
+    //       throw new AppError(
+    //         "The company does not have time slots available for this day",
+    //       );
+    //     }
 
-        const timeSlotExist = businessHour.timeSlots.some((timeSlot) => {
-          const startTime = new Date(timeSlot.startTime);
-          const endTime = new Date(timeSlot.endTime);
+    //     const timeSlotExist = businessHour.timeSlots.some((timeSlot) => {
+    //       const startTime = new Date(timeSlot.startTime);
+    //       const endTime = new Date(timeSlot.endTime);
 
-          return (
-            data.scheduleFor.getTime() >= startTime.getTime() &&
-            data.scheduleFor.getTime() <= endTime.getTime()
-          );
-        });
+    //       return (
+    //         data.scheduleFor.getTime() >= startTime.getTime() &&
+    //         data.scheduleFor.getTime() <= endTime.getTime()
+    //       );
+    //     });
 
-        if (!timeSlotExist) {
-          throw new AppError(
-            "The company does not have time slots available for this day",
-          );
-        }
-      }
-    });
+    //     if (!timeSlotExist) {
+    //       throw new AppError(
+    //         "The company does not have time slots available for this day",
+    //       );
+    //     }
+    //   }
+    // });
 
     const customer = await this.repositories.usersRepository.findByUserId(
       data.customerId,
@@ -97,7 +97,7 @@ export class CreateAppointmentService {
       }),
     );
 
-    if (!company.wasteItems) {
+    if (!company.wasteItems || company.wasteItems.length === 0) {
       throw new AppError("The company does not have waste items available");
     }
 
@@ -117,7 +117,7 @@ export class CreateAppointmentService {
     }
 
     const appointment =
-      this.repositories.collectionAppointmentsRepository.createCollectionAppointment(
+      await this.repositories.collectionAppointmentsRepository.createCollectionAppointment(
         {
           companyId: data.companyId,
           customerId: data.customerId,

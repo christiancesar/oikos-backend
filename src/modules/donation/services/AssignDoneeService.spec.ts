@@ -65,7 +65,7 @@ describe("Atribui interesse a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignDoneeService.execute({
         donationId: donation.id,
         doneeId: user1.id,
@@ -89,7 +89,7 @@ describe("Atribui interesse a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignDoneeService.execute({
         donationId: "7b14d2ad-ef44-4971-a8cd-ff91bb64552d",
         doneeId: user1.id,
@@ -113,7 +113,7 @@ describe("Atribui interesse a uma doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignDoneeService.execute({
         donationId: donation.id,
         doneeId: "7b14d2ad-ef44-4971-a8cd-ff91bb64515w",
@@ -148,7 +148,7 @@ describe("Atribui interesse a uma doação", () => {
       reason: "Doação cancelada",
     });
 
-    expect(async () => {
+    await expect(async () => {
       await assignDoneeService.execute({
         donationId: donation.id,
         doneeId: user2.id,

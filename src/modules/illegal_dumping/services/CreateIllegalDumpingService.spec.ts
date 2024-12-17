@@ -22,7 +22,7 @@ describe("Criar uma denuncia", () => {
   });
 
   it("Nao deve ser possível criar uma denuncia de descarte com descrição vazia [funcional] [positivo]", async () => {
-    expect(
+    await expect(
       async () =>
         await service.execute({
           description: "",

@@ -80,7 +80,7 @@ describe("Registrar uma irregularidade em doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         "non-existent-id",
         user2.id,
@@ -105,7 +105,7 @@ describe("Registrar uma irregularidade em doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         donation.id,
         user1.id,
@@ -135,7 +135,7 @@ describe("Registrar uma irregularidade em doação", () => {
       quantity: 1,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         donation.id,
         "non-existent-id",
@@ -171,7 +171,7 @@ describe("Registrar uma irregularidade em doação", () => {
       "Irregularidade na doação",
     );
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         donation.id,
         user2.id,
@@ -221,7 +221,7 @@ describe("Registrar uma irregularidade em doação", () => {
       reason: "Doação fechada devido a teste",
     });
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         donation1.id,
         user2.id,
@@ -229,7 +229,7 @@ describe("Registrar uma irregularidade em doação", () => {
       );
     }).rejects.toBeInstanceOf(AppError);
 
-    expect(async () => {
+    await expect(async () => {
       await registerIrregularityService.execute(
         donation2.id,
         user1.id,

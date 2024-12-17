@@ -3,7 +3,7 @@ import { UnitOfMeasurement } from "@modules/companies/entities/MeasurementConst"
 import { Request, Response } from "express";
 import * as zod from "zod";
 import { CollectionType, TradingType } from "../entities/CollectionTransaction";
-import { UpdateTransactionService } from "../service/UpdateTransactionService";
+import { UpdateTransactionService } from "../services/UpdateTransactionService";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
 
 /**

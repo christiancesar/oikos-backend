@@ -60,7 +60,7 @@ describe("Monstrar uma doação", () => {
       quantity: 1,
     });
 
-    expect(
+    await expect(
       async () => await showDonationService.execute("non-existing-id"),
     ).rejects.toBeInstanceOf(AppError);
   });

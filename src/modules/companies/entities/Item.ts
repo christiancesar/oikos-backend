@@ -16,7 +16,7 @@ type ItemConstructor = {
   amount: number;
   unit: Measurement;
   wasteType: WasteType;
-  createdAt: Date;
+  createdAt?: Date | null;
   updatedAt?: Date | null;
 };
 
@@ -35,7 +35,7 @@ export class ItemEntity {
     this.amount = item.amount;
     this.unit = item.unit;
     this.wasteType = WasteType.RECYCLABLE;
-    this.createdAt = item.createdAt;
+    this.createdAt = item.createdAt ?? new Date();
     this.updatedAt = item.updatedAt;
   }
 }

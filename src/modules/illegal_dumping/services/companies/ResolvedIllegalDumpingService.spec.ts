@@ -94,7 +94,7 @@ describe("Marcar uma denuncia como resolvida", () => {
       company: { ...makeCompany() },
     });
 
-    expect(async () => {
+    await expect(async () => {
       await resolvedIllegalDumpingService.execute({
         id: illegal.id,
         description: "Denuncia resolvida",
@@ -124,7 +124,7 @@ describe("Marcar uma denuncia como resolvida", () => {
       solverId: company.id,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await resolvedIllegalDumpingService.execute({
         id: illegal.id,
         description: "Denuncia resolvida",
@@ -154,7 +154,7 @@ describe("Marcar uma denuncia como resolvida", () => {
       solverId: company.id,
     });
 
-    expect(async () => {
+    await expect(async () => {
       await resolvedIllegalDumpingService.execute({
         id: "invalid-id",
         description: "Denuncia resolvida",
