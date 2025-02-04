@@ -15,6 +15,17 @@ export type SearchWasteItemsDTO = {
   company: string;
   waste: string;
   category: string;
+  city: string;
+  page: number;
+  perPage?: number;
+};
+
+export type SeachWasteItemsResult = {
+  companies: CompanyEntity[];
+  currentPage: number;
+  perPage: number;
+  pageLimit: number;
+  total: number;
 };
 
 export interface ICompaniesRepository {
@@ -43,5 +54,5 @@ export interface ICompaniesRepository {
 
   searchWasteItemsByCompanyNames(
     data: SearchWasteItemsDTO,
-  ): Promise<CompanyEntity[]>;
+  ): Promise<SeachWasteItemsResult>;
 }

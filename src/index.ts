@@ -8,7 +8,7 @@ import { routes } from "./routes";
 import path from "path";
 
 const server = express();
-server.use(cors());
+server.use(cors({ credentials: true }));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(routes);

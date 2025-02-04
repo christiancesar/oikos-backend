@@ -24,6 +24,7 @@ export enum DayOfWeek {
 }
 
 type TimeSlot = {
+  id: string;
   startTime: string; // Horário de início, formato "HH:mm"
   endTime: string; // Horário de fim, formato "HH:mm"
 };

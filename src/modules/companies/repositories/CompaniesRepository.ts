@@ -1,7 +1,10 @@
 import { AddressEntity } from "@modules/addresses/address";
+import { Prisma } from "@prisma/client";
 import { prisma } from "prisma";
 import { BusinessHourEntity, DayOfWeek } from "../entities/BusinessHour";
 import { CompanyEntity } from "../entities/Companies";
+import { ItemEntity, WasteType } from "../entities/Item";
+import { unitOfMeasurement } from "../entities/MeasurementConst";
 import {
   CreateAddressCompaniesDTO,
   CreateBusinessHours,
@@ -10,13 +13,12 @@ import {
   UpdateAddressCompaniesDTO,
   UpdateCompaniesDTO,
 } from "./dtos/CompaniesRepositoryDTO";
-import { CompaniesMapper } from "./mappers/CompaniesMapper";
 import {
   ICompaniesRepository,
+  SeachWasteItemsResult,
   SearchWasteItemsDTO,
 } from "./ICompaniesRepository";
-import { ItemEntity, WasteType } from "../entities/Item";
-import { unitOfMeasurement } from "../entities/MeasurementConst";
+import { CompaniesMapper } from "./mappers/CompaniesMapper";
 
 export class CompaniesRepository implements ICompaniesRepository {
   async createCompany({
@@ -420,10 +422,20 @@ export class CompaniesRepository implements ICompaniesRepository {
     company,
     category,
     waste,
-  }: SearchWasteItemsDTO): Promise<CompanyEntity[]> {
-    const companies = await prisma.company.findMany({
+    city,
+    page,
+    perPage,
+  }: SearchWasteItemsDTO): Promise<SeachWasteItemsResult> {
+    const DEFAULT_PER_PAGE = 10;
+
+    const baseQuery: Prisma.CompanyFindManyArgs = {
       where: {
         AND: [
+          {
+            address: {
+              city,
+            },
+          },
           // Verifica se o parâmetro "company" foi informado
           company
             ? {
@@ -471,6 +483,19 @@ export class CompaniesRepository implements ICompaniesRepository {
             : {},
         ],
       },
+    };
+
+    const companiesCount = await prisma.company.count({
+      ...(baseQuery as Prisma.CompanyCountArgs),
+    });
+
+    const currentPerPage = perPage || DEFAULT_PER_PAGE;
+    const limit = Math.ceil(companiesCount / currentPerPage);
+    const pageLimit = limit === 0 ? 1 : limit;
+    const currentPage = page > pageLimit ? pageLimit : page;
+
+    const companies = await prisma.company.findMany({
+      ...baseQuery,
       include: {
         address: true,
         businessHours: {
@@ -484,8 +509,19 @@ export class CompaniesRepository implements ICompaniesRepository {
           },
         },
       },
+      orderBy: {
+        businessName: "asc",
+      },
+      skip: (currentPage - 1) * currentPerPage,
+      take: currentPerPage,
     });
 
-    return companies.map(CompaniesMapper.toDomain);
+    return {
+      companies: companies.map(CompaniesMapper.toDomain),
+      currentPage: page,
+      perPage: currentPerPage,
+      pageLimit,
+      total: companiesCount,
+    };
   }
 }
