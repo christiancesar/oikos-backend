@@ -29,10 +29,15 @@ export type CloseDonationDTO = {
   reason: string;
 };
 
+export type SearchParamsDTO = {
+  status?: string;
+  condition?: string;
+};
+
 export interface IDonationsRepository {
   createDonation(data: CreateDonationDTO): Promise<DonationEntity>;
   findByDonationId(donationId: string): Promise<DonationEntity | null>;
-  findAllDonations(): Promise<DonationEntity[]>;
+  findAllDonations(data: SearchParamsDTO): Promise<DonationEntity[]>;
   assignDonee(doneeId: string, donationId: string): Promise<DonationEntity>;
   markDonationAsCancelled(
     data: MarkDonationAsCancelledDTO,

@@ -3,6 +3,7 @@ export type CreateCompaniesDTO = {
   company: {
     identity: string;
     identityType: string;
+    acceptAppointments: boolean;
     companyType: string;
     stateRegistration?: string | null;
     status: boolean;
@@ -36,14 +37,14 @@ export type CreateAddressCompaniesDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 
@@ -52,14 +53,14 @@ export type UpdateAddressCompaniesDTO = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 

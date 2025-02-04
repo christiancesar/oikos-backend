@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserPresenter } from "../presenters/UserPresenter";
-import { UsersRepository } from "../repositories/UsersRepository";
+import { UsersRepository } from "../repositories/prisma/UsersRepository";
 import { GetUserService } from "../services/users/GetUserService";
 
 export class GetUserController {

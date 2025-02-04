@@ -1,4 +1,4 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { ICollectionAppointmentsRepository } from "../../repositories/ICollectionAppointmentsRepository";
 import {
   CollectionAppointmentEntity,
@@ -6,12 +6,12 @@ import {
 } from "../../entities/CollectionAppointment";
 import { AppError } from "@common/errors/AppError";
 
-type CancelAppointmentServiceConsteructor = {
+type CancelAppointmentServiceConstructor = {
   collectionAppointmentsRepository: ICollectionAppointmentsRepository;
   usersRepository: IUsersRepository;
 };
 export class CancelAppointmentService {
-  constructor(private repositories: CancelAppointmentServiceConsteructor) {}
+  constructor(private repositories: CancelAppointmentServiceConstructor) {}
 
   async execute({
     userId,

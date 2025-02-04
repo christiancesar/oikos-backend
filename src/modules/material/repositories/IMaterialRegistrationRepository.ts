@@ -1,10 +1,13 @@
-import { MaterialDTO } from "../dtos/MaterialDTO";
+import { CreateMaterialDTO } from "../dtos/MaterialDTO";
 import { MaterialEntity } from "../entities/MaterialRegistration";
 
 export interface IMaterialRepository {
-  create(materialData: MaterialEntity): Promise<MaterialDTO>;
-  findAll(): Promise<MaterialDTO[]>;
-  findById(id: string): Promise<MaterialDTO | null>;
-  update(id: string, materialData: MaterialEntity): Promise<MaterialDTO | null>;
+  create(materialData: CreateMaterialDTO): Promise<MaterialEntity>;
+  findAll(): Promise<MaterialEntity[]>;
+  findById(id: string): Promise<MaterialEntity | null>;
+  update(
+    id: string,
+    materialData: CreateMaterialDTO,
+  ): Promise<MaterialEntity | null>;
   delete(id: string): Promise<void>;
 }

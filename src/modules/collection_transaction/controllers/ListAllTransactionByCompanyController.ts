@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
-import { ListAllTransactionsServiceByCompany } from "../service/ListAllTransactionsServiceByCompany";
+import { ListAllTransactionsServiceByCompany } from "../services/ListAllTransactionsServiceByCompany";
 
 export class ListAllTransactionByCompanyController {
   async handle(request: Request, response: Response) {

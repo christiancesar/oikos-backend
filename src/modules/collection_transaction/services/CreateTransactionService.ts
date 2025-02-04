@@ -5,7 +5,7 @@ import {
   UnitOfMeasurement,
 } from "@modules/companies/entities/MeasurementConst";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
-import { MaterialRepository } from "@modules/material/repositories/MaterialRegistrationRepository";
+import { IMaterialRepository } from "@modules/material/repositories/IMaterialRegistrationRepository";
 import {
   CollectionTransactionEntity,
   CollectionType,
@@ -32,7 +32,7 @@ type CreateCollectionTransaction = {
 type CreateTransactionServiceConstructor = {
   collectionTransactionsRepository: ICollectionTransactionsRepository;
   companiesRepository: ICompaniesRepository;
-  materialsRepository: MaterialRepository;
+  materialsRepository: IMaterialRepository;
 };
 
 export class CreateTransactionService {

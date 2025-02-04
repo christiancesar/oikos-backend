@@ -351,10 +351,17 @@ export class CompaniesRepository implements ICompaniesRepository {
     );
   }
 
-  async findWasteItemById(wasteId: string): Promise<ItemEntity | null> {
+  async findWasteItemById({
+    companyId,
+    wasteId,
+  }: {
+    wasteId: string;
+    companyId: string;
+  }): Promise<ItemEntity | null> {
     const item = await prisma.wasteItem.findUnique({
       where: {
         id: wasteId,
+        companyId,
       },
       include: {
         material: true,

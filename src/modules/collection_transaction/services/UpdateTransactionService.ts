@@ -64,6 +64,20 @@ export class UpdateTransactionService {
     if (!material) {
       throw new AppError("Material not found");
     }
+    if (!Object.values(CollectionType).includes(data.collectionType)) {
+      throw new AppError("Invalid collection type");
+    }
+
+    if (!Object.values(WasteType).includes(data.wasteType)) {
+      throw new AppError("Invalid waste type");
+    }
+    if (!Object.values(TradingType).includes(data.tradingType)) {
+      throw new AppError("Invalid trading type");
+    }
+
+    if (!Object.values(UnitOfMeasurement).includes(data.measurement)) {
+      throw new AppError("Invalid measurement type");
+    }
 
     const collectionTransaction = new CollectionTransactionEntity({
       company: {

@@ -1,8 +1,8 @@
 import { prisma } from "prisma";
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import { UserEntity } from "../entities/Users";
-import IUsersRepository from "./IUsersRepository";
-import { UsersMapper } from "./mappers/UsersMapper";
+import { IUsersRepository } from "../IUsersRepository";
+import { ICreateUserDTO } from "@modules/users/dtos/ICreateUserDTO";
+import { UserEntity } from "@modules/users/entities/Users";
+import { UsersMapper } from "../mappers/UsersMapper";
 
 export class UsersRepository implements IUsersRepository {
   public async createUser(data: ICreateUserDTO): Promise<UserEntity> {

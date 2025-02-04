@@ -12,6 +12,7 @@ export class ListWasteItemsService {
     companyId,
   }: ListWasteItemsServiceParams): Promise<ItemEntity[]> {
     const company = await this.companiesRepository.findCompayById(companyId);
+
     if (!company) {
       throw new AppError("Company not found");
     }

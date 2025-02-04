@@ -40,7 +40,7 @@ type IllegalDumpingConstructor = {
   latitude: number;
   solver?: Solver | null;
   attachments?: string[] | null;
-  createdAt: Date;
+  createdAt?: Date | null;
   updatedAt?: Date | null;
 };
 
@@ -65,6 +65,6 @@ export class IllegalDumpingEntity {
     this.status = data.status ?? StatusIllegalDumping.OPEN;
     this.attachments = data.attachments;
     this.solver = data.solver ?? new Solver({});
-    this.createdAt = data.createdAt;
+    this.createdAt = data.createdAt ?? new Date();
   }
 }

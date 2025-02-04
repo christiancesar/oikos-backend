@@ -12,6 +12,7 @@ import {
   MarkDonationAsCancelledDTO,
   RegisterIrregularityDTO,
   SaveAttachmentsDonationDTO,
+  SearchParamsDTO,
 } from "./IDonationsRepository";
 import { Prisma } from "@prisma/client";
 
@@ -114,8 +115,16 @@ export class DonationsRepository implements IDonationsRepository {
     return DonationMapper.toEntity(donation);
   }
 
-  async findAllDonations(): Promise<DonationEntity[]> {
+  async findAllDonations(data: SearchParamsDTO): Promise<DonationEntity[]> {
     const donations = await prisma.donation.findMany({
+      where: {
+        status: data.status ? data.status : {},
+        OR: [
+          {
+            condition: data.condition ? data.condition : {},
+          },
+        ],
+      },
       include: {
         attachments: true,
       },

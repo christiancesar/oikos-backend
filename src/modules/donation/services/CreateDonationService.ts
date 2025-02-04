@@ -1,6 +1,6 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IDonationsRepository } from "../repositories/IDonationsRepository";
-import { DonationEntity } from "../entities/Donation";
+import { DonationCondition, DonationEntity } from "../entities/Donation";
 import { AppError } from "@common/errors/AppError";
 
 export type CreateDonationServiceParams = {
@@ -22,6 +22,14 @@ export class CreateDonationService {
 
     if (!userExist) {
       throw new AppError("User not found");
+    }
+
+    if (
+      ![DonationCondition.NEW, DonationCondition.USED].includes(
+        DonationCondition[data.condition as keyof typeof DonationCondition],
+      )
+    ) {
+      throw new AppError("Invalid donation condition");
     }
 
     return this.donationRepository.createDonation(data);

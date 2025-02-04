@@ -1,21 +1,29 @@
 import { AppError } from "@common/errors/AppError";
 import { MaterialEntity } from "../entities/MaterialRegistration";
 import { IMaterialRepository } from "../repositories/IMaterialRegistrationRepository";
+import { CreateMaterialDTO } from "../dtos/MaterialDTO";
 
 export class MaterialService {
   constructor(private materialRepository: IMaterialRepository) {}
 
-  // Criar um novo material
-  async create(materialData: MaterialEntity): Promise<MaterialEntity> {
-    return await this.materialRepository.create(materialData);
+  async create({ category, name }: CreateMaterialDTO): Promise<MaterialEntity> {
+    const categoryIsEmpty = category.trim().length;
+    const nameIsEmpty = name.trim().length;
+
+    if ((categoryIsEmpty && nameIsEmpty) === 0) {
+      throw new AppError("Categoria e nome são obrigatórios");
+    }
+
+    return await this.materialRepository.create({
+      category,
+      name,
+    });
   }
 
-  // Obter todos os materiais
   async findAll(): Promise<MaterialEntity[]> {
-    return await this.materialRepository.findAll();
+    return this.materialRepository.findAll();
   }
 
-  // Obter um material pelo id
   async findById(id: string): Promise<MaterialEntity> {
     const material = await this.materialRepository.findById(id);
     if (!material) {
@@ -25,10 +33,9 @@ export class MaterialService {
     return material;
   }
 
-  // Atualizar um material
   async update(
     id: string,
-    materialData: MaterialEntity,
+    materialData: CreateMaterialDTO,
   ): Promise<MaterialEntity> {
     const material = await this.materialRepository.findById(id);
     if (!material) {
@@ -39,7 +46,6 @@ export class MaterialService {
     return material;
   }
 
-  // Excluir um material
   async delete(id: string): Promise<void> {
     const material = await this.materialRepository.findById(id);
     if (!material) {

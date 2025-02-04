@@ -1,6 +1,7 @@
+import { enviroment } from "@common/env/env";
 import { AppError } from "@common/errors/AppError";
 import IHashProvider from "@modules/users/provider/IHashProvider";
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { sign } from "jsonwebtoken";
 
 type AuthenticationRequest = {
@@ -29,10 +30,6 @@ export class AuthenticationService {
       throw new AppError("Email or password incorrect!", 401);
     }
 
-    if (!password) {
-      throw new AppError("Email or password incorrect!", 401);
-    }
-
     const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password,
@@ -42,9 +39,9 @@ export class AuthenticationService {
       throw new AppError("Email or password incorrect!", 401);
     }
 
-    const token = sign({}, process.env.JWT_SECRET || "secret", {
+    const token = sign({}, enviroment.JWT_SECRET, {
       subject: user.id,
-      expiresIn: process.env.JWT_EXPIRES_IN || "1d",
+      expiresIn: enviroment.JWT_EXPIRES_IN,
     });
 
     return { token };

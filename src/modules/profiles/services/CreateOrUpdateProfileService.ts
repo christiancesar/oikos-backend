@@ -1,6 +1,8 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IProfileRepository } from "../repositories/IProfileRepository";
 import { AppError } from "@common/errors/AppError";
+import { phoneValidation } from "../utils/phoneValidation";
+import { cpfValidation } from "../utils/cpfValidation";
 
 type CreateOrUpdateProfileServiceParams = {
   userId: string;
@@ -11,14 +13,14 @@ type CreateOrUpdateProfileServiceParams = {
   address: {
     street: string;
     number: string;
-    complement?: string;
+    complement?: string | null;
     district: string;
     city: string;
     state: string;
     stateAcronym: string;
     zipCode: string;
-    latitude: number;
-    longitude: number;
+    latitude?: number | null;
+    longitude?: number | null;
   };
 };
 
@@ -39,6 +41,18 @@ export class CreateOrUpdateProfileService {
     const userExist = await this.usersRepository.findByUserId(userId);
     if (!userExist) {
       throw new AppError("Usuário não existe ou não autenticado");
+    }
+
+    const cpfValid = cpfValidation(cpf);
+
+    if (!cpfValid) {
+      throw new AppError("CPF inválido");
+    }
+
+    const phoneValid = phoneValidation(phone);
+
+    if (!phoneValid) {
+      throw new AppError("Telefone inválido");
     }
 
     const profile = await this.profileRepository.createOrUpdate({

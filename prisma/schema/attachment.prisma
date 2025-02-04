@@ -1,0 +1,14 @@
+model Attachments {
+  id        String    @id @default(cuid())
+  url       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+
+  illegalDumping   IllegalDumping? @relation(fields: [illegalDumpingId], references: [id])
+  illegalDumpingId String?
+
+  donation   Donation? @relation(fields: [donationId], references: [id])
+  donationId String?
+
+  @@map("attachments")
+}

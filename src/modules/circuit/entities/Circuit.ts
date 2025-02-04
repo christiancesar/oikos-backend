@@ -27,7 +27,7 @@ type CircuitConstructorProps = {
   serviceType: ServiceType;
   equipment?: string | null;
   destination?: string | null;
-  createdAt: Date;
+  createdAt?: Date | null;
   updatedAt?: Date | null;
 };
 
@@ -75,7 +75,7 @@ export class CircuitEntity {
     this.serviceType = serviceType;
     this.equipment = equipment;
     this.destination = destination;
-    this.createdAt = createdAt;
+    this.createdAt = createdAt ?? new Date();
     this.updatedAt = updatedAt;
   }
 }

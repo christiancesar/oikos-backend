@@ -1,7 +1,7 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { IDonationsRepository } from "../repositories/IDonationsRepository";
 import { AppError } from "@common/errors/AppError";
-import { DonationEntity } from "../entities/Donation";
+import { DonationEntity, DonationStatus } from "../entities/Donation";
 
 type CancelDonationParams = {
   donationId: string;
@@ -34,6 +34,16 @@ export class CancelDonationService {
 
     if (donationExist.donorId !== userId) {
       throw new AppError("You are not the donor of this donation");
+    }
+
+    if (
+      [
+        DonationStatus.COMPLETED,
+        DonationStatus.CLOSED,
+        DonationStatus.CANCELLED,
+      ].includes(donationExist.status)
+    ) {
+      throw new AppError("Donation already cancelled, closed or completed");
     }
 
     const donation = await this.donationsRepository.markDonationAsCancelled({

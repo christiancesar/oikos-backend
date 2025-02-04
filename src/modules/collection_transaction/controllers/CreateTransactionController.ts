@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import * as zod from "zod";
 import { CollectionType, TradingType } from "../entities/CollectionTransaction";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
-import { CreateTransactionService } from "../service/CreateTransactionService";
+import { CreateTransactionService } from "../services/CreateTransactionService";
 
 /**
  * This schema is used to validate the request body of the CreateTransactionController.

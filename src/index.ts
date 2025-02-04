@@ -1,11 +1,12 @@
 import "dotenv/config";
-import { prisma } from "../prisma/index";
-import { interceptErrorMiddleware } from "@common/middlewares/interceptErrorMiddleware";
-import cors from "cors";
+import path from "path";
 import express from "express";
 import "express-async-errors";
+import { enviroment } from "@common/env/env";
+import cors from "cors";
+import { interceptErrorMiddleware } from "@common/middlewares/interceptErrorMiddleware";
+import { prisma } from "../prisma/index";
 import { routes } from "./routes";
-import path from "path";
 
 const server = express();
 server.use(cors({ credentials: true }));
@@ -20,7 +21,7 @@ server.use(
 
 async function main() {
   await prisma.$connect();
-  server.listen(process.env.PORT, () => {
+  server.listen(enviroment.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
   });
 }

@@ -1,7 +1,7 @@
 import { CircuitEntity } from "../entities/Circuit";
 
 export type CreateCircuitDTO = {
-  code: string;
+  code?: string | null;
   addresses: string;
   sectors?: string | null;
   frequency: string;

@@ -95,10 +95,10 @@ export class CompanyEntity {
     this.acceptAppointments = acceptAppointments;
     this.email = email;
     this.phones = phones;
-    this.address = address;
+    this.address = address || null;
     this.startedActivityIn = startedActivityIn;
-    this.businessHours = businessHours ?? [];
-    this.wasteItems = wasteItems ?? [];
+    this.businessHours = businessHours || [];
+    this.wasteItems = wasteItems || [];
     this.createdAt = createdAt ?? new Date();
     this.updatedAt = updatedAt;
   }

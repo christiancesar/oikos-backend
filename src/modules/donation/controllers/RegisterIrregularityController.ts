@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { RegisterIrregularityService } from "../services/RegisterIrregularityService";
 import { DonationsRepository } from "../repositories/DonationsRepository";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 export class RegisterIrregularityController {
   async handle(request: Request, response: Response) {

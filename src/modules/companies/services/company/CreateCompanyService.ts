@@ -1,16 +1,17 @@
-import IUsersRepository from "@modules/users/repositories/IUsersRepository";
-import { ICompaniesRepository } from "../../repositories/ICompaniesRepository";
 import { AppError } from "@common/errors/AppError";
 import {
   CompanyType,
   IdentityType,
 } from "@modules/companies/entities/Companies";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
+import { ICompaniesRepository } from "../../repositories/ICompaniesRepository";
 
 type CreateCompanyServiceParams = {
   userId: string;
   company: {
     identity: string;
     identityType: IdentityType;
+    acceptAppointments: boolean;
     companyType: CompanyType;
     stateRegistration?: string | null;
     status: boolean;
