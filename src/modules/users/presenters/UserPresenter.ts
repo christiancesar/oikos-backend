@@ -6,7 +6,7 @@ export class UserPresenter {
       id: user.id,
       email: user.email,
       profile: user.profile,
-      company: user.company,
+      companies: user.companies,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };

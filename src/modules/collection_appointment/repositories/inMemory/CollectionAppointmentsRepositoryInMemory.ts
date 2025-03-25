@@ -74,12 +74,12 @@ export class CollectionAppointmentsRepositoryInMemory
       (appointment) => appointment.id === data.appointmentId,
     );
 
-    this.collectionAppointments[appointmentIndex].status =
+    this.collectionAppointments[appointmentIndex]!.status =
       StatusCollectionAppointment.CANCELED;
-    this.collectionAppointments[appointmentIndex].reasonForCancellation =
+    this.collectionAppointments[appointmentIndex]!.reasonForCancellation =
       data.reason;
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 
   async updateScheduleForAppointment(data: {
@@ -91,10 +91,10 @@ export class CollectionAppointmentsRepositoryInMemory
       (appointment) => appointment.id === data.appointmentId,
     );
 
-    this.collectionAppointments[appointmentIndex].scheduleFor =
+    this.collectionAppointments[appointmentIndex]!.scheduleFor =
       data.scheduleFor;
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 
   async listCollectionAppointmentsByCompanyId({
@@ -119,7 +119,7 @@ export class CollectionAppointmentsRepositoryInMemory
         appointment.company.id === companyId,
     );
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 
   async confirmationCollectionAppointmentCompayId({
@@ -132,10 +132,10 @@ export class CollectionAppointmentsRepositoryInMemory
         appointment.company.id === companyId,
     );
 
-    this.collectionAppointments[appointmentIndex].status =
+    this.collectionAppointments[appointmentIndex]!.status =
       StatusCollectionAppointment.CONFIRMED;
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 
   async cancelCollectionAppointmentByCompanyId({
@@ -149,12 +149,12 @@ export class CollectionAppointmentsRepositoryInMemory
         appointment.company.id === companyId,
     );
 
-    this.collectionAppointments[appointmentIndex].status =
+    this.collectionAppointments[appointmentIndex]!.status =
       StatusCollectionAppointment.CANCELED;
-    this.collectionAppointments[appointmentIndex].reasonForCancellation =
+    this.collectionAppointments[appointmentIndex]!.reasonForCancellation =
       reason;
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 
   async completeAppointmentByCompany({
@@ -167,9 +167,9 @@ export class CollectionAppointmentsRepositoryInMemory
         appointment.company.id === companyId,
     );
 
-    this.collectionAppointments[appointmentIndex].status =
+    this.collectionAppointments[appointmentIndex]!.status =
       StatusCollectionAppointment.COMPLETED;
 
-    return this.collectionAppointments[appointmentIndex];
+    return this.collectionAppointments[appointmentIndex]!;
   }
 }

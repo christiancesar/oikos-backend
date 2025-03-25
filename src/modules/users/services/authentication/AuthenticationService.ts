@@ -1,8 +1,8 @@
 import { enviroment } from "@common/env/env";
+import { Secret, SignOptions, sign } from "jsonwebtoken";
 import { AppError } from "@common/errors/AppError";
 import IHashProvider from "@modules/users/provider/IHashProvider";
 import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
-import { sign } from "jsonwebtoken";
 
 type AuthenticationRequest = {
   email: string;
@@ -39,10 +39,13 @@ export class AuthenticationService {
       throw new AppError("Email or password incorrect!", 401);
     }
 
-    const token = sign({}, enviroment.JWT_SECRET, {
+    const jwtSecret: Secret = enviroment.JWT_SECRET;
+    const signOptions: SignOptions = {
       subject: user.id,
       expiresIn: enviroment.JWT_EXPIRES_IN,
-    });
+    };
+
+    const token = sign({}, jwtSecret, signOptions);
 
     return { token };
   }

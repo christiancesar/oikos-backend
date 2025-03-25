@@ -1,15 +1,15 @@
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { SearchWasteItemService } from "@modules/companies/services/search/SearchWasteItemService";
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 
-const searchWasteItemQueryParamsSchemaValidation = zod.object({
-  company: zod.string().optional(),
-  waste: zod.string().optional(),
-  category: zod.string().optional(),
-  city: zod.string(),
-  page: zod.preprocess((value) => Number(value), zod.number()),
-  perPage: zod.preprocess((value) => Number(value), zod.number()).optional(),
+const searchWasteItemQueryParamsSchemaValidation = z.object({
+  company: z.string().optional(),
+  waste: z.string().optional(),
+  category: z.string().optional(),
+  city: z.string(),
+  page: z.preprocess((value) => Number(value), z.number()),
+  perPage: z.preprocess((value) => Number(value), z.number()).optional(),
 });
 
 export class SearchWasteItemController {

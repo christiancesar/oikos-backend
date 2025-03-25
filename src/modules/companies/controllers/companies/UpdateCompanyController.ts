@@ -1,33 +1,37 @@
 import { Request, Response } from "express";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { UpdateCompanyService } from "@modules/companies/services/company/UpdateCompanyService";
-import * as zod from "zod";
+import { z } from "zod";
 import {
   CompanyType,
   IdentityType,
 } from "@modules/companies/entities/Companies";
 import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
-const updateCompanyRequestBodySchemaValidation = zod.object({
-  company: zod.object({
-    identity: zod.string().min(11).max(14),
-    identityType: zod.nativeEnum(IdentityType),
-    companyType: zod.nativeEnum(CompanyType),
-    stateRegistration: zod.string().min(8).max(13).optional(),
-    acceptAppointments: zod.boolean().optional().default(false),
-    status: zod.boolean().default(true),
-    isHeadquarters: zod.boolean().default(true),
-    businessName: zod.string().min(3).optional(),
-    corporateName: zod.string().min(1),
-    email: zod.string().email().optional(),
-    phones: zod.string(),
-    startedActivityIn: zod.string().transform((value) => new Date(value)),
+const updateCompanyRequestBodySchemaValidation = z.object({
+  company: z.object({
+    identity: z.string().min(11).max(14),
+    identityType: z.nativeEnum(IdentityType),
+    companyType: z.nativeEnum(CompanyType),
+    stateRegistration: z.string().min(8).max(13).optional(),
+    acceptAppointments: z.boolean().optional().default(false),
+    status: z.boolean().default(true),
+    isHeadquarters: z.boolean().default(true),
+    businessName: z.string().min(3).optional(),
+    corporateName: z.string().min(1),
+    email: z.string().email().optional(),
+    phones: z.string(),
+    startedActivityIn: z.string().transform((value) => new Date(value)),
   }),
+});
+
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
 });
 
 export class UpdateCompanyController {
   public async handle(request: Request, response: Response) {
-    const { companyId } = request.params;
+    const { companyId } = requestParamsSchemaValidation.parse(request.params);
     const userId = request.user.id;
     const { company } = updateCompanyRequestBodySchemaValidation.parse(
       request.body,

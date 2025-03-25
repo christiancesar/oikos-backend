@@ -1,3 +1,5 @@
+import { TimeSlot } from "@modules/companies/entities/BusinessHour";
+
 export type CreateCompaniesDTO = {
   userId: string;
   company: {
@@ -68,10 +70,7 @@ export type CreateBusinessHours = {
   companyId: string;
   businessHours: {
     dayOfWeek: string;
-    timeSlots: {
-      startTime: string;
-      endTime: string;
-    }[];
+    timeSlots: TimeSlot[];
   };
 };
 

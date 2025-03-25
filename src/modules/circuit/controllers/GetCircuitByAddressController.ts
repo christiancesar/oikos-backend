@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import { GetCircuitByAddressService } from "../services/GetCircuitByAddressService";
 import { CircuitsRepository } from "../repositories/CircuitsRepository";
 
-const GetCircuitByAddressQueryParamsSchemaValidation = zod.object({
-  address: zod.string(),
-  city: zod.string(),
-  state: zod.string(),
+const GetCircuitByAddressQueryParamsSchemaValidation = z.object({
+  address: z.string(),
+  city: z.string(),
+  state: z.string(),
 });
 
 export class GetCircuitByAddressController {

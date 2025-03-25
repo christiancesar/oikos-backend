@@ -1,7 +1,7 @@
 import { WasteType } from "@modules/companies/entities/Item";
 import { UnitOfMeasurement } from "@modules/companies/entities/MeasurementConst";
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import { CollectionType, TradingType } from "../entities/CollectionTransaction";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
 import { CreateTransactionService } from "../services/CreateTransactionService";
@@ -17,24 +17,28 @@ import { CreateTransactionService } from "../services/CreateTransactionService";
  * longitude,
  */
 
-const createCollectionTransactionSchemaValidation = zod.object({
-  wasteId: zod.string().uuid(),
-  collectionType: zod.nativeEnum(CollectionType), // Requisição deve conter valores contidos dentro de CollectionType
-  wasteType: zod.nativeEnum(WasteType), // Requisição deve conter valores contidos dentro de WasteType
-  tradingType: zod.nativeEnum(TradingType), // Requisição deve conter valores contidos dentro de TradingType
-  measurement: zod.nativeEnum(UnitOfMeasurement), // Requisição deve conter valores contidos dentro de UnitOfMeasurement
-  quantity: zod.number(),
-  unitAmount: zod.number().optional(),
-  grossAmount: zod.number().optional(),
-  discountAmount: zod.number().optional(),
-  netAmount: zod.number().optional(),
-  latitude: zod.number().optional(),
-  longitude: zod.number().optional(),
+const createCollectionTransactionSchemaValidation = z.object({
+  wasteId: z.string().uuid(),
+  collectionType: z.nativeEnum(CollectionType), // Requisição deve conter valores contidos dentro de CollectionType
+  wasteType: z.nativeEnum(WasteType), // Requisição deve conter valores contidos dentro de WasteType
+  tradingType: z.nativeEnum(TradingType), // Requisição deve conter valores contidos dentro de TradingType
+  measurement: z.nativeEnum(UnitOfMeasurement), // Requisição deve conter valores contidos dentro de UnitOfMeasurement
+  quantity: z.number(),
+  unitAmount: z.number().optional(),
+  grossAmount: z.number().optional(),
+  discountAmount: z.number().optional(),
+  netAmount: z.number().optional(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
+});
+
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
 });
 
 export class CreateTransactionController {
   async handle(request: Request, response: Response) {
-    const { companyId } = request.params;
+    const { companyId } = requestParamsSchemaValidation.parse(request.params);
     const data = createCollectionTransactionSchemaValidation.parse(
       request.body,
     );

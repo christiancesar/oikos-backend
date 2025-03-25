@@ -23,11 +23,22 @@ export enum DayOfWeek {
   SATURDAY = "SATURDAY",
 }
 
-type TimeSlot = {
+type TimeSlotConstructor = {
+  startTime: string;
+  endTime: string;
+  id?: string;
+};
+
+export class TimeSlot {
   id: string;
   startTime: string; // Horário de início, formato "HH:mm"
   endTime: string; // Horário de fim, formato "HH:mm"
-};
+  constructor({ startTime, endTime, id }: TimeSlotConstructor) {
+    this.id = id ?? randomUUID();
+    this.startTime = startTime;
+    this.endTime = endTime;
+  }
+}
 
 type BusinessHourEntityConstructor = {
   dayOfWeek: DayOfWeek;

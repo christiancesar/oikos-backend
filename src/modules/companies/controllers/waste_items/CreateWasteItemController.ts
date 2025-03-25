@@ -3,21 +3,25 @@ import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRe
 import { CreateWasteItemService } from "@modules/companies/services/waste_items/CreateWasteItemService";
 import { MaterialRepository } from "@modules/material/repositories/MaterialRegistrationRepository";
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 
-const CreateWasteItemControllerRequestBodySchema = zod.object({
-  waste: zod.object({
-    materialId: zod.string().uuid(),
-    amount: zod.number(),
-    unit: zod.string().min(1).max(2),
-    wasteType: zod.nativeEnum(WasteType),
+const createWasteItemControllerRequestBodySchema = z.object({
+  waste: z.object({
+    materialId: z.string().uuid(),
+    amount: z.number(),
+    unit: z.string().min(1).max(2),
+    wasteType: z.nativeEnum(WasteType),
   }),
+});
+
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
 });
 
 export class CreateWasteItemController {
   public async handle(request: Request, response: Response): Promise<void> {
-    const { companyId } = request.params;
-    const { waste } = CreateWasteItemControllerRequestBodySchema.parse(
+    const { companyId } = requestParamsSchemaValidation.parse(request.params);
+    const { waste } = createWasteItemControllerRequestBodySchema.parse(
       request.body,
     );
 

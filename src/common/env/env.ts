@@ -5,7 +5,9 @@ const dotEnvSchema = z.object({
   URL_BASE: z.string(),
   PORT: z.string(),
   JWT_SECRET: z.string(),
-  JWT_EXPIRES_IN: z.string(),
+  JWT_EXPIRES_IN: z.string().transform((value) => {
+    return Number(value);
+  }),
   DATABASE_URL: z.string(),
 });
 

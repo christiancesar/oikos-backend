@@ -1,7 +1,7 @@
 import { CollectionAppointmentsRepository } from "@modules/collection_appointment/repositories/CollectionAppointmentsRepository";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { MaterialRepository } from "@modules/material/repositories/MaterialRegistrationRepository";
-import { UsersRepository } from "@modules/users/repositories/UsersRepository";
+import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
 class CollectionAppointmentControllerFactory {
   make() {

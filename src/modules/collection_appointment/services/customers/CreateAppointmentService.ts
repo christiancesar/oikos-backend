@@ -11,6 +11,7 @@ type CreateAppointmentConstructor = {
   materialsRepository: IMaterialRepository;
   collectionAppointmentsRepository: ICollectionAppointmentsRepository;
 };
+
 export type CreateAppointmentDTO = {
   companyId: string;
   customerId: string;

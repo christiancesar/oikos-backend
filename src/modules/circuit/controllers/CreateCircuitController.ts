@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
 import { CircuitsRepository } from "../repositories/CircuitsRepository";
 import { CreateCircuitService } from "../services/CreateCircuitService";
-import * as zod from "zod";
+import { z } from "zod";
 import { Frequency, ServiceType } from "../entities/Circuit";
 
-const createCircuitSchemaValidation = zod.object({
-  code: zod.string(),
-  addresses: zod.array(zod.string()),
-  city: zod.string(),
-  state: zod.string(),
-  sectors: zod.string().optional(),
-  frequency: zod.array(zod.nativeEnum(Frequency)),
-  startTime: zod.string().optional(),
-  endTime: zod.string().optional(),
-  serviceType: zod.nativeEnum(ServiceType),
-  equipment: zod.string().optional(),
-  destination: zod.string().optional(),
+const createCircuitSchemaValidation = z.object({
+  code: z.string(),
+  addresses: z.array(z.string()),
+  city: z.string(),
+  state: z.string(),
+  sectors: z.string().optional(),
+  frequency: z.array(z.nativeEnum(Frequency)),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
+  serviceType: z.nativeEnum(ServiceType),
+  equipment: z.string().optional(),
+  destination: z.string().optional(),
 });
 
 export class CreateCircuitController {

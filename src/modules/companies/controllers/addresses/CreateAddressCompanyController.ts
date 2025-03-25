@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CompaniesRepository } from "../../repositories/CompaniesRepository";
 import { CreateAddressCompanyService } from "@modules/companies/services/address/CreateAddressCompanyService";
+import { z } from "zod";
 
 type CreateAddressCompanyRequestBody = {
   address: {
@@ -17,9 +18,13 @@ type CreateAddressCompanyRequestBody = {
   };
 };
 
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
+});
+
 export class CreateAddressCompanyController {
   public async handle(request: Request, response: Response) {
-    const { companyId } = request.params;
+    const { companyId } = requestParamsSchemaValidation.parse(request.params);
     const { address } = request.body as CreateAddressCompanyRequestBody;
     const companiesRepository = new CompaniesRepository();
     const createAddressCompanyService = new CreateAddressCompanyService(

@@ -16,5 +16,6 @@
         "endOfLine": "lf"
       }
     ]
-  }
+  },
+  "ignorePatterns": ["node_modules/", "dist/"]
 }

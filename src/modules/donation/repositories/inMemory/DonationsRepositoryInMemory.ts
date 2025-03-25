@@ -83,9 +83,9 @@ export class DonationsRepositoryInMemory implements IDonationsRepository {
       (donation) => donation.id === donationId,
     );
 
-    this.donations[donationIndex].doneeId = doneeId;
+    this.donations[donationIndex]!.doneeId = doneeId;
 
-    return this.donations[donationIndex];
+    return this.donations[donationIndex]!;
   }
 
   async markDonationAsCancelled({
@@ -96,10 +96,10 @@ export class DonationsRepositoryInMemory implements IDonationsRepository {
       (donation) => donation.id === donationId,
     );
 
-    this.donations[donationIndex].status = DonationStatus.CANCELLED;
-    this.donations[donationIndex].reasonForCancellation = reason;
+    this.donations[donationIndex]!.status = DonationStatus.CANCELLED;
+    this.donations[donationIndex]!.reasonForCancellation = reason;
 
-    return this.donations[donationIndex];
+    return this.donations[donationIndex]!;
   }
 
   async saveAttachments({
@@ -110,9 +110,9 @@ export class DonationsRepositoryInMemory implements IDonationsRepository {
       (donation) => donation.id === donationId,
     );
 
-    this.donations[donationIndex].attachments = urls;
+    this.donations[donationIndex]!.attachments = urls;
 
-    return this.donations[donationIndex];
+    return this.donations[donationIndex]!;
   }
 
   async registerIrregularity(
@@ -122,7 +122,7 @@ export class DonationsRepositoryInMemory implements IDonationsRepository {
       (donation) => donation.id === data.donationId,
     );
 
-    return this.donations[donationIndex];
+    return this.donations[donationIndex]!;
   }
 
   async closeDonation(data: CloseDonationDTO): Promise<DonationEntity> {
@@ -130,9 +130,9 @@ export class DonationsRepositoryInMemory implements IDonationsRepository {
       (donation) => donation.id === data.donationId,
     );
 
-    this.donations[donationIndex].status = DonationStatus.CLOSED;
-    this.donations[donationIndex].reasonForClosed = data.reason;
+    this.donations[donationIndex]!.status = DonationStatus.CLOSED;
+    this.donations[donationIndex]!.reasonForClosed = data.reason;
 
-    return this.donations[donationIndex];
+    return this.donations[donationIndex]!;
   }
 }

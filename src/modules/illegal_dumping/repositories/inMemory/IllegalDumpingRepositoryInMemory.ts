@@ -52,9 +52,9 @@ export class IllegalDumpingRepositoryInMemory
     );
 
     Object.assign<IllegalDumpingEntity, IllegalDumpingEntity>(
-      this.illegals[illegalIndex],
+      this.illegals[illegalIndex]!,
       {
-        ...this.illegals[illegalIndex],
+        ...this.illegals[illegalIndex]!,
         status: StatusIllegalDumping.ASSIGNED,
         solver: new Solver({
           company: {
@@ -68,7 +68,7 @@ export class IllegalDumpingRepositoryInMemory
       },
     );
 
-    return this.illegals[illegalIndex];
+    return this.illegals[illegalIndex]!;
   }
 
   async unassignIllegalDumping({
@@ -81,15 +81,15 @@ export class IllegalDumpingRepositoryInMemory
     );
 
     Object.assign<IllegalDumpingEntity, IllegalDumpingEntity>(
-      this.illegals[illegalIndex],
+      this.illegals[illegalIndex]!,
       {
-        ...this.illegals[illegalIndex],
+        ...this.illegals[illegalIndex]!,
         solver: null,
         status: StatusIllegalDumping.OPEN,
       },
     );
 
-    return this.illegals[illegalIndex];
+    return this.illegals[illegalIndex]!;
   }
 
   async listAllIllegalsDumping({
@@ -144,15 +144,15 @@ export class IllegalDumpingRepositoryInMemory
     );
 
     Object.assign<IllegalDumpingEntity, IllegalDumpingEntity>(
-      this.illegals[illegalIndex],
+      this.illegals[illegalIndex]!,
       {
-        ...this.illegals[illegalIndex],
+        ...this.illegals[illegalIndex]!,
         status: StatusIllegalDumping.RESOLVED,
         description,
       },
     );
 
-    return this.illegals[illegalIndex];
+    return this.illegals[illegalIndex]!;
   }
 
   async saveAttchments({
@@ -167,13 +167,13 @@ export class IllegalDumpingRepositoryInMemory
     );
 
     Object.assign<IllegalDumpingEntity, IllegalDumpingEntity>(
-      this.illegals[illegalIndex],
+      this.illegals[illegalIndex]!,
       {
-        ...this.illegals[illegalIndex],
+        ...this.illegals[illegalIndex]!,
         attachments: urls,
       },
     );
 
-    return this.illegals[illegalIndex];
+    return this.illegals[illegalIndex]!;
   }
 }

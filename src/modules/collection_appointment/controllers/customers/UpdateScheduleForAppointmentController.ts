@@ -1,14 +1,21 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
 import { UpdateScheduleForAppointmentService } from "../../services/customers/UpdateScheduleForAppointmentService";
 
-const updateAppointmentBodySchemaValidation = zod.object({
-  scheduleFor: zod.string().transform((value) => new Date(value)),
+const updateAppointmentBodySchemaValidation = z.object({
+  scheduleFor: z.string().transform((value) => new Date(value)),
 });
+
+const requestParamsSchemaValidation = z.object({
+  appointmentId: z.string().uuid(),
+});
+
 export class UpdateScheduleForAppointmentController {
   async handle(request: Request, response: Response) {
-    const { appointmentId } = request.params;
+    const { appointmentId } = requestParamsSchemaValidation.parse(
+      request.params,
+    );
     const userId = request.user.id;
     const { scheduleFor } = updateAppointmentBodySchemaValidation.parse(
       request.body,

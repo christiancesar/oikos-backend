@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import CollectionAppointmentControllerFactory from "./factories/CollectionAppointmentControllerFactory";
 import { CreateAppointmentService } from "../../services/customers/CreateAppointmentService";
 
-const createAppointmentBodySchemaValidation = zod.object({
-  companyId: zod.string().uuid(),
-  wastes: zod.array(zod.string().uuid()),
-  scheduleFor: zod.string().transform((value) => new Date(value)),
+const createAppointmentBodySchemaValidation = z.object({
+  companyId: z.string().uuid(),
+  wastes: z.array(z.string().uuid()),
+  scheduleFor: z.string().transform((value) => new Date(value)),
 });
 
 export class CreateAppointmentController {

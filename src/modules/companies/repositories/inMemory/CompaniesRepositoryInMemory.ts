@@ -22,6 +22,7 @@ import {
 } from "../dtos/CompaniesRepositoryDTO";
 import {
   ICompaniesRepository,
+  SeachWasteItemsResult,
   SearchWasteItemsDTO,
 } from "../ICompaniesRepository";
 
@@ -53,9 +54,9 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       createdAt: new Date(),
     });
 
-    const companyIndex = this.companies.push({ ...companyCreated, userId });
+    this.companies.push({ ...companyCreated, userId });
 
-    return this.companies[companyIndex - 1];
+    return companyCreated;
   }
 
   async findCompayById(id: string): Promise<CompanyEntity | null> {
@@ -89,9 +90,12 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.id,
     );
 
-    Object.assign(this.companies[companyIndex], data);
+    if (companyIndex === -1) {
+      throw new Error("Company not found");
+    }
+    Object.assign(this.companies[companyIndex]!, data);
 
-    return this.companies[companyIndex];
+    return this.companies[companyIndex]!;
   }
 
   async createAddress(data: CreateAddressCompaniesDTO): Promise<AddressEntity> {
@@ -99,12 +103,12 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.companyId,
     );
 
-    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex], {
-      ...this.companies[companyIndex],
+    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex]!, {
+      ...this.companies[companyIndex]!,
       address: makeAddress({ ...data.address }),
     });
 
-    return this.companies[companyIndex].address!;
+    return this.companies[companyIndex]!.address!;
   }
 
   async findAddressByCompaniesId(
@@ -120,12 +124,12 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.companyId,
     );
 
-    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex], {
-      ...this.companies[companyIndex],
+    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex]!, {
+      ...this.companies[companyIndex]!,
       address: makeAddress({ ...data.address }),
     });
 
-    return this.companies[companyIndex].address!;
+    return this.companies[companyIndex]!.address!;
   }
 
   async getBusinessHoursByCompanyId(
@@ -141,15 +145,15 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.companyId,
     );
 
-    this.companies[companyIndex].businessHours?.push(
+    this.companies[companyIndex]!.businessHours?.push(
       new BusinessHourEntity({
         dayOfWeek: data.businessHours.dayOfWeek as DayOfWeek,
         timeSlots: data.businessHours.timeSlots,
       }),
     );
 
-    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex], {
-      ...this.companies[companyIndex],
+    Object.assign<CompanyEntity, CompanyEntity>(this.companies[companyIndex]!, {
+      ...this.companies[companyIndex]!,
     });
   }
 
@@ -158,7 +162,7 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === companyId,
     );
 
-    this.companies[companyIndex].businessHours = [];
+    this.companies[companyIndex]!.businessHours = [];
   }
 
   async createWasteItem(data: CreateWasteItemDTO): Promise<ItemEntity> {
@@ -166,7 +170,7 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.companyId,
     );
 
-    const wasteItemIndex = this.companies[companyIndex].wasteItems?.push(
+    const wasteItemIndex = this.companies[companyIndex]!.wasteItems?.push(
       new ItemEntity({
         unit: unitOfMeasurement[
           data.waste.unit as keyof typeof unitOfMeasurement
@@ -179,7 +183,7 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       }),
     );
 
-    return this.companies[companyIndex].wasteItems![wasteItemIndex! - 1];
+    return this.companies[companyIndex]!.wasteItems![wasteItemIndex! - 1]!;
   }
 
   async findWasteItemById({
@@ -193,7 +197,7 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === companyId,
     );
 
-    const wasteItem = this.companies[companyIndex].wasteItems?.find(
+    const wasteItem = this.companies[companyIndex]!.wasteItems?.find(
       (wasteItem) => wasteItem.id === wasteId,
     );
 
@@ -208,9 +212,9 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       (company) => company.id === data.companyId,
     );
 
-    this.companies[companyIndex].wasteItems = this.companies[
+    this.companies[companyIndex]!.wasteItems = this.companies[
       companyIndex
-    ].wasteItems?.filter((wasteItem) => wasteItem.id !== data.wasteId);
+    ]!.wasteItems?.filter((wasteItem) => wasteItem.id !== data.wasteId);
   }
 
   async listWasteItemsByCompanyId(companyId: string): Promise<ItemEntity[]> {
@@ -222,7 +226,11 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
     category,
     company,
     waste,
-  }: SearchWasteItemsDTO): Promise<CompanyEntity[]> {
+    // eslint-disable-next-line
+    city,
+    page,
+    perPage,
+  }: SearchWasteItemsDTO): Promise<SeachWasteItemsResult> {
     const categoryIsEmpty = category.trim() === "";
     const companyIsEmpty = company.trim() === "";
     const wasteIsEmpty = waste.trim() === "";
@@ -230,7 +238,13 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
 
     const allFieldsAreEmpty = categoryIsEmpty && companyIsEmpty && wasteIsEmpty;
     if (allFieldsAreEmpty) {
-      return this.companies;
+      return {
+        companies,
+        currentPage: 1,
+        pageLimit: 1,
+        perPage: 1,
+        total: 0,
+      };
     }
 
     if (!allFieldsAreEmpty) {
@@ -271,6 +285,12 @@ export class CompaniesRepositoryInMemory implements ICompaniesRepository {
       );
     }
 
-    return companies;
+    return {
+      companies,
+      currentPage: page,
+      pageLimit: 1,
+      perPage: perPage || 1,
+      total: companies.length,
+    };
   }
 }

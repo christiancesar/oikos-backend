@@ -134,7 +134,8 @@ export class CollectionTransactionsRepositoryInMemory
       status: TransactionStatus.ACTIVE,
     } as CollectionTransactionInMemory;
 
-    return this.collectionTransactions[transactionIndex];
+    const transaction = this.collectionTransactions[transactionIndex]!;
+    return transaction;
   }
 
   async cancelCollectionTransaction({
@@ -146,9 +147,9 @@ export class CollectionTransactionsRepositoryInMemory
         transaction.id === transactionId && transaction.companyId === companyId,
     );
 
-    this.collectionTransactions[transactionIndex].status =
+    this.collectionTransactions[transactionIndex]!.status =
       TransactionStatus.CANCELED;
 
-    return this.collectionTransactions[transactionIndex];
+    return this.collectionTransactions[transactionIndex]!;
   }
 }

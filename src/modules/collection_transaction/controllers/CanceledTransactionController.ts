@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import CollectionTransactionFactory from "./factories/CollectionTransactionFactory";
 import { CanceledTransactionService } from "../services/CanceledTransactionService";
 
-const cancelTransactionParamsSchemaValidation = zod.object({
-  companyId: zod.string().uuid(),
-  transactionId: zod.string().uuid(),
+const cancelTransactionParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
+  transactionId: z.string().uuid(),
 });
 
 export class CanceledTransactionController {

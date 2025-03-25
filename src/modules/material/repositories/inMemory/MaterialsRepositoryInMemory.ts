@@ -32,12 +32,12 @@ export class MaterialsRepositoryInMemory implements IMaterialRepository {
       (material) => material.id === id,
     );
 
-    Object.assign(this.material[materialIndex], {
+    Object.assign(this.material[materialIndex]!, {
       ...materialData,
       updatedAt: new Date(),
     });
 
-    return this.material[materialIndex];
+    return this.material[materialIndex]!;
   }
 
   async delete(id: string): Promise<void> {

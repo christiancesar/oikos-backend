@@ -1,19 +1,23 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
 import { StatusIllegalDumping } from "../entities/IllegalDumping";
 import { ShowIllegalDumpingService } from "../services/companies/ShowIllegalDumpingService";
 import { CreateIllegalDumpingService } from "../services/CreateIllegalDumpingService";
 import { ListAllIllegalDumpingService } from "../services/companies/ListAllIllegalDumpingService";
 
-const CreateIllegalDumpingRequestBodySchemaValidation = zod.object({
-  description: zod.string().min(10),
-  longitude: zod.number(),
-  latitude: zod.number(),
+const CreateIllegalDumpingRequestBodySchemaValidation = z.object({
+  description: z.string().min(10),
+  longitude: z.number(),
+  latitude: z.number(),
 });
 
-const serachIllegalDumpingQuerySchemaValidation = zod.object({
-  status: zod.nativeEnum(StatusIllegalDumping).optional(),
+const serachIllegalDumpingQuerySchemaValidation = z.object({
+  status: z.nativeEnum(StatusIllegalDumping).optional(),
+});
+
+const requestParamsSchemaValidation = z.object({
+  denunciationId: z.string().uuid(),
 });
 export class IllegalDumpingController {
   async create(request: Request, response: Response) {
@@ -33,7 +37,7 @@ export class IllegalDumpingController {
   }
 
   async show(req: Request, response: Response) {
-    const { denunciationId } = req.params;
+    const { denunciationId } = requestParamsSchemaValidation.parse(req.params);
 
     const repository = new IllegalDumpingRepository();
     const service = new ShowIllegalDumpingService(repository);

@@ -1,14 +1,12 @@
 import { AppError } from "@common/errors/AppError";
+import { TimeSlot } from "@modules/companies/entities/BusinessHour";
 import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 
 type CreateBusinessHoursServiceParams = {
   companyId: string;
   businessHours: {
     dayOfWeek: string;
-    timeSlots: {
-      startTime: string;
-      endTime: string;
-    }[];
+    timeSlots: TimeSlot[];
   }[];
 };
 

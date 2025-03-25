@@ -1,29 +1,29 @@
 import { Request, Response } from "express";
 import { ProfileRepository } from "../../repositories/ProfileRepository";
 import { CreateOrUpdateProfileService } from "../../services/CreateOrUpdateProfileService";
-import * as zod from "zod";
+import { z } from "zod";
 import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 
-const CreateOrUpdateProfileControllerRequestBodySchema = zod.object({
-  firstName: zod
+const CreateOrUpdateProfileControllerRequestBodySchema = z.object({
+  firstName: z
     .string()
     .min(2, { message: "Primeiro nome deve ser maior que 2 caracteres" }),
-  lastName: zod
+  lastName: z
     .string()
     .min(2, { message: "Primeiro nome deve ser maior que 2 caracteres" }),
-  phone: zod.string(),
-  cpf: zod.string().length(11, { message: "CPF deve ter 11 caracteres" }),
-  address: zod.object({
-    street: zod.string(),
-    number: zod.string(),
-    complement: zod.string().optional(),
-    district: zod.string(),
-    city: zod.string(),
-    state: zod.string(),
-    stateAcronym: zod.string(),
-    zipCode: zod.string(),
-    latitude: zod.number(),
-    longitude: zod.number(),
+  phone: z.string(),
+  cpf: z.string().length(11, { message: "CPF deve ter 11 caracteres" }),
+  address: z.object({
+    street: z.string(),
+    number: z.string(),
+    complement: z.string().optional(),
+    district: z.string(),
+    city: z.string(),
+    state: z.string(),
+    stateAcronym: z.string(),
+    zipCode: z.string(),
+    latitude: z.number(),
+    longitude: z.number(),
   }),
 });
 

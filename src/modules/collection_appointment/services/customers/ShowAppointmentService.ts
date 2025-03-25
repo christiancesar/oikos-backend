@@ -8,16 +8,18 @@ type ShowAppointmentServiceConsteructor = {
   usersRepository: IUsersRepository;
 };
 
+type ShowAppointment = {
+  userId: string;
+  appointmentId: string;
+};
+
 export class ShowAppointmentService {
   constructor(private repositories: ShowAppointmentServiceConsteructor) {}
 
   async execute({
     userId,
     appointmentId,
-  }: {
-    userId: string;
-    appointmentId: string;
-  }): Promise<CollectionAppointmentEntity> {
+  }: ShowAppointment): Promise<CollectionAppointmentEntity> {
     const userExist =
       await this.repositories.usersRepository.findByUserId(userId);
 

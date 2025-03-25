@@ -38,6 +38,10 @@ export default function authenticationMiddleware(
       throw new AppError("Setup error: JWT secret is not defined", 500);
     }
 
+    if (!token) {
+      throw new AppError("JWT token is missing", 401);
+    }
+
     const decoded = verify(token, process.env.JWT_SECRET);
 
     const { sub } = decoded as ITokenPayload;

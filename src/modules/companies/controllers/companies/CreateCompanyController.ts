@@ -6,22 +6,22 @@ import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRe
 import { CreateCompanyService } from "@modules/companies/services/company/CreateCompanyService";
 import { UsersRepository } from "@modules/users/repositories/prisma/UsersRepository";
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 
-const CreateCompanyRequestBodySchemaValidation = zod.object({
-  company: zod.object({
-    identity: zod.string().min(11).max(14),
-    identityType: zod.nativeEnum(IdentityType),
-    companyType: zod.nativeEnum(CompanyType),
-    acceptAppointments: zod.boolean().optional().default(false),
-    stateRegistration: zod.string().min(8).max(13).optional(),
-    status: zod.boolean().default(true),
-    isHeadquarters: zod.boolean().default(true),
-    businessName: zod.string().min(3).optional(),
-    corporateName: zod.string().min(1),
-    email: zod.string().email().optional(),
-    phones: zod.string(),
-    startedActivityIn: zod.string().transform((value) => new Date(value)),
+const CreateCompanyRequestBodySchemaValidation = z.object({
+  company: z.object({
+    identity: z.string().min(11).max(14),
+    identityType: z.nativeEnum(IdentityType),
+    companyType: z.nativeEnum(CompanyType),
+    acceptAppointments: z.boolean().optional().default(false),
+    stateRegistration: z.string().min(8).max(13).optional(),
+    status: z.boolean().default(true),
+    isHeadquarters: z.boolean().default(true),
+    businessName: z.string().min(3).optional(),
+    corporateName: z.string().min(1),
+    email: z.string().email().optional(),
+    phones: z.string(),
+    startedActivityIn: z.string().transform((value) => new Date(value)),
   }),
 });
 

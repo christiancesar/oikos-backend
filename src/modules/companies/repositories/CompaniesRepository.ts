@@ -278,6 +278,7 @@ export class CompaniesRepository implements ICompaniesRepository {
           {
             dayOfWeek: DayOfWeek[day.dayOfWeek as keyof typeof DayOfWeek],
             timeSlots: day.timeSlots.map((timeSlot) => ({
+              id: timeSlot.id,
               startTime: timeSlot.startTime,
               endTime: timeSlot.endTime,
             })),

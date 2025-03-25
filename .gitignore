@@ -4,3 +4,5 @@ migrations
 .env
 uploads/*
 !uploads/ .gitkeep
+dist/
+coverage/

@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
-import * as zod from "zod";
+import { z } from "zod";
 import { PriorityIllegalDumping } from "../entities/IllegalDumping";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
 import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRepository";
 import { AssignIllegalDumpingService } from "../services/companies/AssignIllegalDumpingService";
 
-const AssignIllegalDumpingRequestBodySchemaValidation = zod.object({
-  priority: zod.nativeEnum(PriorityIllegalDumping),
-  solveUntil: zod
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string(),
+  denunciationId: z.string(),
+});
+
+const AssignIllegalDumpingRequestBodySchemaValidation = z.object({
+  priority: z.nativeEnum(PriorityIllegalDumping),
+  solveUntil: z
     .string()
     .transform((value) => new Date(value))
     .refine((date) => !isNaN(date.getTime()), { message: "Data inválida" })
@@ -23,7 +28,9 @@ const AssignIllegalDumpingRequestBodySchemaValidation = zod.object({
 
 export class AssignIllegalDumpingController {
   async handle(req: Request, response: Response) {
-    const { companyId, denunciationId } = req.params;
+    const { companyId, denunciationId } = requestParamsSchemaValidation.parse(
+      req.params,
+    );
     const { priority, solveUntil } =
       AssignIllegalDumpingRequestBodySchemaValidation.parse(req.body);
 

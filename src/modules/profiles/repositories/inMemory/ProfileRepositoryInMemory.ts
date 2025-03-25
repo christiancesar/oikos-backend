@@ -30,9 +30,9 @@ export class ProfileRepositoryInMemory implements IProfileRepository {
       return profileCreated;
     }
 
-    const profileUpdated = this.profiles[profileIndex];
+    const profileUpdated = this.profiles[profileIndex]!;
 
-    Object.assign(profileUpdated, {
+    Object.assign(profileUpdated!, {
       firstName: data.firstName,
       lastName: data.lastName,
       phone: data.phone,

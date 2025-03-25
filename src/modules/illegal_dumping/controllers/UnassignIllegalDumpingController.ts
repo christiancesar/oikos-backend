@@ -2,10 +2,16 @@ import { CompaniesRepository } from "@modules/companies/repositories/CompaniesRe
 import { Request, Response } from "express";
 import { IllegalDumpingRepository } from "../repositories/IllegalDumpingRepository";
 import { UnassignIllegalDumpingService } from "../services/companies/UnassignIllegalDumpingService";
-
+import { z } from "zod";
+const requestParamsSchemaValidation = z.object({
+  companyId: z.string().uuid(),
+  denunciationId: z.string().uuid(),
+});
 export class UnassignIllegalDumpingController {
   async handle(req: Request, response: Response) {
-    const { companyId, denunciationId } = req.params;
+    const { companyId, denunciationId } = requestParamsSchemaValidation.parse(
+      req.params,
+    );
 
     const companiesRepository = new CompaniesRepository();
     const illegalDumpingRepository = new IllegalDumpingRepository();
